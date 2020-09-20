@@ -1,6 +1,6 @@
 <?php
 
-class GeneroModel(){
+class LibrosModel{
 
     private $db;
 
@@ -9,7 +9,7 @@ class GeneroModel(){
     }
 
     private function connect() {
-        $db = new PDO('mysql:host=localhost;'.'dbname=db_todolist;charset=utf8', 'root', '');
+        $db = new PDO('mysql:host=localhost;'.'dbname=bd_libreria;charset=utf8', 'root', '');
         return $db;
     }
 

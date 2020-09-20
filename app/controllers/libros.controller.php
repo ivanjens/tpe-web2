@@ -1,6 +1,6 @@
 <?php
 
-class GeneroController(){
+class LibrosController(){
 
     private $model;
     private $view;
