@@ -3,10 +3,19 @@
 class LibrosView{
 
     function showLibros($libros){
-        echo '<ul>';
+        include_once 'templates/header.php';
+        echo '<div>';
         foreach($libros as $libro){
-            echo '<li>' . $libro->titulo . $libro->autor . $libro->editorial . $libro->sinopsis . $libro->titulo . $libro->precio . $libro->stock . '</li>';
+            echo '
+            <div class="card d-inline-block ml-5 mt-5" style="width: 14rem;">
+                <img src="..." class="card-img-top" alt="Portada libro">
+                <div class="card-body">
+                    <h6 class="card-title text-center">' . $libro->titulo .'<h6>
+                </div>
+            </div>
+            ';
         }
-        echo '</ul>';
+        echo '</div>';
+        include_once 'templates/footer.php';
     }
 }
