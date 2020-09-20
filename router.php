@@ -18,7 +18,7 @@ switch ($params[0]) {
         $controller = new TaskController();
         $controller->showTasks();
         break;
-    case 'home':
+    case 'categoria': // filtra libros por genero
         $controller = new TaskController();
         $controller->showTasks();
         $categoria = $params[1];
