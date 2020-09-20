@@ -4,8 +4,8 @@ class LibrosModel{
 
     private $db;
 
-    function __constructor(){
-        $this->$db = $this->connect();
+    function __construct(){
+        $this->db = $this->connect();
     }
 
     private function connect() {

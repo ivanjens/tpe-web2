@@ -1,6 +1,6 @@
 <?php
 
-class LibrosView(){
+class LibrosView{
 
     function showLibros($libros){
         echo '<ul>';
