@@ -15,18 +15,18 @@ $params = explode('/', $action);
 // determina que camino seguir según la acción
 switch ($params[0]) {
     case 'home':
-        $controller = new TaskController();
-        $controller->showTasks();
+        $controller = new LibrosController();
+        $controller->showLibros();
         break;
-    case 'categoria': // filtra libros por genero
-        $controller = new TaskController();
+    /* case 'categoria': // filtra libros por genero
+        $controller = new GeneroController();
         $controller->showTasks();
         $categoria = $params[1];
         break;
     case 'detalles': // ver individualmente un libro
         $controller = new TaskController();
         $controller->showTasks();
-        break;
+        break; */
     default:
         header("HTTP/1.0 404 Not Found");
         echo('404 Page not found');
