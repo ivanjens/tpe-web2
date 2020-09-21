@@ -17,8 +17,6 @@ class LibrosView{
         }
         echo '</div>';
         include_once 'templates/footer.php';
-<<<<<<< HEAD
-=======
     }
 
     function showPanelAdmin($libros){
@@ -45,6 +43,5 @@ class LibrosView{
         include_once 'templates/header.php';
         echo '<p>' . $mensaje . '</p>';
         include_once 'templates/footer.php';
->>>>>>> test
     }
 }
