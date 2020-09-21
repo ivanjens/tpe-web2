@@ -25,9 +25,15 @@ class LibrosModel{
     }
 
     // Inserta un nuevo libro en la tabla
-    function insertLibro($libro){
+    function insert($libro){
         $query = $this->db->prepare('INSERT INTO libro (titulo, autor, editorial, sinopsis, precio, stock, id_genero) VALUES (?, ?, ?, ?, ?, ?, ?)');
         // se completan los campos en el execute con el array asociativo pasado por parametro
         $query->execute([$libro['titulo'], $libro['autor'], $libro['editorial'], $libro['sinopsis'], $libro['precio'], $libro['stock'], $libro['id_genero']]);
+    }
+
+    // borra un libro especifico de la tabla
+    function delete($id){
+        $query = $this->db->prepare('DELETE FROM libro WHERE id = ?');
+        $query->execute([$id]);
     }
 }
