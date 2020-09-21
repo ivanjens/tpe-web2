@@ -20,6 +20,11 @@ switch ($params[0]) {
     case 'home':
         $controller = new LibrosController();
         $controller->showLibros();
+        $controller->showPanelAdmin();
+        break;
+    case 'crear-libro': // filtra libros por genero
+        $controller = new LibrosController();
+        $controller->addLibro();
         break;
     /* case 'categoria': // filtra libros por genero
         $controller = new GeneroController();

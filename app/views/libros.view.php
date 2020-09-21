@@ -18,4 +18,13 @@ class LibrosView{
         echo '</div>';
         include_once 'templates/footer.php';
     }
+
+    function showPanelAdmin(){
+        include_once 'templates/form-libro.php';
+    }
+
+    function showError($mensaje){
+        include_once 'templates/header.php';
+        echo '<p>' . $mensaje . '</p>';
+    }
 }
