@@ -21,6 +21,19 @@ switch ($params[0]) {
         $controller = new LibrosController();
         $controller->showLibros();
         break;
+    case 'admin-libro':
+        $controller = new LibrosController();
+        $controller->showPanelAdmin();
+        break;
+    case 'crear-libro': 
+        $controller = new LibrosController();
+        $controller->addLibro();
+        break;
+    case 'eliminar-libro':
+        $id = $params[1];
+        $controller = new LibrosController();
+        $controller->removeLibro($id);
+        break;
     /* case 'categoria': // filtra libros por genero
         $controller = new GeneroController();
         $controller->showTasks();
