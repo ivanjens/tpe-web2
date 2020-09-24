@@ -1,16 +1,17 @@
 <?php
-
-class GeneroController(){
+include_once ('app/models/genero.model.php');
+include_once ('app/views/genero.view.php');
+class GeneroController{
 
     private $model;
     private $view;
 
-    function __constructor(){
+    function __construct(){
         $this->model = new GeneroModel();
-        this->view = new GeneroView();
+        $this->view = new GeneroView();
     }
 
-    function showLibros(){
+    function showLibroAll(){
         $libros = $this->model->getAll();
 
         $this->view->showLibros($libros);

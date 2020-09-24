@@ -1,10 +1,10 @@
 <?php
 
-class GeneroModel(){
+class GeneroModel{
 
     private $db;
 
-    function __constructor(){
+    function __construct(){
         $this->$db = $this->connect();
     }
 

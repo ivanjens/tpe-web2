@@ -1,5 +1,6 @@
 <?php
 
+include_once ('app/controllers/genero.controller.php');
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
 // lee la acción
@@ -15,17 +16,17 @@ $params = explode('/', $action);
 // determina que camino seguir según la acción
 switch ($params[0]) {
     case 'home':
-        $controller = new TaskController();
-        $controller->showTasks();
+        $controller = new GeneroController();
+        $controller->showLibros();
         break;
     case 'categoria': // filtra libros por genero
-        $controller = new TaskController();
-        $controller->showTasks();
+        $controller = new GeneroController();
+        $controller->showLibro();
         $categoria = $params[1];
         break;
     case 'detalles': // ver individualmente un libro
-        $controller = new TaskController();
-        $controller->showTasks();
+        $controller = new GeneroController();
+        $controller->showLibro();
         break;
     default:
         header("HTTP/1.0 404 Not Found");
