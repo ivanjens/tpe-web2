@@ -12,6 +12,21 @@ class LibrosController{
         $this->model = new LibrosModel();
         $this->view = new LibrosView();
     }
+    //Verificamos si el about llega con un nombre seleccionado
+    function getDev($name){
+        $result = '';
+        if (isset($name)) {
+            switch ($name) {
+                case 'micaela':
+                    $result =  "<h3>Micaela Cisneros</h3><p>Lorem bla bla</p>";
+                    break;
+                case 'ivan':
+                    $result =  "<h3>Ivan Jensen</h3><p>Lorem bla</p>";
+                    break;
+            }
+        }
+        return $result;
+    }
 
     // solicita al model todos los libros y se los muestra al usuario
     function showLibros(){

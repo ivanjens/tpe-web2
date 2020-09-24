@@ -44,4 +44,25 @@ class LibrosView{
         echo '<p>' . $mensaje . '</p>';
         include_once 'templates/footer.php';
     }
+    //
+    function showAbout($name = null) {
+        include_once('templates/header.php');
+    
+        $html = '
+    
+        <h1>Acerca de</h1>
+    
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet sunt, asperiores nulla dolor at quos! Libero a quas placeat doloremque explicabo! Culpa, totam. Expedita recusandae fugiat consequatur laudantium amet alias?</p>
+        
+        <h2>Desarrolladores</h2>
+        <ul>
+            <li><a href="about/micaela">Micaela Cisneros</a></li>
+            <li><a href="about/ivan">Ivan Jensen</a></li>
+        </ul>'
+            . getDev($name) .
+    '</body>
+    </html>';
+    
+        echo $html;
+    }
 }

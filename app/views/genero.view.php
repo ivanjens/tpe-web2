@@ -9,4 +9,6 @@ class GeneroView{
         }
         echo '</ul>';
     }
+
+
 }

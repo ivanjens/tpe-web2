@@ -28,6 +28,9 @@
                 <li class="nav-item active">
                   <a class="nav-link" href="#">CONTACTO</a>
                 </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">ABOUT</a>
+                </li>
               </ul>
             </div>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">

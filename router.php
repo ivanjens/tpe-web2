@@ -34,6 +34,12 @@ switch ($params[0]) {
         $controller = new LibrosController();
         $controller->removeLibro($id);
         break;
+     case 'about':
+        if (isset($params[1]))
+            showAbout($params[1]);
+        else
+            showAbout();
+        break;
     /* case 'categoria': // filtra libros por genero
         $controller = new GeneroController();
         $controller->showTasks();
