@@ -5,11 +5,13 @@ include_once 'app/models/libros.model.php';
 
 class LibrosController{
 
-    private $model;
+    private $modelLibros;
+    private $modelGeneros;
     private $view;
 
     function __construct(){
-        $this->model = new LibrosModel();
+        $this->modelLibros = new LibrosModel();
+        $this->modelGeneros = new GeneroModel();
         $this->view = new LibrosView();
     }
     //Verificamos si el about llega con un nombre seleccionado
@@ -30,14 +32,15 @@ class LibrosController{
 
     // solicita al model todos los libros y se los muestra al usuario
     function showLibros(){
-        $libros = $this->model->getAll();
+        $libros = $this->modelLibros->getAll();
         $this->view->showLibros($libros);
     }
 
     // le solicita al view que muestre el panel junto a los libros
     function showPanelAdmin(){
-        $libros = $this->model->getAll();
-        $this->view->showPanelAdmin($libros);
+        $libros = $this->modelLibros->getAll();
+        $generos = $this->modelGeneros->getAll();
+        $this->view->showPanelAdmin($libros, $generos);
     }
 
     // manda la petición al model para que añada un nuevo libro
@@ -47,15 +50,28 @@ class LibrosController{
 
         // Comprueba que ningún campo este vacio
         if(!empty($libro['titulo']) && !empty($libro['autor']) && !empty($libro['editorial']) && !empty($libro['sinopsis']) && !empty($libro['precio']) && !empty($libro['stock']) && !empty($libro['id_genero'])){
-            $this->model->insert($libro); // campos completos, envia la solicitud al model
+            $this->modelLibros->insert($libro); // campos completos, envia la solicitud al model
             header("Location: " . BASE_URL); 
         } else{
-            $this->view->showError('Error: Campos del formulario vacios'); // campos incompletos, solicita al view que muestre el error
+            $this->view->showError('Campo(s) del formulario vacio(s)'); // campos incompletos, solicita al view que muestre el error
+        }
+    }
+
+    function updateLibro($id){
+        // Todos los valores que vengan del formulario se guardan en el array asociativo
+        $libro = array('titulo'=>$_POST['titulo'], 'autor'=>$_POST['autor'], 'editorial'=>$_POST['editorial'], 'sinopsis'=>$_POST['sinopsis'], 'precio'=>$_POST['precio'], 'stock'=>$_POST['stock'], 'id_genero'=>$_POST['id_genero']);
+
+        // Comprueba que ningún campo este vacio
+        if(!empty($libro['titulo']) && !empty($libro['autor']) && !empty($libro['editorial']) && !empty($libro['sinopsis']) && !empty($libro['precio']) && !empty($libro['stock']) && !empty($libro['id_genero'])){
+            $this->modelLibros->update($id, $libro); // campos completos, envia la solicitud al model
+            header("Location: " . BASE_URL); 
+        } else{
+            $this->view->showError('Campo(s) del formulario vacio(s)'); // campos incompletos, solicita al view que muestre el error
         }
     }
 
     // manda la petición al model para borrar un libro
     function removeLibro($id){
-        $this->model->delete($id);
+        $this->modelLibros->delete($id);
     }
 }

@@ -5,21 +5,34 @@ class GeneroModel{
     private $db;
 
     function __construct(){
-        $this->$db = $this->connect();
+        $this->db = $this->connect();
     }
 
     private function connect() {
-        $db = new PDO('mysql:host=localhost;'.'dbname=db_todolist;charset=utf8', 'root', '');
+        $db = new PDO('mysql:host=localhost;'.'dbname=bd_libreria;charset=utf8', 'root', '');
         return $db;
     }
 
     function getAll(){
-
-        $query = $this->db->prepare('SELECT * FROM libro');
+        $query = $this->db->prepare('SELECT * FROM genero');
         $query->execute();
+        $generos = $query->fetchAll(PDO::FETCH_OBJ);
 
-        $libros = $query->fetchAll(PDO::FETCH_OBJ);
+        return $generos;
+    }
 
-        return $libros;
+    function delete($id){
+        $query = $this->db->prepare('DELETE FROM genero WHERE id = ?');
+        $query->execute([$id]);
+    }
+
+    function insert($nombre){
+        $query = $this->db->prepare('INSERT INTO genero (nombre) VALUES ?');
+        $query->execute([$nombre]);
+    }
+
+    function update($id, $nombre){
+        $query = $this->db->prepare('UPDATE genero SET nombre = ? WHERE id = ?');
+        $query->execute([$id, $nombre]);
     }
 }
