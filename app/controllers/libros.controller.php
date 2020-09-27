@@ -36,7 +36,8 @@ class LibrosController{
     // solicita al model todos los libros y se los muestra al usuario
     function showLibros(){
         $libros = $this->modelLibros->getAll();
-        $this->viewLibros->showLibros($libros);
+        $generos = $this->modelGeneros->getAll();
+        $this->viewLibros->showLibros($libros, $generos);
     }
 
     // le solicita al view que muestre el panel junto a los libros
@@ -97,6 +98,6 @@ class LibrosController{
     // manda la petición al model para borrar un libro
     function removeLibro($id){
         $this->modelLibros->delete($id);
-        header("Location: " . BASE_URL . 'admin'); 
+        header("Location: " . BASE_URL . 'admin/libros'); 
     }
 }

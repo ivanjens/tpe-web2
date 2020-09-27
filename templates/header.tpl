@@ -30,7 +30,7 @@
                     <a class="nav-link" href="#">CONTACTO</a>
                   </li>
                   <li class="nav-item active">
-                    <a class="nav-link" href="#">ABOUT</a>
+                    <a class="nav-link" href="about">ABOUT</a>
                   </li>
                 </ul>
               </div>
