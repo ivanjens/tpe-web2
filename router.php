@@ -37,6 +37,9 @@ switch ($params[0]) {
         $controller = new LibrosController();
         $controller->removeLibro($params[1]);
         break;
+    case 'eliminar-genero':
+        $controller = new GeneroController();
+        $controller->removeGenero($params[1]);
     case 'editar-libro':
         $controller = new LibrosController();
         $controller->editarLibro($params[1]);

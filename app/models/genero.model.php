@@ -35,12 +35,12 @@ class GeneroModel{
     }
 
     function insert($nombre){
-        $query = $this->db->prepare('INSERT INTO genero (nombre) VALUES ?');
+        $query = $this->db->prepare('INSERT INTO genero (id, nombre) VALUES (NULL, ?)');
         $query->execute([$nombre]);
     }
 
     function update($id, $nombre){
         $query = $this->db->prepare('UPDATE genero SET nombre = ? WHERE id = ?');
-        $query->execute([$id, $nombre]);
+        $query->execute([$nombre, $id]);
     }
 }

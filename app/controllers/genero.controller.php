@@ -12,28 +12,28 @@ class GeneroController{
     }
 
     function addGenero(){
-        $action = 'crear-genero';
-        $this->viewLibro->showFormGenero($action);
-        if(isset($_REQUEST['$nombre'])){
-            $nombre = $_POST['nombre'];
+        $nombre = $_POST['nombre'];
+        if(isset($nombre)){
             $this->model->insert($nombre);
+            header("Location: " . BASE_URL . 'admin/generos'); 
         } else{
             $this->viewLibro->showError('Campo vacio');
         }
     }
 
-    function deleteGenero($id){
+    function removeGenero($id){
         $this->model->delete($id);
+        header("Location: " . BASE_URL . 'admin/generos'); 
     }
 
     function updateGenero($id){
-        $action = 'editar-genero';
         $datosActuales = $this->model->get($id);
-        $this->view->showFormGenero($action, $datosActuales);
+        $this->view->showEditarGenero($datosActuales);
 
         $nombre = $_POST['nombre'];
         if(isset($nombre)){
             $this->model->update($id, $nombre);
+            header("Location: " . BASE_URL . 'admin/generos'); 
         } else{
             $this->viewLibro->showError('Campo vacio');
         }

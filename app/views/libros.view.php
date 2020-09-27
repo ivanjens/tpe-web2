@@ -25,7 +25,7 @@ class LibrosView{
         $smarty->display('templates/form-libro.tpl');
     }
 
-    function showFormGenero($genero){
+    function showEditarGenero($genero){
         $smarty = new Smarty();
         $smarty->assign('genero', $genero);
         $smarty->display('templates/form-genero.tpl');
