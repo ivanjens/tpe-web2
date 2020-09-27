@@ -1,7 +1,7 @@
 <?php
 
 include_once 'app/controllers/libros.controller.php';
-//include_once 'app/controllers/genero.controller.php';
+include_once 'app/controllers/genero.controller.php';
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -21,18 +21,29 @@ switch ($params[0]) {
         $controller = new LibrosController();
         $controller->showLibros();
         break;
-    case 'admin-libro':
+    case 'admin':
         $controller = new LibrosController();
-        $controller->showPanelAdmin();
+        $controller->showPanelAdmin($params[1]);
         break;
     case 'crear-libro': 
         $controller = new LibrosController();
         $controller->addLibro();
         break;
+    case 'crear-genero':
+        $controller = new GeneroController();
+        $controller->addGenero();
+        break;
     case 'eliminar-libro':
-        $id = $params[1];
         $controller = new LibrosController();
-        $controller->removeLibro($id);
+        $controller->removeLibro($params[1]);
+        break;
+    case 'editar-libro':
+        $controller = new LibrosController();
+        $controller->editarLibro($params[1]);
+        break;
+    case 'update-libro':
+        $controller = new LibrosController();
+        $controller->updateLibro($params[1]);
         break;
      case 'about':
         if (isset($params[1]))

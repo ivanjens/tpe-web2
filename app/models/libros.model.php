@@ -24,6 +24,14 @@ class LibrosModel{
         return $libros;
     }
 
+    function get($id){
+        $query = $this->db->prepare('SELECT * FROM libro WHERE id = ?');
+        $query->execute([$id]);
+
+        $libro = $query->fetchAll(PDO::FETCH_OBJ);
+        return $libro;
+    }
+
     // Inserta un nuevo libro en la tabla
     function insert($libro){
         $query = $this->db->prepare('INSERT INTO libro (titulo, autor, editorial, sinopsis, precio, stock, id_genero) VALUES (?, ?, ?, ?, ?, ?, ?)');

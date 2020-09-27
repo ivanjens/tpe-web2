@@ -21,6 +21,14 @@ class GeneroModel{
         return $generos;
     }
 
+    function get($id){
+        $query = $this->db->prepare('SELECT * FROM genero WHERE id = ?');
+        $query->execute([$id]);
+        
+        $genero = $query->fetchAll(PDO::FETCH_OBJ);
+        return $genero;
+    }
+
     function delete($id){
         $query = $this->db->prepare('DELETE FROM genero WHERE id = ?');
         $query->execute([$id]);
