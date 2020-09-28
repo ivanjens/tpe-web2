@@ -46,10 +46,12 @@ switch ($params[0]) {
         $controller->updateLibro($params[1]);
         break;
      case 'about':
+        $controller = new LibrosController();
+        
         if (isset($params[1]))
-            showAbout($params[1]);
+        $controller->getDev($params[1]);
         else
-            showAbout();
+        $controller->getDev();
         break;
     /* case 'categoria': // filtra libros por genero
         $controller = new GeneroController();
