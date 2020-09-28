@@ -17,6 +17,13 @@ class LibrosController{
         $this->viewLibros = new LibrosView();
         $this->viewGeneros = new GeneroView();
     }
+
+    function showDetail($id) {
+        $libro = $this->modelLibros->get($id);
+        $this->viewLibros->showLibro($libro);
+       
+    }
+
     //Verificamos si el about llega con un nombre seleccionado
     function getDev($name=null){
 

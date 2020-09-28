@@ -22,7 +22,12 @@
                     <li class="list-group-item">Escrito por {$libro->autor}</li>
                     <li class="list-group-item">Editorial {$libro->editorial}</li>
                 </ul>
-            </div>
+                </div>
+                </div>
+                <ul class="action">
+                    <a class='btn btn-success btn-sm' href="detalle/{$libro->id}">DETALLE</a>
+                </ul>
+                </div>
             {/foreach}
         </div>
 

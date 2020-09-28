@@ -28,7 +28,7 @@ class LibrosModel{
         $query = $this->db->prepare('SELECT * FROM libro WHERE id = ?');
         $query->execute([$id]);
 
-        $libro = $query->fetchAll(PDO::FETCH_OBJ);
+        $libro = $query->fetch(PDO::FETCH_OBJ);
         return $libro;
     }
 

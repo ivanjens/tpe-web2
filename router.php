@@ -58,10 +58,12 @@ switch ($params[0]) {
         $controller->showTasks();
         $categoria = $params[1];
         break;
-    case 'detalles': // ver individualmente un libro
-        $controller = new TaskController();
-        $controller->showTasks();
-        break; */
+        */
+    case 'detalle': // ver individualmente un libro
+        $controller = new LibrosController();
+        //$id = $params[1];
+        $controller->showDetail($params[1]);
+        break;
     default:
         header("HTTP/1.0 404 Not Found");
         echo('404 Page not found');

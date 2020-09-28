@@ -44,4 +44,12 @@ class LibrosView{
         $smarty->assign('descripcion', $descripcion);
         $smarty->display('templates/about.tpl');
     }
+
+    
+    function showLibro($libro) {
+        $smarty = new Smarty();
+        $smarty->assign('libro', $libro);
+        $smarty->display('templates/libroDetail.tpl');
+    }
+
 }
