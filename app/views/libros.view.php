@@ -49,24 +49,19 @@ class LibrosView{
         $smarty->display('templates/show-error.tpl');
     }
     //
-    function showAbout($name = null) {
-        include_once('templates/header.php');
+    function showAbout($name,$descripcion) {
     
-        $html = '
-    
-        <h1>Acerca de</h1>
-    
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet sunt, asperiores nulla dolor at quos! Libero a quas placeat doloremque explicabo! Culpa, totam. Expedita recusandae fugiat consequatur laudantium amet alias?</p>
-        
-        <h2>Desarrolladores</h2>
-        <ul>
-            <li><a href="about/micaela">Micaela Cisneros</a></li>
-            <li><a href="about/ivan">Ivan Jensen</a></li>
-        </ul>'
-            . getDev($name) .
-    '</body>
-    </html>';
-    
-        echo $html;
+        $smarty = new Smarty();
+        $smarty->assign('name', $name);
+        $smarty->assign('descripcion', $descripcion);
+        $smarty->display('templates/about.tpl');
     }
+
+    
+    function showLibro($libro) {
+        $smarty = new Smarty();
+        $smarty->assign('libro', $libro);
+        $smarty->display('templates/libroDetail.tpl');
+    }
+
 }

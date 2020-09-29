@@ -63,25 +63,29 @@ switch ($params[0]) {
     case 'eliminar-genero':
         $controller = new GeneroController();
         $controller->removeGenero($params[1]);
-     case 'about':
-    case 'editar-genero':
-        $controller = new GeneroController();
-        $controller->updateGenero($params[1]);
+        case 'editar-genero':
+            $controller = new GeneroController();
+            $controller->updateGenero($params[1]);
         break;
+        
+    case 'about':
+        $controller = new LibrosController();
         if (isset($params[1]))
-            showAbout($params[1]);
+        $controller->getDev($params[1]);
         else
-            showAbout();
+        $controller->getDev();
         break;
     /* case 'categoria': // filtra libros por genero
         $controller = new GeneroController();
         $controller->showTasks();
         $categoria = $params[1];
         break;
-    case 'detalles': // ver individualmente un libro
-        $controller = new TaskController();
-        $controller->showTasks();
-        break; */
+        */
+    case 'detalle': // ver individualmente un libro
+        $controller = new LibrosController();
+        //$id = $params[1];
+        $controller->showDetail($params[1]);
+        break;
     default:
         header("HTTP/1.0 404 Not Found");
         $view = new LibrosView();

@@ -21,8 +21,9 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Escrito por {$libro->autor}</li>
                     <li class="list-group-item">Editorial {$libro->editorial}</li>
+                    <a class='btn btn-success btn-sm col-6 offset-3 mt-1 mb-1' href="detalle/{$libro->id}">DETALLE</a>
                 </ul>
-            </div>
+                </div>
             {/foreach}
         </div>
 
