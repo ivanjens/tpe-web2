@@ -8,11 +8,5 @@ class GeneroView{
         $smarty->display('templates/form-genero.tpl');
     }
 
-    function showPanelGeneros($generos){
-        $smarty = new Smarty();
-        $smarty->assign('generos', $generos);
-        $smarty->display('templates/generos.tpl');
-    }
-
 
 }

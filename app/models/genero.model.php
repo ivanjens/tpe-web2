@@ -25,7 +25,7 @@ class GeneroModel{
         $query = $this->db->prepare('SELECT * FROM genero WHERE id = ?');
         $query->execute([$id]);
         
-        $genero = $query->fetchAll(PDO::FETCH_OBJ);
+        $genero = $query->fetch(PDO::FETCH_OBJ);
         return $genero;
     }
 

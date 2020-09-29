@@ -18,11 +18,23 @@ class LibrosView{
         $smarty->display('templates/libros.tpl');
     }
 
-    function showEditarLibro($libro, $generos){
+    function showPanelGeneros($generos){
+        $smarty = new Smarty();
+        $smarty->assign('generos', $generos);
+        $smarty->display('templates/generos.tpl');
+    }
+
+    function showFormLibro($libro, $generos){
         $smarty = new Smarty();
         $smarty->assign('libro', $libro);
         $smarty->assign('generos', $generos);
         $smarty->display('templates/form-libro.tpl');
+    }
+
+    function showFormGenero($genero){
+        $smarty = new Smarty();
+        $smarty->assign('genero', $genero);
+        $smarty->display('templates/form-genero.tpl');
     }
 
     function showEditarGenero($genero){

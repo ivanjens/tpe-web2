@@ -13,6 +13,7 @@ class GeneroController{
 
     function addGenero(){
         $nombre = $_POST['nombre'];
+        var_dump($nombre);
         if(isset($nombre)){
             $this->model->insert($nombre);
             header("Location: " . BASE_URL . 'admin/generos'); 
@@ -27,9 +28,6 @@ class GeneroController{
     }
 
     function updateGenero($id){
-        $datosActuales = $this->model->get($id);
-        $this->view->showEditarGenero($datosActuales);
-
         $nombre = $_POST['nombre'];
         if(isset($nombre)){
             $this->model->update($id, $nombre);

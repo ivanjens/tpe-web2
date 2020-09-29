@@ -9,7 +9,6 @@ class LibrosController{
     private $modelLibros;
     private $modelGeneros;
     private $viewLibros;
-    private $viewGeneros;
 
     function __construct(){
         $this->modelLibros = new LibrosModel();
@@ -33,6 +32,10 @@ class LibrosController{
         return $result;
     }
 
+    /*
+        FUNCTIONS DE LIBROS
+    */
+
     // solicita al model todos los libros y se los muestra al usuario
     function showLibros(){
         $libros = $this->modelLibros->getAll();
@@ -42,20 +45,31 @@ class LibrosController{
 
     // le solicita al view que muestre el panel junto a los libros
     function showPanelAdmin($panel){
-        $libros = $this->modelLibros->getAll();
         $generos = $this->modelGeneros->getAll();
         switch($panel){
             case 'libros':
+                $libros = $this->modelLibros->getAll();
                 $this->viewLibros->showPanelLibros($libros, $generos);
                 break;
             case 'generos':
-                $this->viewGeneros->showPanelGeneros($generos);
+                $this->viewLibros->showPanelGeneros($generos);
                 break;
             default:
                 $this->viewLibros->showError('Panel inexistente');
                 break;
-            }
         }
+    }
+
+    function showFormLibro($id = NULL){
+        $datosLibro = $this->modelLibros->get($id);
+        $generos = $this->modelGeneros->getAll();
+        $this->viewLibros->showFormLibro($datosLibro, $generos);
+    }
+
+    function showFormGenero($id = NULL){
+        $genero = $this->modelGeneros->get($id);
+        $this->viewLibros->showFormGenero($genero);
+    }
 
     // manda la petición al model para que añada un nuevo libro
     function addLibro(){
@@ -75,13 +89,6 @@ class LibrosController{
             $this->viewLibros->showError('Campo(s) del formulario vacio(s)'); // campos incompletos, solicita al view que muestre el error
         }
     }
-
-    function editarLibro($id){
-        $datosActuales = $this->modelLibros->get($id);
-        $generos = $this->modelGeneros->getAll();
-        $this->viewLibros->showEditarLibro($datosActuales, $generos);
-    }
-    
     
     function updateLibro($id){
         $libro = array('titulo'=>$_POST['titulo'], 'autor'=>$_POST['autor'], 'editorial'=>$_POST['editorial'], 'sinopsis'=>$_POST['sinopsis'], 'precio'=>$_POST['precio'], 'stock'=>$_POST['stock'], 'id_genero'=>$_POST['id_genero']);
@@ -100,4 +107,5 @@ class LibrosController{
         $this->modelLibros->delete($id);
         header("Location: " . BASE_URL . 'admin/libros'); 
     }
+
 }
