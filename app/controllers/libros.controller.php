@@ -17,11 +17,6 @@ class LibrosController{
         $this->viewGeneros = new GeneroView();
     }
 
-    function showDetail($id) {
-        $libro = $this->modelLibros->get($id);
-        $this->viewLibros->showLibro($libro);
-    }
-
     //Verificamos si el about llega con un nombre seleccionado
     function getDev($name){
         $result = '';
@@ -38,15 +33,16 @@ class LibrosController{
         return $result;
     }
 
-    /*
-        FUNCTIONS DE LIBROS
-    */
-
     // solicita al model todos los libros y se los muestra al usuario
     function showLibros(){
         $libros = $this->modelLibros->getAll();
         $generos = $this->modelGeneros->getAll();
         $this->viewLibros->showLibros($libros, $generos);
+    }
+
+    function showDetail($id) {
+        $libro = $this->modelLibros->get($id);
+        $this->viewLibros->showLibro($libro);
     }
 
     // le solicita al view que muestre el panel junto a los libros
@@ -58,7 +54,7 @@ class LibrosController{
                 $this->viewLibros->showPanelLibros($libros, $generos);
                 break;
             case 'generos':
-                $this->viewLibros->showPanelGeneros($generos);
+                $this->viewGeneros->showPanelGeneros($generos);
                 break;
             default:
                 $this->viewLibros->showError('Panel inexistente');
@@ -72,10 +68,6 @@ class LibrosController{
         $this->viewLibros->showFormLibro($datosLibro, $generos);
     }
 
-    function showFormGenero($id = NULL){
-        $genero = $this->modelGeneros->get($id);
-        $this->viewLibros->showFormGenero($genero);
-    }
 
     // manda la petición al model para que añada un nuevo libro
     function addLibro(){
@@ -112,5 +104,14 @@ class LibrosController{
     function removeLibro($id){
         $this->modelLibros->delete($id);
         header("Location: " . BASE_URL . 'admin/libros'); 
+    }
+
+    function showByGenre($genero){
+        $libros = $this->modelLibros->getByGenre($genero);
+        if($libros != NULL){
+            $this->viewLibros->showLibros($libros, $generos = null);
+        } else {
+            $this->viewLibros->showError('No se han encontrado libros con ese género');
+        }
     }
 }

@@ -34,7 +34,7 @@ switch ($params[0]) {
         $controller->showFormLibro($params[1]); // si recibe parametro != null hace consulta al model y setea los datos en los inputs
         break;
     case 'formulario-genero':
-        $controller = new LibrosController();
+        $controller = new GeneroController();
         $controller->showFormGenero($params[1]); // si recibe parametro != null hace consulta al model y setea los datos en los inputs
         break;
     /*
@@ -52,6 +52,10 @@ switch ($params[0]) {
         $controller = new LibrosController();
         $controller->updateLibro($params[1]);
     break;
+    case 'libros':
+        $controller = new LibrosController();
+        $controller->showByGenre($params[1]);
+        break;
 
     /*
                 ACCIONES GENERO
@@ -63,10 +67,11 @@ switch ($params[0]) {
     case 'eliminar-genero':
         $controller = new GeneroController();
         $controller->removeGenero($params[1]);
-        case 'editar-genero':
-            $controller = new GeneroController();
-            $controller->updateGenero($params[1]);
         break;
+    case 'editar-genero':
+        $controller = new GeneroController();
+        $controller->updateGenero($params[1]);
+    break;
         
     case 'about':
         $controller = new LibrosController();

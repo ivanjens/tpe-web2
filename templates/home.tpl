@@ -4,8 +4,9 @@
 
     <h5 class='mt-4'>Libros publicados</h5>
     <div class="btn-group justify-content-center" role="group" aria-label="Basic example">
+            <a class='btn btn-outline-primary btn-sm' href='{BASE_URL}'>Todos</a>
             {foreach from=$generos item=genero}
-                <a class='btn btn-outline-primary btn-sm' href='genero/{$genero->nombre}'>{$genero->nombre}</a>
+                <a class='btn btn-outline-primary btn-sm' href='libros/{$genero->nombre}'>{$genero->nombre}</a>
             {/foreach}
     </div>
 

@@ -1,14 +1,22 @@
 <?php
 include_once ('app/models/genero.model.php');
+include_once ('app/views/genero.view.php');
 include_once ('app/views/libros.view.php');
 class GeneroController{
 
     private $model;
+    private $viewGenero;
     private $viewLibro;
 
     function __construct(){
         $this->model = new GeneroModel();
+        $this->viewGenero = new GeneroView();
         $this->viewLibro = new LibrosView();
+    }
+
+    function showFormGenero($id = NULL){
+        $genero = $this->model->get($id);
+        $this->viewGenero->showFormGenero($genero);
     }
 
     function addGenero(){

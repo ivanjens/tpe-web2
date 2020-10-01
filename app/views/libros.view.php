@@ -4,64 +4,44 @@ include_once 'libs/libs/Smarty.class.php';
 
 class LibrosView{
 
+    private $smarty;
+
+    function __construct(){
+        $this->smarty = new Smarty();
+    }
+
     function showLibros($libros, $generos){
-        $smarty = new Smarty();
-        $smarty->assign('libros', $libros);
-        $smarty->assign('generos', $generos);
-        $smarty->display('templates/home.tpl');
+        $this->smarty->assign('libros', $libros);
+        $this->smarty->assign('generos', $generos);
+        $this->smarty->display('templates/home.tpl');
     }
 
     function showPanelLibros($libros, $generos){
-        $smarty = new Smarty();
-        $smarty->assign('libros', $libros);
-        $smarty->assign('generos', $generos);
-        $smarty->display('templates/libros.tpl');
-    }
-
-    function showPanelGeneros($generos){
-        $smarty = new Smarty();
-        $smarty->assign('generos', $generos);
-        $smarty->display('templates/generos.tpl');
+        $this->smarty->assign('libros', $libros);
+        $this->smarty->assign('generos', $generos);
+        $this->smarty->display('templates/libros.tpl');
     }
 
     function showFormLibro($libro, $generos){
-        $smarty = new Smarty();
-        $smarty->assign('libro', $libro);
-        $smarty->assign('generos', $generos);
-        $smarty->display('templates/form-libro.tpl');
-    }
-
-    function showFormGenero($genero){
-        $smarty = new Smarty();
-        $smarty->assign('genero', $genero);
-        $smarty->display('templates/form-genero.tpl');
-    }
-
-    function showEditarGenero($genero){
-        $smarty = new Smarty();
-        $smarty->assign('genero', $genero);
-        $smarty->display('templates/form-genero.tpl');
+        $this->smarty->assign('libro', $libro);
+        $this->smarty->assign('generos', $generos);
+        $this->smarty->display('templates/form-libro.tpl');
     }
 
     function showError($mensaje){
-        $smarty = new Smarty();
-        $smarty->assign('msg', $mensaje);
-        $smarty->display('templates/show-error.tpl');
+        $this->smarty->assign('msg', $mensaje);
+        $this->smarty->display('templates/show-error.tpl');
     }
     //
     function showAbout($name,$descripcion) {
-    
-        $smarty = new Smarty();
-        $smarty->assign('name', $name);
-        $smarty->assign('descripcion', $descripcion);
-        $smarty->display('templates/about.tpl');
+        $this->smarty->assign('name', $name);
+        $this->smarty->assign('descripcion', $descripcion);
+        $this->smarty->display('templates/about.tpl');
     }
 
-    
     function showLibro($libro) {
-        $smarty = new Smarty();
-        $smarty->assign('libro', $libro);
-        $smarty->display('templates/libroDetail.tpl');
+        $this->smarty->assign('libro', $libro);
+        $this->smarty->display('templates/libroDetail.tpl');
     }
 
 }
