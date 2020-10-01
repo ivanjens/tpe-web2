@@ -56,4 +56,5 @@ class LibrosModel{
         $query = $this->db->prepare('UPDATE libro SET titulo = ?, autor = ?, editorial = ?, sinopsis = ?, precio = ?, stock = ?, id_genero = ? WHERE id = ?');
         $query->execute([$libro['titulo'], $libro['autor'], $libro['editorial'], $libro['sinopsis'], $libro['precio'], $libro['stock'], $libro['id_genero'], $id]);
     }
+
 }

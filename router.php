@@ -88,8 +88,8 @@ switch ($params[0]) {
         */
     case 'detalle': // ver individualmente un libro
         $controller = new LibrosController();
-        //$id = $params[1];
-        $controller->showDetail($params[1]);
+        $id = $params[1];
+        $controller->showDetail($id);
         break;
     default:
         header("HTTP/1.0 404 Not Found");
