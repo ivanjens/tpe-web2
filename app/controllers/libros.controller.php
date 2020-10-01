@@ -111,8 +111,9 @@ class LibrosController{
 
     function showByGenre($genero){
         $libros = $this->modelLibros->getByGenre($genero);
+        $generos = $this->modelGeneros->getAll();
         if($libros != NULL){
-            $this->viewLibros->showLibros($libros, $generos = null);
+            $this->viewLibros->showLibros($libros, $generos);
         } else {
             $this->viewLibros->showError('No se han encontrado libros con ese género');
         }
