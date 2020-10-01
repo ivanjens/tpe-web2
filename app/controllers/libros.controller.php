@@ -23,21 +23,20 @@ class LibrosController{
     }
 
     //Verificamos si el about llega con un nombre seleccionado
-    function getDev($name){
-        $result = '';
-        if (isset($name)) {
+    function getDev($name = null){
+        $descripcion = '';
+        if (!empty($name)) {
             switch ($name) {
                 case 'micaela':
-                    $result =  "<h3>Micaela Cisneros</h3><p>Lorem bla bla</p>";
+                    $descripcion =  "Lorem bla bla";
                     break;
                 case 'ivan':
-                    $result =  "<h3>Ivan Jensen</h3><p>Lorem bla</p>";
+                    $descripcion =  "Lorem bla";
                     break;
             }
         }
-        return $result;
+        $this->viewLibros->showAbout($name, $descripcion);
     }
-
     /*
         FUNCTIONS DE LIBROS
     */
