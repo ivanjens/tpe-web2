@@ -1,6 +1,5 @@
 {include 'templates/header.tpl'}
 
-<body>
 <div class="card">
   <div class="card-header">
   <div class="card-body">
@@ -14,8 +13,6 @@
     <h6 class="card-text">Genero: {$libro->id_genero}</h6>
     <a href="{BASE_URL}home" class="btn btn-primary">VOLVER</a>
   </div>
-</div>
-
 </div>
 
 {include 'templates/footer.tpl'}

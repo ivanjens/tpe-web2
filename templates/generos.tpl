@@ -3,7 +3,7 @@
     <div>
         <div class='mt-3'>
             <h5>Generos</h5>
-            <a class='btn btn-outline-primary btn-sm float-right' href='formulario-genero/'>AGREGAR GENERO +</a>
+            <a class='btn btn-outline-success btn-sm float-right' href='formulario-genero/'>AGREGAR GENERO +</a>
         </div>
 
         <div class='col-4 mt-3'>

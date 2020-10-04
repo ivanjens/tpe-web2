@@ -5,12 +5,15 @@
     
     <div class='mt-3'>
         <h5>Libros publicados</h5>
-        <div class="btn-group justify-content-center text-center" role="group" aria-label="Basic example">
-                {foreach from=$generos item=genero}
-                    <a class='btn btn-outline-primary btn-sm' href='genero/{$genero->nombre}'>{$genero->nombre}</a>
-                {/foreach}
+        <div class='text-center'>
+            <div class="btn-group" role="group" aria-label="Basic example">
+                    <a class='btn btn-success btn-sm text-uppercase' href='{BASE_URL}'>Todos</a>
+                    {foreach from=$generos item=genero}
+                        <a class='btn btn-success btn-sm text-uppercase' href='libros/{$genero->nombre}'>{$genero->nombre}</a>
+                    {/foreach}
+            </div>
         </div>
-    <a class='btn btn-outline-primary btn-sm float-right' href='formulario-libro/'>AGREGAR LIBRO +</a>
+        <a class='btn btn-outline-success btn-sm' href='formulario-libro/'>AGREGAR LIBRO +</a>
     </div>
 
     <div>

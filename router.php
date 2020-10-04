@@ -21,10 +21,6 @@ switch ($params[0]) {
         $controller = new LibrosController();
         $controller->showLibros();
         break;
-
-    /*
-                ACCIONES ADMINISTRATIVAS
-    */
     case 'admin':
         $controller = new LibrosController();
         $controller->showPanelAdmin($params[1]); // el parametro determina que panel mostrar (libro, genero, etc)
@@ -37,9 +33,6 @@ switch ($params[0]) {
         $controller = new GeneroController();
         $controller->showFormGenero($params[1]); // si recibe parametro != null hace consulta al model y setea los datos en los inputs
         break;
-    /*
-                ACCIONES LIBRO
-    */
     case 'crear-libro': 
         $controller = new LibrosController();
         $controller->addLibro();
@@ -56,10 +49,6 @@ switch ($params[0]) {
         $controller = new LibrosController();
         $controller->showByGenre($params[1]);
         break;
-
-    /*
-                ACCIONES GENERO
-    */
     case 'crear-genero':
         $controller = new GeneroController();
         $controller->addGenero();
@@ -80,12 +69,6 @@ switch ($params[0]) {
         else
         $controller->getDev();
         break;
-    /* case 'categoria': // filtra libros por genero
-        $controller = new GeneroController();
-        $controller->showTasks();
-        $categoria = $params[1];
-        break;
-        */
     case 'detalle': // ver individualmente un libro
         $controller = new LibrosController();
         $id = $params[1];
