@@ -1,14 +1,23 @@
 <?php
 
+include_once 'libs/libs/Smarty.class.php';
+
 class GeneroView{
 
-    function showLibros($libros){
-        echo '<ul>';
-        foreach($libros as $libro){
-            echo '<li>' . $libro->titulo . $libro->autor . $libro->editorial . $libro->sinopsis . $libro->titulo . $libro->precio . $libro->stock . '</li>';
-        }
-        echo '</ul>';
+    private $smarty;
+
+    function __construct(){
+        $this->smarty = new Smarty();
     }
 
+    function showPanelGeneros($generos){
+        $this->smarty->assign('generos', $generos);
+        $this->smarty->display('templates/generos.tpl');
+    }
+
+    function showFormGenero($genero){
+        $this->smarty->assign('genero', $genero);
+        $this->smarty->display('templates/form-genero.tpl');
+    }
 
 }

@@ -24,6 +24,21 @@ class LibrosModel{
         return $libros;
     }
 
+    function get($id){
+        $query = $this->db->prepare('SELECT * FROM libro WHERE id = ?');
+        $query->execute([$id]);
+
+        $libro = $query->fetch(PDO::FETCH_OBJ);
+        return $libro;
+    }
+
+    function getByGenre($genero){
+        $query = $this->db->prepare('SELECT libro.id AS id_libro, libro.titulo, libro.autor, libro.editorial, libro.sinopsis, libro.precio, libro.stock, libro.id_genero, genero.nombre FROM `libro` INNER JOIN genero ON libro.id_genero = genero.id WHERE genero.nombre = ?');
+        $query->execute([$genero]);
+        $libros = $query->fetchAll(PDO::FETCH_OBJ);
+        return $libros;
+    }
+
     // Inserta un nuevo libro en la tabla
     function insert($libro){
         $query = $this->db->prepare('INSERT INTO libro (titulo, autor, editorial, sinopsis, precio, stock, id_genero) VALUES (?, ?, ?, ?, ?, ?, ?)');
@@ -36,4 +51,10 @@ class LibrosModel{
         $query = $this->db->prepare('DELETE FROM libro WHERE id = ?');
         $query->execute([$id]);
     }
+
+    function update($id, $libro){
+        $query = $this->db->prepare('UPDATE libro SET titulo = ?, autor = ?, editorial = ?, sinopsis = ?, precio = ?, stock = ?, id_genero = ? WHERE id = ?');
+        $query->execute([$libro['titulo'], $libro['autor'], $libro['editorial'], $libro['sinopsis'], $libro['precio'], $libro['stock'], $libro['id_genero'], $id]);
+    }
+
 }
