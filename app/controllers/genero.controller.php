@@ -5,18 +5,18 @@ include_once ('app/views/libros.view.php');
 class GeneroController{
 
     private $model;
-    private $viewGenero;
-    private $viewLibro;
+    private $generosView;
+    private $librosView;
 
     function __construct(){
         $this->model = new GeneroModel();
-        $this->viewGenero = new GeneroView();
-        $this->viewLibro = new LibrosView();
+        $this->generosView = new GeneroView();
+        $this->librosView = new LibrosView();
     }
 
     function showFormGenero($id = NULL){
         $genero = $this->model->get($id);
-        $this->viewGenero->showFormGenero($genero);
+        $this->generosView->showFormGenero($genero);
     }
 
     function addGenero(){
@@ -26,7 +26,7 @@ class GeneroController{
             $this->model->insert($nombre);
             header("Location: " . BASE_URL . 'admin/generos'); 
         } else{
-            $this->viewLibro->showError('Campo vacio');
+            $this->librosView->showError('Campo vacio');
         }
     }
 
@@ -41,7 +41,7 @@ class GeneroController{
             $this->model->update($id, $nombre);
             header("Location: " . BASE_URL . 'admin/generos'); 
         } else{
-            $this->viewLibro->showError('Campo vacio');
+            $this->librosView->showError('Campo vacio');
         }
     }
 }
