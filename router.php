@@ -27,6 +27,10 @@ switch ($params[0]) {
         $controller = new AuthController();
         $controller->showFormLogin();
         break;
+    case 'verify':
+        $controller = new AuthController();
+        $controller->loginUser();
+        break;
     case 'admin':
         $controller = new LibrosController();
         $controller->showPanelAdmin($params[1]); // el parametro determina que panel mostrar (libro, genero, etc)
