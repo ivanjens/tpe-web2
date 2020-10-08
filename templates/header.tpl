@@ -35,7 +35,7 @@
               <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
                   <li class="nav-item active">
-                    <a href='#' class="btn btn-outline-success mr-1">LOGIN</a>
+                    <a href='login' class="btn btn-outline-success mr-1">LOGIN</a>
                   </li>
                   <li class="nav-item active">
                     <a href='#' class="btn btn-outline-success">REGISTRARSE</a>

@@ -6,6 +6,7 @@ include_once 'app/controllers/auth.controller.php';
 
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
+define('LOGIN', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/login' );
 
 // lee la acción
 if (!empty($_GET['action'])) {
@@ -26,6 +27,10 @@ switch ($params[0]) {
     case 'login':
         $controller = new AuthController();
         $controller->showFormLogin();
+        break;
+    case 'verify':
+        $controller = new AuthController();
+        $controller->verifyLogin();
         break;
     case 'admin':
         $controller = new LibrosController();
