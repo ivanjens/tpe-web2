@@ -47,8 +47,6 @@ class LibrosController{
         $libro = $this->modelLibros->get($id);
         $this->viewLibros->showLibro($libro);
     }
-
-
     
     function showFormLibro($id = NULL){
         $datosLibro = $this->modelLibros->get($id);

@@ -25,7 +25,7 @@ class LibrosModel{
     }
 
     function get($id){
-        $query = $this->db->prepare('SELECT * FROM libro WHERE id = ?');
+        $query = $this->db->prepare('SELECT libro.*, genero.nombre AS genero FROM libro INNER JOIN genero ON libro.id_genero = genero.id WHERE libro.id = ?');
         $query->execute([$id]);
 
         $libro = $query->fetch(PDO::FETCH_OBJ);
@@ -33,7 +33,7 @@ class LibrosModel{
     }
 
     function getByGenre($genero){
-        $query = $this->db->prepare('SELECT libro.id AS id_libro, libro.titulo, libro.autor, libro.editorial, libro.sinopsis, libro.precio, libro.stock, libro.id_genero, genero.nombre FROM `libro` INNER JOIN genero ON libro.id_genero = genero.id WHERE genero.nombre = ?');
+        $query = $this->db->prepare('SELECT libro.id AS id_libro, libro.*, genero.nombre FROM `libro` INNER JOIN genero ON libro.id_genero = genero.id WHERE genero.nombre = ?');
         $query->execute([$genero]);
         $libros = $query->fetchAll(PDO::FETCH_OBJ);
         return $libros;

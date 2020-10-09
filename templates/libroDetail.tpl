@@ -10,7 +10,7 @@
         <h6 class="card-text">Editorial: {$libro->editorial}</h6>
         <h6 class="card-text">Precio: ${$libro->precio}</h6>
         <h6 class="card-text">Stock: {$libro->stock}</h6>
-        <h6 class="card-text">Genero: {$libro->id_genero}</h6>
+        <h6 class="card-text">Genero: {$libro->genero}</h6>
         <a href="{BASE_URL}home" class="btn btn-primary">VOLVER</a>
     </div>
 </div>
