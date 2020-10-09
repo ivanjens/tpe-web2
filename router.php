@@ -33,9 +33,12 @@ switch ($params[0]) {
         $controller->verifyLogin();
         break;
     case 'admin':
-        $controller = new LibrosController();
-        $controller->showPanelAdmin($params[1]); // el parametro determina que panel mostrar (libro, genero, etc)
-        break;
+        $controller = new AuthController();
+        if (isset($params[1]))
+        $controller->showPanelAdmin($params[1]);
+        else
+        $controller->showPanelAdmin();
+        break;// el parametro determina que panel mostrar (libro, genero, etc)
     case 'formulario-libro':
         $controller = new LibrosController();
         $controller->showFormLibro($params[1]); // si recibe parametro != null hace consulta al model y setea los datos en los inputs

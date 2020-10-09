@@ -48,23 +48,8 @@ class LibrosController{
         $this->viewLibros->showLibro($libro);
     }
 
-    // le solicita al view que muestre el panel junto a los libros
-    function showPanelAdmin($panel){
-        $generos = $this->modelGeneros->getAll();
-        switch($panel){
-            case 'libros':
-                $libros = $this->modelLibros->getAll();
-                $this->viewLibros->showPanelLibros($libros, $generos);
-                break;
-            case 'generos':
-                $this->viewGeneros->showPanelGeneros($generos);
-                break;
-            default:
-                $this->viewLibros->showError('Panel inexistente');
-                break;
-        }
-    }
 
+    
     function showFormLibro($id = NULL){
         $datosLibro = $this->modelLibros->get($id);
         $generos = $this->modelGeneros->getAll();

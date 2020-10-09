@@ -2,6 +2,9 @@
 
 include_once ('app/models/usuario.model.php');
 include_once ('app/views/auth.view.php');
+include_once ('app/views/libros.view.php');
+include_once ('app/views/genero.view.php');
+include_once ('app/models/libros.model.php');
 
 class AuthController{
 
@@ -11,6 +14,10 @@ class AuthController{
     function __construct(){
         $this->model = new UsuarioModel();
         $this->view = new AuthView();
+        $this->modelLibros = new LibrosModel();
+        $this->modelGeneros = new GeneroModel();
+        $this->viewLibros = new LibrosView();
+        $this->viewGeneros = new GeneroView();
     }
 
     function showFormLogin(){
@@ -28,18 +35,34 @@ class AuthController{
                 session_start();
                 $_SESSION['ID_USER'] = $userData->id;
                 $_SESSION['EMAIL_USER'] = $userData->email;
-                header("Location: " . BASE_URL); 
+                header("Location: " . BASE_URL . 'admin'); 
             } else{
                 $this->view->showFormLogin('El email y/o la contraseña no son correctos');
             }
         }
-        
     }
-    //Verificamos que sea email y contraseña validos
-    function loginUser(){
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+    // le solicita al view que muestre el panel junto a los libros
+    function showPanelAdmin($panel = null){
+        if (!empty($panel)){
+            switch($panel){
+                case 'libros':
+                    $libros = $this->modelLibros->getAll();
+                    $genero=$this->modelGeneros->getAll();
+                    $this->viewLibros->showPanelLibros($libros, $genero);
+                    break;
+                case 'generos':
+                    $genero=$this->modelGeneros->getAll();
+                    $this->viewGeneros->showPanelGeneros($genero);
+                    break;
+                default:
+                    $this->viewLibros->showError('Panel inexistente');
+                    break;
+            }
+        }
+        else{
+            $this->view->showPanel();
+        }
 
-        var_dump($email, $password)
     }
+
 }

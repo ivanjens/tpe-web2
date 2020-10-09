@@ -13,5 +13,9 @@ class AuthView{
         $this->smarty->display('templates/login.tpl');
     }
 
+    function showPanel(){
+        $this->smarty->display('templates/panel-admin.tpl');
+    }
+
     // function showFormRegister(){}
 }

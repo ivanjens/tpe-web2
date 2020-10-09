@@ -12,7 +12,7 @@ class GeneroView{
 
     function showPanelGeneros($generos){
         $this->smarty->assign('generos', $generos);
-        $this->smarty->display('templates/generos.tpl');
+        $this->smarty->display('templates/genero.tpl');
     }
 
     function showFormGenero($genero){

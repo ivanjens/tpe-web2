@@ -44,4 +44,5 @@ class LibrosView{
         $this->smarty->display('templates/libroDetail.tpl');
     }
 
+
 }
