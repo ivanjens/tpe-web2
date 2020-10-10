@@ -88,6 +88,10 @@ switch ($params[0]) {
         $id = $params[1];
         $controller->showDetail($id);
         break;
+    case 'comprar':
+        $view = new BookView();
+        $view->showError('¡Lo sentimos, las compras no están disponibles en este momento!');
+        break;
     default:
         header("HTTP/1.0 404 Not Found");
         $view = new BookView();
