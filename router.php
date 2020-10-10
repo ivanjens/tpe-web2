@@ -1,7 +1,7 @@
 <?php
 
-include_once 'app/controllers/libros.controller.php';
-include_once 'app/controllers/genero.controller.php';
+include_once 'app/controllers/book.controller.php';
+include_once 'app/controllers/genre.controller.php';
 include_once 'app/controllers/auth.controller.php';
 
 
@@ -21,8 +21,8 @@ $params = explode('/', $action);
 // determina que camino seguir según la acción
 switch ($params[0]) {
     case 'home':
-        $controller = new LibrosController();
-        $controller->showLibros();
+        $controller = new BookController();
+        $controller->showBooks();
         break;
     case 'login':
         $controller = new AuthController();
@@ -40,57 +40,57 @@ switch ($params[0]) {
         $controller->showPanelAdmin();
         break;// el parametro determina que panel mostrar (libro, genero, etc)
     case 'formulario-libro':
-        $controller = new LibrosController();
-        $controller->showFormLibro($params[1]); // si recibe parametro != null hace consulta al model y setea los datos en los inputs
+        $controller = new BookController();
+        $controller->showFormBook($params[1]); // si recibe parametro != null hace consulta al model y setea los datos en los inputs
         break;
     case 'formulario-genero':
-        $controller = new GeneroController();
-        $controller->showFormGenero($params[1]); // si recibe parametro != null hace consulta al model y setea los datos en los inputs
+        $controller = new GenreController();
+        $controller->showFormGenre($params[1]); // si recibe parametro != null hace consulta al model y setea los datos en los inputs
         break;
     case 'crear-libro': 
-        $controller = new LibrosController();
-        $controller->addLibro();
+        $controller = new BookController();
+        $controller->addBook();
         break;
     case 'eliminar-libro':
-        $controller = new LibrosController();
-        $controller->removeLibro($params[1]);
+        $controller = new BookController();
+        $controller->removeBook($params[1]);
         break;
     case 'editar-libro':
-        $controller = new LibrosController();
-        $controller->updateLibro($params[1]);
+        $controller = new BookController();
+        $controller->updateBook($params[1]);
     break;
     case 'libros':
-        $controller = new LibrosController();
+        $controller = new BookController();
         $controller->showByGenre($params[1]);
         break;
     case 'crear-genero':
-        $controller = new GeneroController();
-        $controller->addGenero();
+        $controller = new GenreController();
+        $controller->addGenre();
         break;
     case 'eliminar-genero':
-        $controller = new GeneroController();
-        $controller->removeGenero($params[1]);
+        $controller = new GenreController();
+        $controller->removeGenre($params[1]);
         break;
     case 'editar-genero':
-        $controller = new GeneroController();
-        $controller->updateGenero($params[1]);
+        $controller = new GenreController();
+        $controller->updateGenre($params[1]);
     break;
         
     case 'about':
-        $controller = new LibrosController();
+        $controller = new BookController();
         if (isset($params[1]))
         $controller->getDev($params[1]);
         else
         $controller->getDev();
         break;
     case 'detalle': // ver individualmente un libro
-        $controller = new LibrosController();
+        $controller = new BookController();
         $id = $params[1];
         $controller->showDetail($id);
         break;
     default:
         header("HTTP/1.0 404 Not Found");
-        $view = new LibrosView();
+        $view = new BookView();
         $view->showError('No se ha encontrado la página');
         break;
 }

@@ -13,7 +13,7 @@ class AuthView{
         $this->smarty->display('templates/login.tpl');
     }
 
-    function showPanel(){
+    function showPanelElection(){
         $this->smarty->display('templates/panel-admin.tpl');
     }
 

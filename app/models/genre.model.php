@@ -1,6 +1,6 @@
 <?php
 
-class GeneroModel{
+class GenreModel{
 
     private $db;
 
@@ -16,17 +16,17 @@ class GeneroModel{
     function getAll(){
         $query = $this->db->prepare('SELECT * FROM genero');
         $query->execute();
-        $generos = $query->fetchAll(PDO::FETCH_OBJ);
+        $genres = $query->fetchAll(PDO::FETCH_OBJ);
 
-        return $generos;
+        return $genres;
     }
 
     function get($id){
         $query = $this->db->prepare('SELECT * FROM genero WHERE id = ?');
         $query->execute([$id]);
         
-        $genero = $query->fetch(PDO::FETCH_OBJ);
-        return $genero;
+        $genre = $query->fetch(PDO::FETCH_OBJ);
+        return $genre;
     }
 
     function delete($id){
@@ -34,13 +34,13 @@ class GeneroModel{
         $query->execute([$id]);
     }
 
-    function insert($nombre){
+    function insert($name){
         $query = $this->db->prepare('INSERT INTO genero (id, nombre) VALUES (NULL, ?)');
-        $query->execute([$nombre]);
+        $query->execute([$name]);
     }
 
-    function update($id, $nombre){
+    function update($id, $name){
         $query = $this->db->prepare('UPDATE genero SET nombre = ? WHERE id = ?');
-        $query->execute([$nombre, $id]);
+        $query->execute([$name, $id]);
     }
 }

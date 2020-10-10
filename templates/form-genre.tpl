@@ -2,20 +2,20 @@
 {include 'templates/header.tpl'}
 
 <!-- formulario añadir libro -->
-        {if $genero == NULL}
+        {if $genre == NULL}
             <form action="crear-genero" method="POST" class="my-4">
             {else}
-                <form action="editar-genero/{$genero->id}" method="POST" class="my-4">
+                <form action="editar-genero/{$genre->id}" method="POST" class="my-4">
             
         {/if}
             <div class="row justify-content-center col-12">
                 <div class="col-3">
                     <div class="form-group">
                         <label>Nombre del genero</label>
-                        {if $genero == NULL}
+                        {if $genre == NULL}
                             <input name="nombre" type="text" class="form-control">
                             {else}
-                                <input name="nombre" type="text" class="form-control" value="{$genero->nombre}">
+                                <input name="nombre" type="text" class="form-control" value="{$genre->nombre}">
                             
                         {/if}
                     </div>

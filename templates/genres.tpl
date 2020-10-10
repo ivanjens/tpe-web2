@@ -8,10 +8,10 @@
 
         <div class='col-4 mt-3'>
             <ul class='list-group'>
-                {foreach from=$generos item=genero}
-                    <li class="list-group-item">{$genero->nombre}
-                        <a class='btn btn-danger btn-sm float-right ml-1' href='eliminar-genero/{$genero->id}'>ELIMINAR</a>
-                        <a class='btn btn-warning btn-sm float-right' href='formulario-genero/{$genero->id}'>EDITAR</a>
+                {foreach from=$genres item=genre}
+                    <li class="list-group-item">{$genre->nombre}
+                        <a class='btn btn-danger btn-sm float-right ml-1' href='eliminar-genero/{$genre->id}'>ELIMINAR</a>
+                        <a class='btn btn-warning btn-sm float-right' href='formulario-genero/{$genre->id}'>EDITAR</a>
                     </li>
                 {/foreach}
             </ul>

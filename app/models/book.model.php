@@ -1,6 +1,6 @@
 <?php
 
-class LibrosModel{
+class BookModel{
 
     private $db;
 
@@ -19,31 +19,31 @@ class LibrosModel{
         $query = $this->db->prepare('SELECT * FROM libro'); // prepara la consulta
         $query->execute();
 
-        // Se guardan los objetos en $libros para retornarla al controller y enviarlas al view
-        $libros = $query->fetchAll(PDO::FETCH_OBJ);
-        return $libros;
+        // Se guardan los objetos en $books para retornarla al controller y enviarlas al view
+        $books = $query->fetchAll(PDO::FETCH_OBJ);
+        return $books;
     }
 
     function get($id){
         $query = $this->db->prepare('SELECT libro.*, genero.nombre AS genero FROM libro INNER JOIN genero ON libro.id_genero = genero.id WHERE libro.id = ?');
         $query->execute([$id]);
 
-        $libro = $query->fetch(PDO::FETCH_OBJ);
-        return $libro;
+        $book = $query->fetch(PDO::FETCH_OBJ);
+        return $book;
     }
 
-    function getByGenre($genero){
+    function getByGenre($genre){
         $query = $this->db->prepare('SELECT libro.id AS id_libro, libro.*, genero.nombre FROM `libro` INNER JOIN genero ON libro.id_genero = genero.id WHERE genero.nombre = ?');
-        $query->execute([$genero]);
-        $libros = $query->fetchAll(PDO::FETCH_OBJ);
-        return $libros;
+        $query->execute([$genre]);
+        $books = $query->fetchAll(PDO::FETCH_OBJ);
+        return $books;
     }
 
     // Inserta un nuevo libro en la tabla
-    function insert($libro){
+    function insert($book){
         $query = $this->db->prepare('INSERT INTO libro (titulo, autor, editorial, sinopsis, precio, stock, id_genero) VALUES (?, ?, ?, ?, ?, ?, ?)');
         // se completan los campos en el execute con el array asociativo pasado por parametro
-        $query->execute([$libro['titulo'], $libro['autor'], $libro['editorial'], $libro['sinopsis'], $libro['precio'], $libro['stock'], $libro['id_genero']]);
+        $query->execute([$book['titulo'], $book['autor'], $book['editorial'], $book['sinopsis'], $book['precio'], $book['stock'], $book['id_genero']]);
     }
 
     // borra un libro especifico de la tabla
@@ -52,9 +52,9 @@ class LibrosModel{
         $query->execute([$id]);
     }
 
-    function update($id, $libro){
+    function update($id, $book){
         $query = $this->db->prepare('UPDATE libro SET titulo = ?, autor = ?, editorial = ?, sinopsis = ?, precio = ?, stock = ?, id_genero = ? WHERE id = ?');
-        $query->execute([$libro['titulo'], $libro['autor'], $libro['editorial'], $libro['sinopsis'], $libro['precio'], $libro['stock'], $libro['id_genero'], $id]);
+        $query->execute([$book['titulo'], $book['autor'], $book['editorial'], $book['sinopsis'], $book['precio'], $book['stock'], $book['id_genero'], $id]);
     }
 
 }

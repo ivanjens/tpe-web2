@@ -1,36 +1,36 @@
 
     {include 'templates/header.tpl'}
-        {if $libro == NULL}
+        {if $book == NULL}
             <form action="crear-libro" method="POST" class="my-4">
             {else}
-                <form action="editar-libro/{$libro->id}" method="POST" class="my-4">
+                <form action="editar-libro/{$book->id}" method="POST" class="my-4">
             
         {/if}
             <div class="row justify-content-center col-12">
                 <div class="col-3">
                     <div class="form-group">
                         <label>Título</label>
-                        {if $libro == NULL}
+                        {if $book == NULL}
                             <input name="titulo" type="text" class="form-control">
                             {else}
-                                <input name="titulo" type="text" class="form-control" value="{$libro->titulo}">
+                                <input name="titulo" type="text" class="form-control" value="{$book->titulo}">
                             
                         {/if}
                     </div>
                     <div class="form-group">
                         <label>Autor</label>
-                        {if $libro == NULL}
+                        {if $book == NULL}
                             <input name="autor" type="text" class="form-control">
                             {else}
-                                <input name="autor" type="text" class="form-control" value="{$libro->autor}">
+                                <input name="autor" type="text" class="form-control" value="{$book->autor}">
                         {/if} 
                     </div>
                     <div class="form-group">
                         <label>Editorial</label>
-                        {if $libro == NULL}
+                        {if $book == NULL}
                             <input name="editorial" type="text" class="form-control">
                             {else}
-                                <input name="editorial" type="text" class="form-control" value="{$libro->editorial}">
+                                <input name="editorial" type="text" class="form-control" value="{$book->editorial}">
                             
                         {/if}
                     </div>
@@ -38,10 +38,10 @@
                 <div class="col-4">
                     <div class="form-group">
                         <label>Sinopsis</label>
-                        {if $libro == NULL}
+                        {if $book == NULL}
                             <textarea name="sinopsis" class="form-control col-12" rows="4"></textarea>
                             {else}
-                            <textarea name="sinopsis" class="form-control col-12" rows="4">{$libro->sinopsis}</textarea>
+                            <textarea name="sinopsis" class="form-control col-12" rows="4">{$book->sinopsis}</textarea>
                             
                         {/if}
                     </div>
@@ -49,30 +49,30 @@
                 <div class="col-2">
                     <div class="form-group">
                         <label>Precio</label>
-                        {if $libro == NULL}
+                        {if $book == NULL}
                             <input name="precio" type="text" class="form-control">
                             {else}
-                                <input name="precio" type="text" class="form-control" value="{$libro->precio}">
+                                <input name="precio" type="text" class="form-control" value="{$book->precio}">
                             
                         {/if}
                     </div>
                     <div class="form-group">
                         <label>Stock</label>
-                        {if $libro == NULL}
+                        {if $book == NULL}
                             <input name="stock" type="text" class="form-control">
                             {else}
-                                <input name="stock" type="text" class="form-control" value="{$libro->stock}">
+                                <input name="stock" type="text" class="form-control" value="{$book->stock}">
                             
                         {/if}
                     </div>
                     <div class="form-group">
                         <label>Genero</label>
                         <select name="id_genero">
-                        {foreach from=$generos item=genero} 
-                            {if $libro->id_genero == $genero->id} {* Marca como selected el genero seteado del libro *}
-                                <option selected value="{$genero->id}">{$genero->nombre}</option>
+                        {foreach from=$genres item=genre} 
+                            {if $book->id_genero == $genre->id} {* Marca como selected el genero seteado del libro *}
+                                <option selected value="{$genre->id}">{$genre->nombre}</option>
                                 {else}
-                                <option value="{$genero->id}">{$genero->nombre}</option>
+                                <option value="{$genre->id}">{$genre->nombre}</option>
                             {/if}
                         {/foreach}
                         </select>

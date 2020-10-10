@@ -1,35 +1,39 @@
 <?php
 
-include_once ('app/models/usuario.model.php');
+include_once ('app/models/user.model.php');
+include_once ('app/models/book.model.php');
 include_once ('app/views/auth.view.php');
-include_once ('app/views/libros.view.php');
-include_once ('app/views/genero.view.php');
-include_once ('app/models/libros.model.php');
+include_once ('app/views/book.view.php');
+include_once ('app/views/genre.view.php');
 
 class AuthController{
 
-    private $model;
-    private $view;
+    private $authModel;
+    private $bookModel;
+    private $genreModel;
+    private $authView;
+    private $bookView;
+    private $genreView;
 
     function __construct(){
-        $this->model = new UsuarioModel();
-        $this->view = new AuthView();
-        $this->modelLibros = new LibrosModel();
-        $this->modelGeneros = new GeneroModel();
-        $this->viewLibros = new LibrosView();
-        $this->viewGeneros = new GeneroView();
+        $this->authModel = new UserModel();
+        $this->bookModel = new BookModel();
+        $this->genreModel = new GenreModel();
+        $this->authView = new AuthView();
+        $this->bookView = new BookView();
+        $this->genreView = new GenreView();
     }
 
     function showFormLogin(){
-        $this->view->showFormLogin();
+        $this->authView->showFormLogin();
     }
 
     function verifyLogin(){
         $email = $_POST['email'];
         $password = $_POST['password'];
-        $userData =$this->model->getUserData($email);
+        $userData =$this->authModel->getUserData($email);
         if(empty($email) || empty($password)){
-            $this->view->showFormLogin('Debes completar todos los campos');
+            $this->authView->showFormLogin('Debes completar todos los campos');
         } else{
             if($userData && password_verify($password, $userData->password)){
                 session_start();
@@ -37,30 +41,29 @@ class AuthController{
                 $_SESSION['EMAIL_USER'] = $userData->email;
                 header("Location: " . BASE_URL . 'admin'); 
             } else{
-                $this->view->showFormLogin('El email y/o la contraseña no son correctos');
+                $this->authView->showFormLogin('El email y/o la contraseña no son correctos');
             }
         }
     }
     // le solicita al view que muestre el panel junto a los libros
     function showPanelAdmin($panel = null){
         if (!empty($panel)){
+            $genres=$this->genreModel->getAll();
             switch($panel){
                 case 'libros':
-                    $libros = $this->modelLibros->getAll();
-                    $genero=$this->modelGeneros->getAll();
-                    $this->viewLibros->showPanelLibros($libros, $genero);
+                    $books = $this->bookModel->getAll();
+                    $this->bookView->showPanelBooks($books, $genres);
                     break;
                 case 'generos':
-                    $genero=$this->modelGeneros->getAll();
-                    $this->viewGeneros->showPanelGeneros($genero);
+                    $this->genreView->showPanelGenres($genres);
                     break;
                 default:
-                    $this->viewLibros->showError('Panel inexistente');
+                    $this->bookView->showError('Panel inexistente');
                     break;
             }
         }
         else{
-            $this->view->showPanel();
+            $this->authView->showPanelElection();
         }
 
     }
