@@ -1,16 +1,15 @@
 <?php
 
+include_once 'app/helpers/db.helper.php';
+
 class GenreModel{
 
     private $db;
+    private $dbHelper;
 
     function __construct(){
-        $this->db = $this->connect();
-    }
-
-    private function connect() {
-        $db = new PDO('mysql:host=localhost;'.'dbname=bd_libreria;charset=utf8', 'root', '');
-        return $db;
+        $this->dbHelper = new DatabaseHelper();
+        $this->db = $this->dbHelper->connect();
     }
 
     function getAll(){

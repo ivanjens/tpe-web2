@@ -1,17 +1,15 @@
 <?php
 
+include_once 'app/helpers/db.helper.php';
+
 class BookModel{
 
     private $db;
+    private $dbHelper;
 
     function __construct(){
-        $this->db = $this->connect();
-    }
-
-    // Abre la conexión a la base de datos
-    private function connect() {
-        $db = new PDO('mysql:host=localhost;'.'dbname=bd_libreria;charset=utf8', 'root', '');
-        return $db;
+        $this->dbHelper = new DatabaseHelper();
+        $this->db = $this->dbHelper->connect();
     }
 
     // Obtiene todos los libros que están en la tabla
