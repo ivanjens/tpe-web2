@@ -95,6 +95,6 @@ switch ($params[0]) {
     default:
         header("HTTP/1.0 404 Not Found");
         $view = new BookView();
-        $view->showError('No se ha encontrado la página');
+        $view->showError('No se ha podido encontrar la página');
         break;
 }

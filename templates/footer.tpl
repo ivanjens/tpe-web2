@@ -1,4 +1,4 @@
-    </main>
+    
     <footer class="bg-dark text-white text-center mt-5 py-1">
         <div class="container">
             <p>© Todos los derechos reservados</p>

@@ -1,6 +1,8 @@
 
 {include 'templates/header.tpl'}
 
+    <main class="container"> <!-- empieza contenido principal -->
+
 <!-- formulario añadir libro -->
         {if $genre == NULL}
             <form action="crear-genero" method="POST" class="my-4">
@@ -24,5 +26,7 @@
                 <button type="submit" class="btn btn-primary">Guardar</button>
             </div>
         </form>
+
+    </main>
 
 {include 'templates/footer.tpl'}

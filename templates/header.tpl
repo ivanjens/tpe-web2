@@ -46,6 +46,6 @@
             <img class='img-fluid w-100' src='images/banner.png' alt='Banner'/>
       </header>
 
-      <main class="container"> <!-- empieza contenido principal -->
+      
 
     

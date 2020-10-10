@@ -1,5 +1,7 @@
 
-    {include 'templates/header.tpl'}
+{include 'templates/header.tpl'}
+
+    <main class="container"> <!-- empieza contenido principal -->
         {if $book == NULL}
             <form action="crear-libro" method="POST" class="my-4">
             {else}
@@ -84,5 +86,6 @@
                 <button type="submit" class="btn btn-success">Guardar</button>
             </div>
         </form>
+    </main>
 
     {include 'templates/footer.tpl'}
