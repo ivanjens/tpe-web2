@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 02, 2020 at 02:20 AM
+-- Generation Time: Oct 12, 2020 at 05:04 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
@@ -63,12 +63,11 @@ CREATE TABLE `libro` (
 --
 
 INSERT INTO `libro` (`id`, `titulo`, `autor`, `editorial`, `sinopsis`, `precio`, `stock`, `id_genero`) VALUES
-(10, 'Titulo', 'Oscar', 'Bamboo', 'Sinopsis', 123, 2, 1),
-(13, 'Nuevo libro', 'Ni idea', 'idk', 'ajsdklasjdlskajdaslkjldska', 29, 3, 5),
-(18, 'Title', 'Autor', 'editorial', 'aksdjaskldjsalk', 150, 12, 1),
-(20, 'El Puente', 'Roberto', 'BookU', 'asdjaskdlsajlkdjaslkd', 1, 3, 1),
-(22, 'New Book', 'Author', 'Ed', 'jaksdalksdnlk', 2, 3, 1),
-(25, 'Terror', 'aksdjalsk', 'asdada', 'sajdaklsdj', 1, 2, 7);
+(10, 'Sin Titulo', 'Oscar', 'Bamboo', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ligula nunc, vehicula condimentum bibendum nec, sagittis sed odio. Nunc ut iaculis odio. Suspendisse quis viverra odio. Maecenas mollis odio mauris, rutrum porttitor dui feugiat non. Donec feugiat bibendum bibendum. Proin mollis leo ut tellus malesuada feugiat. Sed sagittis sagittis ligula tincidunt interdum. Vestibulum a condimentum tellus, id rutrum turpis. Duis sit amet laoreet lectus. Morbi lacinia ex eget mauris aliquam blandit at non erat. Praesent interdum, lorem non vehicula pretium, tellus elit viverra tortor, quis suscipit felis tellus non eros. In molestie felis libero, eget laoreet lorem tincidunt quis. Quisque tincidunt quis orci ut venenatis.\r\n\r\nMauris iaculis enim non arcu lacinia, a luctus lacus fringilla. Sed volutpat fringilla lectus in aliquam. Nam mattis augue vel hendrerit faucibus. Donec ultrices ipsum leo, eget cursus est faucibus at. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut eget malesuada turpis. Integer semper elit in nibh commodo, et interdum orci lacinia. Fusce sed ullamcorper nisi. Praesent aliquet, ex quis dapibus elementum, ligula ante pulvinar risus, at placerat ligula orci eu mauris. Aenean hendrerit varius purus non eleifend. Sed viverra volutpat turpis sagittis placerat. Phasellus accumsan diam sit amet eleifend porttitor. Aliquam et dignissim erat. Donec auctor nec leo ut rhoncus. Donec in lectus maximus, gravida est a, tincidunt lorem. Sed magna purus, ullamcorper eget auctor consequat, pretium et ex.', 123, 2, 1),
+(13, 'Nuevo libro', 'Ni idea', 'idk', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ligula nunc, vehicula condimentum bibendum nec, sagittis sed odio. Nunc ut iaculis odio. Suspendisse quis viverra odio. Maecenas mollis odio mauris, rutrum porttitor dui feugiat non. Donec feugiat bibendum bibendum. Proin mollis leo ut tellus malesuada feugiat. Sed sagittis sagittis ligula tincidunt interdum. Vestibulum a condimentum tellus, id rutrum turpis. Duis sit amet laoreet lectus. Morbi lacinia ex eget mauris aliquam blandit at non erat. Praesent interdum, lorem non vehicula pretium, tellus elit viverra tortor, quis suscipit felis tellus non eros. In molestie felis libero, eget laoreet lorem tincidunt quis. Quisque tincidunt quis orci ut venenatis.\r\n\r\nMauris iaculis enim non arcu lacinia, a luctus lacus fringilla. Sed volutpat fringilla lectus in aliquam. Nam mattis augue vel hendrerit faucibus. Donec ultrices ipsum leo, eget cursus est faucibus at. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut eget malesuada turpis. Integer semper elit in nibh commodo, et interdum orci lacinia. Fusce sed ullamcorper nisi. Praesent aliquet, ex quis dapibus elementum, ligula ante pulvinar risus, at placerat ligula orci eu mauris. Aenean hendrerit varius purus non eleifend. Sed viverra volutpat turpis sagittis placerat. Phasellus accumsan diam sit amet eleifend porttitor. Aliquam et dignissim erat. Donec auctor nec leo ut rhoncus. Donec in lectus maximus, gravida est a, tincidunt lorem. Sed magna purus, ullamcorper eget auctor consequat, pretium et ex.', 29, 3, 5),
+(20, 'El Puente', 'Roberto', 'BookU', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ligula nunc, vehicula condimentum bibendum nec, sagittis sed odio. Nunc ut iaculis odio. Suspendisse quis viverra odio. Maecenas mollis odio mauris, rutrum porttitor dui feugiat non. Donec feugiat bibendum bibendum. Proin mollis leo ut tellus malesuada feugiat. Sed sagittis sagittis ligula tincidunt interdum. Vestibulum a condimentum tellus, id rutrum turpis. Duis sit amet laoreet lectus. Morbi lacinia ex eget mauris aliquam blandit at non erat. Praesent interdum, lorem non vehicula pretium, tellus elit viverra tortor, quis suscipit felis tellus non eros. In molestie felis libero, eget laoreet lorem tincidunt quis. Quisque tincidunt quis orci ut venenatis.\r\n\r\nMauris iaculis enim non arcu lacinia, a luctus lacus fringilla. Sed volutpat fringilla lectus in aliquam. Nam mattis augue vel hendrerit faucibus. Donec ultrices ipsum leo, eget cursus est faucibus at. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut eget malesuada turpis. Integer semper elit in nibh commodo, et interdum orci lacinia. Fusce sed ullamcorper nisi. Praesent aliquet, ex quis dapibus elementum, ligula ante pulvinar risus, at placerat ligula orci eu mauris. Aenean hendrerit varius purus non eleifend. Sed viverra volutpat turpis sagittis placerat. Phasellus accumsan diam sit amet eleifend porttitor. Aliquam et dignissim erat. Donec auctor nec leo ut rhoncus. Donec in lectus maximus, gravida est a, tincidunt lorem. Sed magna purus, ullamcorper eget auctor consequat, pretium et ex.', 1, 3, 1),
+(22, 'New Book', 'Author', 'Ed', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ligula nunc, vehicula condimentum bibendum nec, sagittis sed odio. Nunc ut iaculis odio. Suspendisse quis viverra odio. Maecenas mollis odio mauris, rutrum porttitor dui feugiat non. Donec feugiat bibendum bibendum. Proin mollis leo ut tellus malesuada feugiat. Sed sagittis sagittis ligula tincidunt interdum. Vestibulum a condimentum tellus, id rutrum turpis. Duis sit amet laoreet lectus. Morbi lacinia ex eget mauris aliquam blandit at non erat. Praesent interdum, lorem non vehicula pretium, tellus elit viverra tortor, quis suscipit felis tellus non eros. In molestie felis libero, eget laoreet lorem tincidunt quis. Quisque tincidunt quis orci ut venenatis.\r\n\r\nMauris iaculis enim non arcu lacinia, a luctus lacus fringilla. Sed volutpat fringilla lectus in aliquam. Nam mattis augue vel hendrerit faucibus. Donec ultrices ipsum leo, eget cursus est faucibus at. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut eget malesuada turpis. Integer semper elit in nibh commodo, et interdum orci lacinia. Fusce sed ullamcorper nisi. Praesent aliquet, ex quis dapibus elementum, ligula ante pulvinar risus, at placerat ligula orci eu mauris. Aenean hendrerit varius purus non eleifend. Sed viverra volutpat turpis sagittis placerat. Phasellus accumsan diam sit amet eleifend porttitor. Aliquam et dignissim erat. Donec auctor nec leo ut rhoncus. Donec in lectus maximus, gravida est a, tincidunt lorem. Sed magna purus, ullamcorper eget auctor consequat, pretium et ex.', 2, 3, 1),
+(25, 'Terror', 'aksdjalsk', 'asdada', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ligula nunc, vehicula condimentum bibendum nec, sagittis sed odio. Nunc ut iaculis odio. Suspendisse quis viverra odio. Maecenas mollis odio mauris, rutrum porttitor dui feugiat non. Donec feugiat bibendum bibendum. Proin mollis leo ut tellus malesuada feugiat. Sed sagittis sagittis ligula tincidunt interdum. Vestibulum a condimentum tellus, id rutrum turpis. Duis sit amet laoreet lectus. Morbi lacinia ex eget mauris aliquam blandit at non erat. Praesent interdum, lorem non vehicula pretium, tellus elit viverra tortor, quis suscipit felis tellus non eros. In molestie felis libero, eget laoreet lorem tincidunt quis. Quisque tincidunt quis orci ut venenatis.\r\n\r\nMauris iaculis enim non arcu lacinia, a luctus lacus fringilla. Sed volutpat fringilla lectus in aliquam. Nam mattis augue vel hendrerit faucibus. Donec ultrices ipsum leo, eget cursus est faucibus at. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut eget malesuada turpis. Integer semper elit in nibh commodo, et interdum orci lacinia. Fusce sed ullamcorper nisi. Praesent aliquet, ex quis dapibus elementum, ligula ante pulvinar risus, at placerat ligula orci eu mauris. Aenean hendrerit varius purus non eleifend. Sed viverra volutpat turpis sagittis placerat. Phasellus accumsan diam sit amet eleifend porttitor. Aliquam et dignissim erat. Donec auctor nec leo ut rhoncus. Donec in lectus maximus, gravida est a, tincidunt lorem. Sed magna purus, ullamcorper eget auctor consequat, pretium et ex.', 1, 2, 7);
 
 -- --------------------------------------------------------
 
@@ -89,7 +88,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `nombre`, `email`, `password`, `permisos`) VALUES
-(1, 'admin', 'admin@admin.com', '$2y$12$RlOI26fzFVI1GEbKbjYaVu.rBAyW80gLb4e0PS2MusbgOvX083VLO', 0);
+(1, 'Fulanitx', 'admin@admin.com', '$2y$12$RlOI26fzFVI1GEbKbjYaVu.rBAyW80gLb4e0PS2MusbgOvX083VLO', 1),
+(3, 'User', 'user@user.com', '$2y$12$/z3fxj6IePbP1d4ujXgltec6L9X9JwO92TYuOET7xI0EJlGqUDIau', 0);
 
 --
 -- Indexes for dumped tables
@@ -122,19 +122,19 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT for table `genero`
 --
 ALTER TABLE `genero`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `libro`
 --
 ALTER TABLE `libro`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
