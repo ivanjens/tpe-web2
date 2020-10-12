@@ -3,17 +3,21 @@
 include_once 'app/views/book.view.php';
 include_once 'app/views/genre.view.php';
 include_once 'app/models/book.model.php';
+include_once 'app/helpers/auth.helper.php';
 
 class BookController{
 
     private $bookModel;
     private $genreModel;
     private $view;
+    private $authHelper;
 
     function __construct(){
         $this->bookModel = new BookModel();
         $this->genreModel = new GenreModel();
         $this->view = new BookView();
+        $this->authHelper = new AuthHelper();
+        $this->authHelper->checkLogged();
     }
 
     //Verificamos si el about llega con un nombre seleccionado

@@ -33,13 +33,22 @@
                 </ul>
               </div>
               <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
+              <ul class="navbar-nav">
+              {if isset($smarty.session.NAME_USER)}
+                  <li class="nav-item active">
+                    <p class='text-light mt-1 mr-3'>Hola, {$smarty.session.NAME_USER}</p>
+                  </li>
+                  <li class="nav-item active">
+                    <a href='logout' class="btn btn-outline-success">LOGOUT</a>
+                  </li>
+                {else}
                   <li class="nav-item active">
                     <a href='login' class="btn btn-outline-success mr-1">LOGIN</a>
                   </li>
                   <li class="nav-item active">
                     <a href='#' class="btn btn-outline-success">REGISTRARSE</a>
                   </li>
+              {/if}
                 </ul>
               </div>
             </nav>

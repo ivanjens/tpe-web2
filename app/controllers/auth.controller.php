@@ -1,50 +1,83 @@
 <?php
 
+// models
 include_once ('app/models/user.model.php');
 include_once ('app/models/book.model.php');
+
+// views
 include_once ('app/views/auth.view.php');
 include_once ('app/views/book.view.php');
 include_once ('app/views/genre.view.php');
 
+// helpers
+
+include_once ('app/helpers/auth.helper.php');
+
 class AuthController{
 
+    // models
     private $authModel;
     private $bookModel;
     private $genreModel;
+
+    // views
     private $authView;
     private $bookView;
     private $genreView;
 
+    // helpers
+
+    private $authHelper;
+
     function __construct(){
+        // models
         $this->authModel = new UserModel();
         $this->bookModel = new BookModel();
         $this->genreModel = new GenreModel();
+
+        //views
         $this->authView = new AuthView();
         $this->bookView = new BookView();
         $this->genreView = new GenreView();
+
+        //helpers
+        $this->authHelper = new AuthHelper;
     }
 
     function showFormLogin(){
         $this->authView->showFormLogin();
     }
 
+    // hace toda la verificación de los datos introducidos en el formulario de login
     function verifyLogin(){
+        // asigno respectivamente lo que llega del form 
         $email = $_POST['email'];
         $password = $_POST['password'];
-        $userData =$this->authModel->getUserData($email);
+
+        // comprueba que los campos no esten vacios.
         if(empty($email) || empty($password)){
             $this->authView->showFormLogin('Debes completar todos los campos');
+            die();
         } else{
+            // si no están vacios hace la consulta a la base de datos y comprueba si coinciden con los introducidos
+            $userData =$this->authModel->getUserData($email);
             if($userData && password_verify($password, $userData->password)){
-                session_start();
-                $_SESSION['ID_USER'] = $userData->id;
-                $_SESSION['EMAIL_USER'] = $userData->email;
-                header("Location: " . BASE_URL . 'admin'); 
+                // las credenciales son correctas, crea una sesión y redirecciona al home
+                $this->authHelper->login($userData);
+                header("Location: " . BASE_URL); 
             } else{
+                // si las credenciales son incorrectas
                 $this->authView->showFormLogin('El email y/o la contraseña no son correctos');
+                die();
             }
         }
     }
+
+    // cierra la sesión del usuario
+    function logout(){
+        $this->authHelper->logout();
+    }
+
     // le solicita al view que muestre el panel junto a los libros
     function showPanelAdmin($panel = null){
         if (!empty($panel)){
