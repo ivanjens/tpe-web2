@@ -9,8 +9,18 @@ class AuthHelper{
         if (!isset($_SESSION['ID_USER'])) {
             session_destroy();
         }
-    }   
-    
+    }
+
+    function checkAdmin(){
+        if(!isset($_SESSION['ADMIN'])){
+            session_destroy();
+        } else if($_SESSION['ADMIN'] == 0){
+            header('Location:' . BASE_URL);
+        } else if($_SESSION['ADMIN'] == 1){
+            return true;
+        }
+    }
+
     // destruye la sesión de un usuario
     function logout() {
         session_start();

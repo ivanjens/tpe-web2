@@ -61,6 +61,7 @@ class AuthController{
         } else{
             // si no están vacios hace la consulta a la base de datos y comprueba si coinciden con los introducidos
             $userData =$this->authModel->getUserData($email);
+            
             if($userData && password_verify($password, $userData->password)){
                 // las credenciales son correctas, crea una sesión y redirecciona al home
                 $this->authHelper->login($userData);
