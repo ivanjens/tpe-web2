@@ -52,9 +52,13 @@ class BookController{
     }
     
     function showFormBook($id = NULL){
-        $bookData = $this->bookModel->get($id);
-        $genres = $this->genreModel->getAll();
-        $this->view->showFormBook($bookData, $genres);
+        if($this->authHelper->checkAdmin()){
+            $bookData = $this->bookModel->get($id);
+            $genres = $this->genreModel->getAll();
+            $this->view->showFormBook($bookData, $genres);
+        } else{
+            header('Location:' . BASE_URL);
+        }
     }
 
 
@@ -62,37 +66,47 @@ class BookController{
     function addBook(){
         $book = array('titulo'=>$_POST['titulo'], 'autor'=>$_POST['autor'], 'editorial'=>$_POST['editorial'], 'sinopsis'=>$_POST['sinopsis'], 'precio'=>$_POST['precio'], 'stock'=>$_POST['stock'], 'id_genero'=>$_POST['id_genero']);
         // Comprueba que ningún campo este vacio
-        if( (isset($book['titulo']) && ($book['titulo'] != null)) && 
-            (isset($book['autor']) && ($book['autor'] != null))  &&
-            (isset($book['editorial']) && ($book['editorial'] != null)) && 
-            (isset($book['sinopsis']) && ($book['sinopsis'] != null)) &&
-            (isset($book['precio']) && ($book['precio'] != null)) && 
-            (isset($book['stock']) && ($book['stock'] != null)) && 
-            (isset($book['id_genero']) && ($book['id_genero'] != null)) ){
-            // Todos los valores que vengan del formulario se guardan en el array asociativo
-            $this->bookModel->insert($book); // campos completos, envia la solicitud al model
-            header("Location: " . BASE_URL . 'admin/libros'); 
+        if($this->authHelper->checkAdmin()){
+            if( (isset($book['titulo']) && ($book['titulo'] != null)) && 
+                (isset($book['autor']) && ($book['autor'] != null))  &&
+                (isset($book['editorial']) && ($book['editorial'] != null)) && 
+                (isset($book['sinopsis']) && ($book['sinopsis'] != null)) &&
+                (isset($book['precio']) && ($book['precio'] != null)) && 
+                (isset($book['stock']) && ($book['stock'] != null)) && 
+                (isset($book['id_genero']) && ($book['id_genero'] != null)) ){
+                // Todos los valores que vengan del formulario se guardan en el array asociativo
+                $this->bookModel->insert($book); // campos completos, envia la solicitud al model
+                header("Location: " . BASE_URL . 'admin/libros'); 
+            } else{
+                $this->view->showError('Campo(s) del formulario vacio(s)'); // campos incompletos, solicita al view que muestre el error
+            }
         } else{
-            $this->view->showError('Campo(s) del formulario vacio(s)'); // campos incompletos, solicita al view que muestre el error
+            header('Location:' . BASE_URL);
         }
     }
     
     function updateBook($id){
         $book = array('titulo'=>$_POST['titulo'], 'autor'=>$_POST['autor'], 'editorial'=>$_POST['editorial'], 'sinopsis'=>$_POST['sinopsis'], 'precio'=>$_POST['precio'], 'stock'=>$_POST['stock'], 'id_genero'=>$_POST['id_genero']);
-        if( isset($_REQUEST['titulo']) && isset($_REQUEST['autor']) && isset($_REQUEST['editorial']) && isset($_REQUEST['sinopsis']) && isset($_REQUEST['precio']) && isset($_REQUEST['stock']) && isset($_REQUEST['id_genero'])){
-            // Todos los valores que vengan del formulario se guardan en el array asociativo
-            $this->bookModel->update($id, $book); // campos completos, envia la solicitud al model
-            header("Location: " . BASE_URL . 'admin/libros'); 
+        if($this->authHelper->checkAdmin()){
+            if( isset($_REQUEST['titulo']) && isset($_REQUEST['autor']) && isset($_REQUEST['editorial']) && isset($_REQUEST['sinopsis']) && isset($_REQUEST['precio']) && isset($_REQUEST['stock']) && isset($_REQUEST['id_genero'])){
+                // Todos los valores que vengan del formulario se guardan en el array asociativo
+                $this->bookModel->update($id, $book); // campos completos, envia la solicitud al model
+                header("Location: " . BASE_URL . 'admin/libros'); 
+            } else{
+                $this->view->showError('Campo(s) del formulario vacio(s)'); // campos incompletos, solicita al view que muestre el error
+            }
         } else{
-            $this->view->showError('Campo(s) del formulario vacio(s)'); // campos incompletos, solicita al view que muestre el error
+            header('Location:' . BASE_URL);
         }
     }    
-        // Comprueba que ningún campo este vacio
-
     // manda la petición al model para borrar un libro
     function removeBook($id){
-        $this->bookModel->delete($id);
-        header("Location: " . BASE_URL . 'admin/libros'); 
+        if($this->authHelper->checkAdmin()){
+            $this->bookModel->delete($id);
+            header("Location: " . BASE_URL . 'admin/libros'); 
+        } else{
+            header("Location: " . BASE_URL); 
+        }
     }
 
     function showByGenre($genre){
