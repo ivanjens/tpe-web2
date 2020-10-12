@@ -7,7 +7,7 @@
             <p class="text-center mt-4 mb-5">{$msg}</p>
         </div>
         <div class='text-center'>
-            <a class='btn btn-success btn-sm text-uppercase mb-4' href=''>Volver al inicio</a>
+            <a class='btn btn-success btn-sm text-uppercase mb-4' href=''>Volver</a>
         </div>
 
     </main>

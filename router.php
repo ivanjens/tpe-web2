@@ -9,7 +9,7 @@ define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] 
 define('LOGIN', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/login' );
 
 // lee la acción
-if (!empty($_GET['action'])) {
+if(!empty($_GET['action'])) {
     $action = $_GET['action'];
 } else {
     $action = 'home'; // acción por defecto si no envían
@@ -38,10 +38,11 @@ switch ($params[0]) {
         break;
     case 'admin':
         $controller = new AuthController();
-        if (isset($params[1]))
-        $controller->showPanelAdmin($params[1]);
-        else
-        $controller->showPanelAdmin();
+        if (isset($params[1]) && isset($params[2])){
+            $controller->showPanelAdmin($params[1], $params[2]);
+        } else{
+            $controller->showPanelAdmin();
+        }
         break;// el parametro determina que panel mostrar (libro, genero, etc)
     case 'formulario-libro':
         $controller = new BookController();
@@ -89,8 +90,7 @@ switch ($params[0]) {
         break;
     case 'detalle': // ver individualmente un libro
         $controller = new BookController();
-        $id = $params[1];
-        $controller->showDetail($id);
+        $controller->showDetail($params[1]);
         break;
     case 'comprar':
         $view = new BookView();

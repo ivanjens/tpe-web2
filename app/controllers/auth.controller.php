@@ -80,9 +80,13 @@ class AuthController{
     }
 
     // le solicita al view que muestre el panel junto a los libros
-    function showPanelAdmin($panel = null){
-        if (!empty($panel)){
+    function showPanelAdmin($panel = null, $filter = null){
+        $genres=$this->genreModel->getAll();
+        if (!empty($panel) && $filter != null){
             $genres=$this->genreModel->getAll();
+            $books = $this->bookModel->getByGenre($filter);
+            $this->bookView->showPanelBooks($books, $genres);    
+        } else if(!empty($panel) && $filter == null){
             switch($panel){
                 case 'libros':
                     $books = $this->bookModel->getAll();
@@ -99,6 +103,7 @@ class AuthController{
         else{
             $this->authView->showPanelElection();
         }
+            
 
     }
 

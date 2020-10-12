@@ -32,7 +32,7 @@
                   </li>
                   {if isset($smarty.session.ADMIN) && $smarty.session.ADMIN == true}
                     <li class="nav-item active">
-                      <a class="nav-link" href="admin">ADMIN</a>
+                      <a class="nav-link" href="admin/">ADMIN</a>
                     </li>
                   {/if}
                 </ul>
