@@ -18,49 +18,57 @@ class GenreController{
         $this->authHelper = new AuthHelper();
     }
 
+
+    // muestra el formulario para agregar / modificar un genero dependiendo si recibe la id del genero o no
     function showFormGenre($id = NULL){
-        if($this->authHelper->checkAdmin()){
+        if($this->authHelper->checkAdmin()){ // comprueba que sea admin
             $genre = $this->model->get($id);
             $this->genreView->showFormGenre($genre);
-        } else{
+        } else{ // al no ser admin lo redirecciona al home
             header("Location: " . BASE_URL); 
         }
     }
 
+    // solicita al model que añada un nuevo genero
     function addGenre(){
+        // guarda el nombre del genero recibido en el form
         $name = $_POST['nombre'];
-        if($this->authHelper->checkAdmin()){
-            if(isset($name)){
+        if($this->authHelper->checkAdmin()){ // comprueba que sea admin
+            if(isset($name)){ // comprueba que el nombre este seteado
                 $this->model->insert($name);
-                header("Location: " . BASE_URL . 'admin/generos'); 
+                header("Location: " . BASE_URL . 'panel/generos/'); 
             } else{
                 $this->bookView->showError('Campo vacio');
             }
-        } else{
+        } else{ // al no ser admin lo redirecciona al home
             header("Location: " . BASE_URL); 
         }
     }
 
+
+    // solicita al model que borre un genero
     function removeGenre($id){
-        if($this->authHelper->checkAdmin()){
+        if($this->authHelper->checkAdmin()){ // comprueba que sea admin
             $this->model->delete($id);
-            header("Location: " . BASE_URL . 'admin/generos'); 
-        } else{
+            header("Location: " . BASE_URL . 'panel/generos/'); 
+        } else{ // al no ser admin lo redirecciona al home
             header("Location: " . BASE_URL); 
         }
 
     }
 
+    // solicita al model que actualice un genero existente
     function updateGenre($id){
+        // guarda el nuevo nombre del genero recibido del form
         $name = $_POST['nombre'];
-        if($this->authHelper->checkAdmin()){
+        if($this->authHelper->checkAdmin()){ // comprueba que sea admin
             if(isset($name)){
                 $this->model->update($id, $name);
-                header("Location: " . BASE_URL . 'admin/generos'); 
+                header("Location: " . BASE_URL . 'panel/generos/'); 
             } else{
                 $this->bookView->showError('Campo vacio');
             }
-        } else{
+        } else{ // al no ser admin lo redirecciona al home
             header("Location: " . BASE_URL); 
         }
     }

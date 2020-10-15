@@ -25,14 +25,14 @@
                     <a class="nav-link" href="">INICIO</a>
                   </li>
                   <li class="nav-item active">
-                    <a class="nav-link" href="#">CONTACTO</a>
+                    <a class="nav-link" href="contacto">CONTACTO</a>
                   </li>
                   <li class="nav-item active">
-                    <a class="nav-link" href="about">ABOUT</a>
+                    <a class="nav-link" href="about/">ABOUT</a>
                   </li>
                   {if isset($smarty.session.ADMIN) && $smarty.session.ADMIN == true}
                     <li class="nav-item active">
-                      <a class="nav-link" href="admin/">ADMIN</a>
+                      <a class="nav-link" href="admin">ADMIN</a>
                     </li>
                   {/if}
                 </ul>

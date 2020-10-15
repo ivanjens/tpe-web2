@@ -19,7 +19,7 @@ class BookView{
     function showPanelBooks($books, $genres){
         $this->smarty->assign('books', $books);
         $this->smarty->assign('genres', $genres);
-        $this->smarty->display('templates/books.tpl');
+        $this->smarty->display('templates/panel-books.tpl');
     }
 
     function showFormBook($book, $genres){

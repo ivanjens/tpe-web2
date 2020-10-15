@@ -17,7 +17,7 @@
           <div class="card-body">
             <h5 class="card-title">Administrar libros</h5>
             <p class="card-text">Aqui podra editar, agregar y eliminar libros</p>
-            <a href="admin/libros/" class="btn btn-primary">IR</a>
+            <a href="panel/libros/" class="btn btn-primary">IR</a>
           </div>
         </div>
 
@@ -26,7 +26,7 @@
           <div class="card-body">
             <h5 class="card-title">Administrar generos</h5>
             <p class="card-text">Aqui podra editar, agregar y eliminar generos</p>
-            <a href="admin/generos/" class="btn btn-primary">IR</a>
+            <a href="panel/generos/" class="btn btn-primary">IR</a>
           </div>
         </div>
       </div>

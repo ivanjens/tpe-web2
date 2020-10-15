@@ -14,7 +14,7 @@ class AuthView{
     }
 
     function showPanelElection(){
-        $this->smarty->display('templates/panel-admin.tpl');
+        $this->smarty->display('templates/panel-election.tpl');
     }
 
     // function showFormRegister(){}

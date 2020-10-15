@@ -14,13 +14,13 @@ class AuthHelper{
         }
     }
 
+    // comprueba que 
     function checkAdmin(){
-        if(!isset($_SESSION['ADMIN'])){
+        if(!isset($_SESSION['ADMIN'])){ // chequea en primer lugar que este logeado como usuario
             session_destroy();
-        } else if($_SESSION['ADMIN'] == 0){
+        } else if($_SESSION['ADMIN'] == 0){ // comprueba si no tiene permisos
             return false;
-            header('Location:' . BASE_URL);
-        } else if($_SESSION['ADMIN'] == 1){
+        } else if($_SESSION['ADMIN'] == 1){ // comprueba que tiene permisos
             return true;
         }
     }

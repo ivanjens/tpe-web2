@@ -12,7 +12,7 @@ class GenreView{
 
     function showPanelGenres($genres){
         $this->smarty->assign('genres', $genres);
-        $this->smarty->display('templates/genres.tpl');
+        $this->smarty->display('templates/panel-genres.tpl');
     }
 
     function showFormGenre($genre){

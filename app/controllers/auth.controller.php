@@ -50,11 +50,10 @@ class AuthController{
 
     // hace toda la verificación de los datos introducidos en el formulario de login
     function verifyLogin(){
-        // asigno respectivamente lo que llega del form 
+        // se asigna respectivamente lo que llega del form 
         $email = $_POST['email'];
         $password = $_POST['password'];
-
-        // comprueba que los campos no esten vacios.
+        // comprueba que los campos no esten vacios
         if(empty($email) || empty($password)){
             $this->authView->showFormLogin('Debes completar todos los campos');
             die();
@@ -79,14 +78,19 @@ class AuthController{
         $this->authHelper->logout();
     }
 
+    function showPanelElection(){
+        $this->authView->showPanelElection();
+    }
+
     // le solicita al view que muestre el panel junto a los libros
-    function showPanelAdmin($panel = null, $filter = null){
+    function showSpecificPanel($panel, $filter = null){
+        // consulta a la ddbb los generos que tiene
         $genres=$this->genreModel->getAll();
-        if (!empty($panel) && $filter != null){
-            $genres=$this->genreModel->getAll();
+        // Comprueba si le llegó un filtro, en este caso planeado para la filtración de libros por género desde el panel libro
+        if($filter != null){
             $books = $this->bookModel->getByGenre($filter);
             $this->bookView->showPanelBooks($books, $genres);    
-        } else if(!empty($panel) && $filter == null){
+        } else if($filter == null){ // si no hay filtro, carga el panel de libros, el de genero o un error
             switch($panel){
                 case 'libros':
                     $books = $this->bookModel->getAll();
@@ -100,11 +104,7 @@ class AuthController{
                     break;
             }
         }
-        else{
-            $this->authView->showPanelElection();
-        }
             
-
     }
 
 }

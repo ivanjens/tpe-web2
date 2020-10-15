@@ -38,12 +38,12 @@ switch ($params[0]) {
         break;
     case 'admin':
         $controller = new AuthController();
-        if (isset($params[1]) && isset($params[2])){
-            $controller->showPanelAdmin($params[1], $params[2]);
-        } else{
-            $controller->showPanelAdmin();
-        }
+        $controller->showPanelElection();
         break;// el parametro determina que panel mostrar (libro, genero, etc)
+    case 'panel':
+        $controller = new AuthController();
+        $controller->showSpecificPanel($params[1], $params[2]);
+        break;
     case 'formulario-libro':
         $controller = new BookController();
         $controller->showFormBook($params[1]); // si recibe parametro != null hace consulta al model y setea los datos en los inputs
@@ -63,7 +63,7 @@ switch ($params[0]) {
     case 'editar-libro':
         $controller = new BookController();
         $controller->updateBook($params[1]);
-    break;
+        break;
     case 'libros':
         $controller = new BookController();
         $controller->showByGenre($params[1]);
@@ -79,26 +79,26 @@ switch ($params[0]) {
     case 'editar-genero':
         $controller = new GenreController();
         $controller->updateGenre($params[1]);
-    break;
-        
+        break;
     case 'about':
         $controller = new BookController();
-        if (isset($params[1]))
         $controller->getDev($params[1]);
-        else
-        $controller->getDev();
         break;
     case 'detalle': // ver individualmente un libro
         $controller = new BookController();
         $controller->showDetail($params[1]);
         break;
+    case 'contacto':
+        $controller = new BookController();
+        $controller->showError('¡Lo sentimos, esta sección no está disponible en estos momentos!');
+        break;
     case 'comprar':
-        $view = new BookView();
-        $view->showError('¡Lo sentimos, las compras no están disponibles en este momento!');
+        $controller = new BookController();
+        $controller->showError('¡Lo sentimos, las compras no están disponibles en este momento!');
         break;
     default:
         header("HTTP/1.0 404 Not Found");
-        $view = new BookView();
-        $view->showError('No se ha podido encontrar la página');
+        $controller = new BookController();
+        $controller->showError('No se ha podido encontrar la página');
         break;
 }

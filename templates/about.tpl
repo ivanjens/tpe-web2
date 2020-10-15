@@ -12,11 +12,10 @@
                 <li><a href="about/ivan">Ivan Jensen</a></li>
             </ul>
         <div class="text-center">
-                {if $name!= '' && $descripcion!='' }
-                <h5>Autor: {$name}</h5>
-                <p>Descripcion: {$descripcion}</p>
-                    
-                {/if}
+            {if $name != '' && $descripcion != ''}
+            <h5>{$name}</h5>
+            <p>Descripcion: {$descripcion}</p>
+            {/if}
         </div>
 
     </main>

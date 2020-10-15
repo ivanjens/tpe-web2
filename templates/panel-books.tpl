@@ -15,9 +15,9 @@
                 <h5>Libros publicados</h5>
                 <div class='text-center'>
                     <div class="btn-group" role="group" aria-label="Basic example">
-                            <a class='btn btn-success btn-sm text-uppercase' href='admin/libros/'>Todos</a>
+                            <a class='btn btn-success btn-sm text-uppercase' href='panel/libros/'>Todos</a>
                             {foreach from=$genres item=genre}
-                                <a class='btn btn-success btn-sm text-uppercase' href='admin/libros/{$genre->nombre}'>{$genre->nombre}</a>
+                                <a class='btn btn-success btn-sm text-uppercase' href='panel/libros/{$genre->nombre}'>{$genre->nombre}</a>
                             {/foreach}
                     </div>
                 </div>
