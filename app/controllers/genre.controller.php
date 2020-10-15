@@ -50,7 +50,7 @@ class GenreController{
     function removeGenre($id){
         $countBooks = $this->model->checkGenreItems($id);
         $genres = $this->model->getAll();
-        if($countBooks->cantidad > 0){
+        if($countBooks->cantidad > 0 && $this->authHelper->checkAdmin()){
             $this->genreView->showPanelGenres($genres, 'Hay libros asignados a este genero, debes eliminarlos antes.');die;
         } else if($countBooks->cantidad <= 0 && $this->authHelper->checkAdmin()){ // comprueba que sea admin
             $this->model->delete($id);
