@@ -125,6 +125,8 @@ class BookController{
                     $this->view->showError('Esa persona no existe');
                     break;
             }
+        } else {
+            $this->view->showAbout($name, $descripcion);
         }
     }
 }
