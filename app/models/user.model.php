@@ -12,6 +12,7 @@ class UserModel{
         $this->db = $this->dbHelper->connect();
     }
 
+    // obtiene los datos del usuario
     function getUserData($email){
         $query = $this->db->prepare('SELECT * FROM usuario WHERE email = ?');
         $query->execute([$email]);

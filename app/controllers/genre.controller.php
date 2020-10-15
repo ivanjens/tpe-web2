@@ -48,12 +48,17 @@ class GenreController{
 
     // solicita al model que borre un genero
     function removeGenre($id){
-        if($this->authHelper->checkAdmin()){ // comprueba que sea admin
+        $countBooks = $this->model->checkGenreItems($id);
+        $genres = $this->model->getAll();
+        if($countBooks->cantidad > 0){
+            $this->genreView->showPanelGenres($genres, 'Hay libros asignados a este genero, debes eliminarlos antes.');die;
+        } else if($countBooks->cantidad <= 0 && $this->authHelper->checkAdmin()){ // comprueba que sea admin
             $this->model->delete($id);
             header("Location: " . BASE_URL . 'panel/generos/'); 
         } else{ // al no ser admin lo redirecciona al home
             header("Location: " . BASE_URL); 
         }
+        
 
     }
 

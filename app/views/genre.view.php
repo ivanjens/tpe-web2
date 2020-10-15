@@ -10,8 +10,9 @@ class GenreView{
         $this->smarty = new Smarty();
     }
 
-    function showPanelGenres($genres){
+    function showPanelGenres($genres, $msg = null){
         $this->smarty->assign('genres', $genres);
+        $this->smarty->assign('msg', $msg);
         $this->smarty->display('templates/panel-genres.tpl');
     }
 

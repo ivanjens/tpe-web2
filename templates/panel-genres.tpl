@@ -8,6 +8,10 @@
             <a class='btn btn-danger btn-sm text-uppercase m-2' href=''>Volver al inicio</a>
         </div>
         {/if}
+
+        {if $msg}
+                 <p class='alert alert-danger mt-3 mb-4 text-center'>{$msg}</p>
+        {/if}
         
         {if isset($smarty.session.ADMIN) && $smarty.session.ADMIN == true}
         <div>

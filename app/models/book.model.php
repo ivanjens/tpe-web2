@@ -22,6 +22,7 @@ class BookModel{
         return $books;
     }
 
+    // obtiene los datos de un libro en especifico
     function get($id){
         $query = $this->db->prepare('SELECT libro.*, genero.nombre AS genero FROM libro INNER JOIN genero ON libro.id_genero = genero.id WHERE libro.id = ?');
         $query->execute([$id]);
@@ -30,6 +31,7 @@ class BookModel{
         return $book;
     }
 
+    // obtiene los libros que pertenecen a un genero en especifico
     function getByGenre($genre){
         $query = $this->db->prepare('SELECT libro.id AS id_libro, libro.*, genero.nombre FROM `libro` INNER JOIN genero ON libro.id_genero = genero.id WHERE genero.nombre = ?');
         $query->execute([$genre]);
@@ -50,6 +52,7 @@ class BookModel{
         $query->execute([$id]);
     }
 
+    // actualiza la información de un libro
     function update($id, $book){
         $query = $this->db->prepare('UPDATE libro SET titulo = ?, autor = ?, editorial = ?, sinopsis = ?, precio = ?, stock = ?, id_genero = ? WHERE id = ?');
         $query->execute([$book['titulo'], $book['autor'], $book['editorial'], $book['sinopsis'], $book['precio'], $book['stock'], $book['id_genero'], $id]);
