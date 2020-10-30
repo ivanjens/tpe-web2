@@ -21,4 +21,9 @@ class UserModel{
         return $user;
     }
 
+    function insertUser($usuario){
+            $query = $this->db->prepare('INSERT INTO usuario (nombre, email, password, permisos) VALUES (?, ?, ?, ?)');
+            // se completan los campos en el execute con el array asociativo pasado por parametro
+            $query->execute([$usuario['nombre'], $usuario['email'], $usuario['password'], $usuario['permisos']]);
+    }
 }

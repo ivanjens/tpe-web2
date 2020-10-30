@@ -51,7 +51,7 @@
                     <a href='login' class="btn btn-outline-success mr-1">LOGIN</a>
                   </li>
                   <li class="nav-item active">
-                    <a href='#' class="btn btn-outline-success">REGISTRARSE</a>
+                    <a href='registro' class="btn btn-outline-success">REGISTRARSE</a>
                   </li>
               {/if}
                 </ul>

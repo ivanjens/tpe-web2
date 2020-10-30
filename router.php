@@ -28,6 +28,14 @@ switch ($params[0]) {
         $controller = new AuthController();
         $controller->showFormLogin();
         break;
+    case 'registro':
+        $controller = new AuthController();
+        $controller->showFormRegister();
+        break;
+    case 'registrarse':
+        $controller = new AuthController();
+        $controller->showRegister();
+        break;
     case 'logout':
         $controller = new AuthController();
         $controller->logout();

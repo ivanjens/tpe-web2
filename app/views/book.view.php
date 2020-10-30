@@ -32,7 +32,7 @@ class BookView{
         $this->smarty->assign('msg', $msg);
         $this->smarty->display('templates/error.tpl');
     }
-    //
+    
     function showAbout($name,$descripcion) {
         $this->smarty->assign('name', $name);
         $this->smarty->assign('descripcion', $descripcion);
