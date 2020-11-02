@@ -10,9 +10,9 @@
     {/if}
 
     {if isset($smarty.session.ADMIN) && $smarty.session.ADMIN == true}
-      <div class='col-12 mt-4 row'>
+      <div class='col-12 mt-4 justify-content-center row'>
 
-        <div class="card col-4 mr-2">
+        <div class="card col-3 mr-2">
           <h5 class="card-header">LIBROS</h5>
           <div class="card-body">
             <h5 class="card-title">Administrar libros</h5>
@@ -21,7 +21,7 @@
           </div>
         </div>
 
-        <div class="card col-4 mr-2">
+        <div class="card col-3 mr-2">
           <h5 class="card-header">GENEROS</h5>
           <div class="card-body">
             <h5 class="card-title">Administrar generos</h5>
@@ -29,6 +29,16 @@
             <a href="panel/generos/" class="btn btn-primary">IR</a>
           </div>
         </div>
+
+        <div class="card col-3 mr-2">
+          <h5 class="card-header">USUARIOS</h5>
+          <div class="card-body">
+            <h5 class="card-title">Administrar usuarios</h5>
+            <p class="card-text">Aqui podra dar permisos o eliminar usuarios</p>
+            <a href="panel/usuarios/" class="btn btn-primary">IR</a>
+          </div>
+        </div>
+
       </div>
     {/if}
 
