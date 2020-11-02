@@ -7,7 +7,7 @@
         <h5 class='mb-4 text-center text-success text-uppercase'>Registro</h5>
          <div class="form-group">
           <label>Nombre</label>
-          <input type="text" class="form-control" name='nombre' placeholder="nombre">
+          <input type="text" class="form-control" name='nombre' placeholder="Nombre">
         </div>
         <div class="form-group">
           <label>Correo electrónico</label>

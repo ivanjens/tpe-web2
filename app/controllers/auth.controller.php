@@ -16,7 +16,7 @@ include_once ('app/helpers/auth.helper.php');
 class AuthController{
 
     // models
-    private $authModel;
+    private $userModel;
     private $bookModel;
     private $genreModel;
 
@@ -31,7 +31,7 @@ class AuthController{
 
     function __construct(){
         // models
-        $this->authModel = new UserModel();
+        $this->userModel = new UserModel();
         $this->bookModel = new BookModel();
         $this->genreModel = new GenreModel();
 
@@ -59,7 +59,7 @@ class AuthController{
             die();
         } else{
             // si no están vacios hace la consulta a la base de datos y comprueba si coinciden con los introducidos
-            $userData =$this->authModel->getUserData($email);
+            $userData =$this->userModel->getUserData($email);
 
             if($userData && password_verify($password, $userData->password)){
                 // las credenciales son correctas, crea una sesión y redirecciona al home
@@ -114,17 +114,19 @@ class AuthController{
     function showRegister(){
         $_POST['permisos'] = '0';
         $usuario = array('email'=>$_POST['email'], 'nombre'=>$_POST['nombre'], 'permisos'=>$_POST['permisos'], 'password'=>$_POST['password']);
-        $usuario['password'] = password_hash ($usuario['password'] , PASSWORD_DEFAULT ); //Encriptamos la contraseña
+        $usuario['password'] = password_hash($usuario['password'] , PASSWORD_DEFAULT ); //Encriptamos la contraseña
         // Comprueba que ningún campo este vacio.
         if( (isset($usuario['email']) && ($usuario['email'] != null)) && 
             (isset($usuario['password']) && ($usuario['password'] != null)) && 
             (isset($usuario['permisos']) && ($usuario['permisos'] != null))&& 
             (isset($usuario['nombre']) && ($usuario['nombre'] != null)) ){
             // Todos los valores que vengan del formulario se guardan en el array asociativo
-            $userData =$this->authModel->getUserData($usuario['email']);
+            $userData = $this->userModel->getUserData($usuario['email']);
             if($userData==false){
-            $this->authModel->insertUser($usuario); // campos completos, envia la solicitud al model
-            header("Location: " . BASE_URL . "home/");
+                $this->userModel->insertUser($usuario); // campos completos, envia la solicitud al model
+                $userData = $this->userModel->getUserData($usuario['email']);
+                $this->authHelper->login($userData);
+                header("Location: " . BASE_URL . "home/");
             }
             else{
                 $this->bookView->showError('Ese email ya esta registrado');
