@@ -12,6 +12,14 @@ class UserModel{
         $this->db = $this->dbHelper->connect();
     }
 
+    function getAll(){
+        $query = $this->db->prepare('SELECT * FROM usuario');
+        $query->execute();
+
+        $users = $query->fetchAll(PDO::FETCH_OBJ);
+        return $users;
+    }
+
     // obtiene los datos del usuario
     function getUserData($email){
         $query = $this->db->prepare('SELECT * FROM usuario WHERE email = ?');

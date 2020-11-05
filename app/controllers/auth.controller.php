@@ -99,6 +99,10 @@ class AuthController{
                 case 'generos':
                     $this->genreView->showPanelGenres($genres);
                     break;
+                case 'usuarios':
+                    $users = $this->userModel->getAll();
+                    $this->authView->showPanelUsers($users);
+                    break;
                 default:
                     $this->bookView->showError('Panel inexistente');
                     break;
