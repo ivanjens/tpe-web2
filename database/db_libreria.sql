@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 12, 2020 at 05:04 PM
+-- Generation Time: Nov 12, 2020 at 06:58 PM
 -- Server version: 10.4.14-MariaDB
--- PHP Version: 7.2.33
+-- PHP Version: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `bd_libreria`
+-- Database: `db_libreria`
 --
 
 -- --------------------------------------------------------
@@ -72,6 +72,20 @@ INSERT INTO `libro` (`id`, `titulo`, `autor`, `editorial`, `sinopsis`, `precio`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `reseña`
+--
+
+CREATE TABLE `reseña` (
+  `id` int(11) NOT NULL,
+  `comentario` text NOT NULL,
+  `valoracion` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `id_libro` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `usuario`
 --
 
@@ -89,7 +103,10 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`id`, `nombre`, `email`, `password`, `permisos`) VALUES
 (1, 'Fulanitx', 'admin@admin.com', '$2y$12$RlOI26fzFVI1GEbKbjYaVu.rBAyW80gLb4e0PS2MusbgOvX083VLO', 1),
-(3, 'User', 'user@user.com', '$2y$12$/z3fxj6IePbP1d4ujXgltec6L9X9JwO92TYuOET7xI0EJlGqUDIau', 0);
+(3, 'User', 'user@user.com', '$2y$12$/z3fxj6IePbP1d4ujXgltec6L9X9JwO92TYuOET7xI0EJlGqUDIau', 0),
+(5, 'Juan', 'juan@gmail.com', '$2y$10$X1U3eEN7vBaLt2q6TGWJJebN/bHXg5og/vpMmEwhX311QFoX3K4jq', 0),
+(7, 'e', 'e@gmail.com', '$2y$10$y1Xr2xxMlultB5hpNA.y4ONL7xF91iLSjqAQqtQiNlsZ9F9Kfq/ny', 0),
+(8, 'aa', 'aa@gmail.com', '$2y$10$jX5w5Olon.iE/uojAapm3eyzDurN2ikTcp5FHYQ/OjQo5HmcyM4ia', 0);
 
 --
 -- Indexes for dumped tables
@@ -107,6 +124,14 @@ ALTER TABLE `genero`
 ALTER TABLE `libro`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_genero` (`id_genero`);
+
+--
+-- Indexes for table `reseña`
+--
+ALTER TABLE `reseña`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_usuario` (`id_usuario`),
+  ADD UNIQUE KEY `id_libro` (`id_libro`);
 
 --
 -- Indexes for table `usuario`
@@ -131,10 +156,16 @@ ALTER TABLE `libro`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
+-- AUTO_INCREMENT for table `reseña`
+--
+ALTER TABLE `reseña`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
@@ -145,6 +176,13 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `libro`
   ADD CONSTRAINT `libro_ibfk_1` FOREIGN KEY (`id_genero`) REFERENCES `genero` (`id`);
+
+--
+-- Constraints for table `reseña`
+--
+ALTER TABLE `reseña`
+  ADD CONSTRAINT `reseña_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`),
+  ADD CONSTRAINT `reseña_ibfk_2` FOREIGN KEY (`id_libro`) REFERENCES `libro` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -28,8 +28,18 @@
             </div>
           </div>
         </div>
+      </div>
     </div>
+
+    <div class='mt-5'>
+      {include 'templates/review-box.tpl'}
+    </div>
+
+    <h6 class='text-uppercase mt-5'>Reseñas</h6>
     
+
   </main>
+
+    
 
 {include 'templates/footer.tpl'}

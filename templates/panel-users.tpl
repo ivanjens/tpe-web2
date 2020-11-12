@@ -27,13 +27,13 @@
                             <td scope="row">{$user->nombre}</td>
                             <td>{$user->email}</td>
                             {if $user->permisos == 0}
-                            <td>NO</td>
+                            <td class='text-uppercase'>No</td>
                             <td>
                                 <a class = 'mr-2' href='eliminar-usuario/{$user->id}'><img src='https://icongr.am/material/account-remove.svg?size=25&color=d05858'/></a>
                                 <a href='permisos-usuario/{$user->id}'><img src='https://icongr.am/material/account-star.svg?size=25&color=d058b0'/></a>
                             </td>
                             {else}
-                                <td>SI</td>
+                                <td class='text-uppercase'>Si</td>
                             {/if}
                         </tr>
                     {/foreach}

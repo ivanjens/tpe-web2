@@ -1,6 +1,6 @@
 {if isset($smarty.session.ID_USER)}
 <h6 class='text-uppercase'>Deja tu reseña</h6>
-<form action="">
+<form action="" method='POST'>
     <div class="form-group">
         <p class='text-center mb-0'>Puntuación</p>
         <div class='text-center'>
