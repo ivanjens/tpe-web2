@@ -96,6 +96,14 @@ switch ($params[0]) {
         $controller = new BookController();
         $controller->showDetail($params[1]);
         break;
+    case 'permisos-usuario':
+        $controller = new AuthController();
+        $controller->updateUser($params[1]);
+        break;
+    case 'eliminar-usuario':
+        $controller = new AuthController();
+        $controller->removeUser($params[1]);
+        break;
     case 'contacto':
         $controller = new BookController();
         $controller->showError('¡Lo sentimos, esta sección no está disponible en estos momentos!');

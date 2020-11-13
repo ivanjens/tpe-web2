@@ -139,4 +139,24 @@ class AuthController{
             $this->bookView->showError('Campo(s) del registro vacio(s)'); // campos incompletos, solicita al view que muestre el error
         }
     }
+
+    function updateUser($id){
+        $_POST['permisos'] = '1';
+        $permisos = $_POST['permisos'];
+        if($this->authHelper->checkAdmin()){ // comprueba que sea admin
+                $this->userModel->update($id, $permisos);
+                header("Location: " . BASE_URL . 'panel/usuarios/'); 
+        } else{ // al no ser admin lo redirecciona al home
+            header("Location: " . BASE_URL); 
+        }
+    }
+
+    function removeUser($id){
+        if($this->authHelper->checkAdmin()){ // comprueba que sea admin
+             $this->userModel->delete($id);
+             header("Location: " . BASE_URL . 'panel/usuarios/'); 
+        } else{ // al no ser admin lo redirecciona al home
+             header("Location: " . BASE_URL); 
+         }
+    }
 }

@@ -34,4 +34,14 @@ class UserModel{
             // se completan los campos en el execute con el array asociativo pasado por parametro
             $query->execute([$usuario['nombre'], $usuario['email'], $usuario['password'], $usuario['permisos']]);
     }
+
+    function update($id, $permisos){
+        $query = $this->db->prepare('UPDATE usuario SET permisos = ? WHERE id = ?');
+        $query->execute([$permisos, $id]);
+    }
+
+    function delete($id){
+        $query = $this->db->prepare('DELETE FROM usuario WHERE id = ?');
+        $query->execute([$id]);
+    }
 }
