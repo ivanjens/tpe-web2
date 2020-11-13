@@ -5,8 +5,9 @@ include_once 'app/api/api-review.controller.php';
 
 $router = new Router();
 
-$router->addRoute('reseñas', 'GET', 'APIReviewController', 'getReviews');
-$router->addRoute('reseñas/:ID', 'GET', 'APIReviewController', 'get');
+$router->addRoute('reseñas', 'GET', 'APIReviewController', 'getAll');
+$router->addRoute('reseñas/:ID', 'GET', 'APIReviewController', 'getByBook');
+//$router->addRoute('reseñas/:ID', 'GET', 'APIReviewController', 'getReview');
 
 
 
