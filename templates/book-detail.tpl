@@ -35,11 +35,17 @@
       {include 'templates/review-box.tpl'}
     </div>
 
-    <h6 class='text-uppercase mt-5'>Reseñas</h6>
     
 
   </main>
+  <section class='ml-5 mr-5'>
+    <h5 class='text-uppercase mt-5 mb-3'>Reseñas</h5>
+    <div>
+      {include file='vue/reviews.vue'}
+    </div>
+  </section>
 
     
+  <script src="js/reviews.js"></script>
 
 {include 'templates/footer.tpl'}

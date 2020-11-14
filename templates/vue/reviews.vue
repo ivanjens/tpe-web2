@@ -1,0 +1,20 @@
+{literal}
+<section id="app">
+    <div v-if="error == null">
+        <div class='border border-light shadow p-3 mb-5 bg-white rounded py-4'>
+            <div v-for="review in reviews" class="ml-3 mr-3 card text-center mb-5 mt-5">
+                <div class="card-header py-0">
+                    <p class='float-left mt-3'>Escrito por {{ review.id_usuario }}</p>
+                    <p class='float-right mt-3'>{{ review.fecha }}</p>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-left text-secondary"> {{ review.comentario }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div v-else class="alert alert-info mt-3 py-4 text-uppercase text-center col-8 offset-2" role="alert">
+        {{ error }}
+    </div>
+</section>
+{/literal}
