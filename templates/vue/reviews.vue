@@ -10,6 +10,13 @@
                 <div class="card-body">
                     <p class="card-text text-left text-secondary"> {{ review.comentario }}</p>
                 </div>
+                    {/literal}
+                    {if isset($smarty.session.ADMIN) && $smarty.session.ADMIN == true}
+                    <div class='mt-1 mr-2 mb-2 text-right'>
+                        <img src='https://icongr.am/octicons/shield-x.svg?size=30&color=c92626'/>
+                    </div>
+                    {/if}
+                    {literal}
             </div>
         </div>
     </div>
