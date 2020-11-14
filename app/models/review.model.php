@@ -22,7 +22,7 @@ class ReviewModel{
 
     // obtiene todas las reseñas de un libro
     function getByBook($id_book){
-        $query = $this->db->prepare('SELECT * FROM reseña WHERE id = ?');
+        $query = $this->db->prepare('SELECT * FROM reseña WHERE id_libro = ?');
         $query->execute([$id_book]);
         $reviews = $query->fetchAll(PDO::FETCH_OBJ);
         return $reviews;
