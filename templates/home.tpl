@@ -19,7 +19,7 @@
                     <div>
                     {foreach from=$books item=book}
                     <div class="card d-inline-block ml-5 mt-5 mb-3" style="width: 14rem;">
-                        <img class="card-img-top h-25" src="https://image.freepik.com/vector-gratis/boceto-realista-libro-abierto_125494-10.jpg" alt="Portada del libro">
+                        <img class="card-img-top h-25" src="{$book->imagen}" alt="Portada del libro">
                         <div class="card-body">
                             <h6 class="card-title text-center">{$book->titulo}</h6>
                             <p class="text-center text-success">${$book->precio}</p>

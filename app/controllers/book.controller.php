@@ -61,31 +61,44 @@ class BookController{
                 (isset($book['precio']) && ($book['precio'] != null)) && 
                 (isset($book['stock']) && ($book['stock'] != null)) && 
                 (isset($book['id_genero']) && ($book['id_genero'] != null)) ){
-                // Todos los valores que vengan del formulario se guardan en el array asociativo
-                $this->bookModel->insert($book); // campos completos, envia la solicitud al model
-                header("Location: " . BASE_URL . 'panel/libros/'); 
-            } else{
-                $this->view->showError('Campo(s) del formulario vacio(s)'); // campos incompletos, solicita al view que muestre el error
+                    if(($_FILES['portada']['type'] == "image/jpg" || $_FILES['portada']['type'] == "image/jpeg" || $_FILES['portada']['type'] == "image/png" || empty($book->imagen))){
+                        $image_name = $this->uniqueImageName($_FILES['portada']['name'], $_FILES['portada']['tmp_name']);
+                        $this->bookModel->insert($book, $image_name); // campos completos, envia la solicitud al model
+                    }
+                    header("Location: " . BASE_URL . 'panel/libros/'); 
+                } else{
+                    $this->view->showError('Campo(s) del formulario vacio(s)'); // campos incompletos, solicita al view que muestre el error
+                }
+            } else{ // al no ser admin, lo redirecciona al home
+                header('Location:' . BASE_URL);
             }
-        } else{ // al no ser admin, lo redirecciona al home
-            header('Location:' . BASE_URL);
         }
-    }
-    
-    function updateBook($id){
-        $book = array('titulo'=>$_POST['titulo'], 'autor'=>$_POST['autor'], 'editorial'=>$_POST['editorial'], 'sinopsis'=>$_POST['sinopsis'], 'precio'=>$_POST['precio'], 'stock'=>$_POST['stock'], 'id_genero'=>$_POST['id_genero']);
-        if($this->authHelper->checkAdmin()){
-            if( isset($_REQUEST['titulo']) && isset($_REQUEST['autor']) && isset($_REQUEST['editorial']) && isset($_REQUEST['sinopsis']) && isset($_REQUEST['precio']) && isset($_REQUEST['stock']) && isset($_REQUEST['id_genero'])){
-                // Todos los valores que vengan del formulario se guardan en el array asociativo
-                $this->bookModel->update($id, $book); // campos completos, envia la solicitud al model
-                header("Location: " . BASE_URL . 'panel/libros/'); 
-            } else{
-                $this->view->showError('Campo(s) del formulario vacio(s)'); // campos incompletos, solicita al view que muestre el error
+        
+        
+        function updateBook($id){
+            $book = array('titulo'=>$_POST['titulo'], 'autor'=>$_POST['autor'], 'editorial'=>$_POST['editorial'], 'sinopsis'=>$_POST['sinopsis'], 'precio'=>$_POST['precio'], 'stock'=>$_POST['stock'], 'imagen'=>$_FILES['portada']['tmp_name'], 'id_genero'=>$_POST['id_genero']);
+            if($this->authHelper->checkAdmin()){
+                if( isset($_REQUEST['titulo']) && isset($_REQUEST['autor']) && isset($_REQUEST['editorial']) && isset($_REQUEST['sinopsis']) && isset($_REQUEST['precio']) && isset($_REQUEST['stock']) && isset($_REQUEST['id_genero'])){
+                    if(($_FILES['portada']['type'] == "image/jpg" || $_FILES['portada']['type'] == "image/jpeg" || $_FILES['portada']['type'] == "image/png" || empty($book->imagen))){
+                        $this->bookModel->update($id, $book); // campos completos, envia la solicitud al model
+                    }
+                    header("Location: " . BASE_URL . 'panel/libros/'); 
+                } else{
+                    $this->view->showError('Campo(s) del formulario vacio(s)'); // campos incompletos, solicita al view que muestre el error
+                }
+            } else{ // al no ser admin, lo redirecciona al home
+                header('Location:' . BASE_URL);
             }
-        } else{ // al no ser admin, lo redirecciona al home
-            header('Location:' . BASE_URL);
+        }    
+
+        //genera un nombre único para cada imagen que se suba y lo mueve a la carpeta del proyecto 'images/'
+        function uniqueImageName($original_name, $tmp_name){
+            $path = "images/" . uniqid("", true) . "." . strtolower(pathinfo($original_name, PATHINFO_EXTENSION));
+            move_uploaded_file($tmp_name, $path);
+            return $path;
         }
-    }    
+                
+
     // manda la petición al model para borrar un libro
     function removeBook($id){
         if($this->authHelper->checkAdmin()){ // comprueba que es admin
