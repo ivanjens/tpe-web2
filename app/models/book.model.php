@@ -40,7 +40,7 @@ class BookModel{
     }
 
     // Inserta un nuevo libro en la tabla
-    function insert($book, $image){
+    function insert($book, $image = null){
         $query = $this->db->prepare('INSERT INTO libro (titulo, autor, editorial, sinopsis, precio, stock, imagen, id_genero) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
         // se completan los campos en el execute con el array asociativo pasado por parametro
         $query->execute([$book['titulo'], $book['autor'], $book['editorial'], $book['sinopsis'], $book['precio'], $book['stock'], $image, $book['id_genero']]);
@@ -53,9 +53,9 @@ class BookModel{
     }
 
     // actualiza la información de un libro
-    function update($id, $book){
-        $query = $this->db->prepare('UPDATE libro SET titulo = ?, autor = ?, editorial = ?, sinopsis = ?, precio = ?, stock = ?, imagen = ? id_genero = ? WHERE id = ?');
-        $query->execute([$book['titulo'], $book['autor'], $book['editorial'], $book['sinopsis'], $book['precio'], $book['stock'], $book['imagen'], $book['id_genero'], $id]);
+    function update($id, $book, $image){
+        $query = $this->db->prepare('UPDATE libro SET titulo = ?, autor = ?, editorial = ?, sinopsis = ?, precio = ?, stock = ?, imagen = ?, id_genero = ? WHERE id = ?');
+        $query->execute([$book['titulo'], $book['autor'], $book['editorial'], $book['sinopsis'], $book['precio'], $book['stock'], $image, $book['id_genero'], $id]);
     }
 
 }

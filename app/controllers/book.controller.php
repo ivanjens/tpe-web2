@@ -61,8 +61,9 @@ class BookController{
                 (isset($book['precio']) && ($book['precio'] != null)) && 
                 (isset($book['stock']) && ($book['stock'] != null)) && 
                 (isset($book['id_genero']) && ($book['id_genero'] != null)) ){
-                    if(($_FILES['portada']['type'] == "image/jpg" || $_FILES['portada']['type'] == "image/jpeg" || $_FILES['portada']['type'] == "image/png" || empty($book->imagen))){
+                    if(($_FILES['portada']['type'] == "image/jpg" || $_FILES['portada']['type'] == "image/jpeg" || $_FILES['portada']['type'] == "image/png" || empty($_FILES['portada']['tmp_name']))){
                         $image_name = $this->uniqueImageName($_FILES['portada']['name'], $_FILES['portada']['tmp_name']);
+                        var_dump($image_name);
                         $this->bookModel->insert($book, $image_name); // campos completos, envia la solicitud al model
                     }
                     header("Location: " . BASE_URL . 'panel/libros/'); 
@@ -76,11 +77,12 @@ class BookController{
         
         
         function updateBook($id){
-            $book = array('titulo'=>$_POST['titulo'], 'autor'=>$_POST['autor'], 'editorial'=>$_POST['editorial'], 'sinopsis'=>$_POST['sinopsis'], 'precio'=>$_POST['precio'], 'stock'=>$_POST['stock'], 'imagen'=>$_FILES['portada']['tmp_name'], 'id_genero'=>$_POST['id_genero']);
+            $book = array('titulo'=>$_POST['titulo'], 'autor'=>$_POST['autor'], 'editorial'=>$_POST['editorial'], 'sinopsis'=>$_POST['sinopsis'], 'precio'=>$_POST['precio'], 'stock'=>$_POST['stock'], 'id_genero'=>$_POST['id_genero']);
             if($this->authHelper->checkAdmin()){
                 if( isset($_REQUEST['titulo']) && isset($_REQUEST['autor']) && isset($_REQUEST['editorial']) && isset($_REQUEST['sinopsis']) && isset($_REQUEST['precio']) && isset($_REQUEST['stock']) && isset($_REQUEST['id_genero'])){
-                    if(($_FILES['portada']['type'] == "image/jpg" || $_FILES['portada']['type'] == "image/jpeg" || $_FILES['portada']['type'] == "image/png" || empty($book->imagen))){
-                        $this->bookModel->update($id, $book); // campos completos, envia la solicitud al model
+                    if(($_FILES['portada']['type'] == "image/jpg" || $_FILES['portada']['type'] == "image/jpeg" || $_FILES['portada']['type'] == "image/png" || empty($_FILES['portada']['tmp_name']))){
+                        $image_name = $this->uniqueImageName($_FILES['portada']['name'], $_FILES['portada']['tmp_name']);
+                        $this->bookModel->update($id, $book, $image_name); // campos completos, envia la solicitud al model
                     }
                     header("Location: " . BASE_URL . 'panel/libros/'); 
                 } else{
