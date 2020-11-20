@@ -1,12 +1,17 @@
 {include 'templates/header.tpl'}
 
   <main class="container"> <!-- empieza contenido principal -->
-
+    
+    <input type="hidden" name="id_user" value="{$id_user}"">
     <div class="card mt-4">
       <div class="card-header">
         <div class="card-body">
           <div class='col-12 row mb-3'>
-            <img class="card-img-top col-4 mb-2" src="https://image.freepik.com/vector-gratis/boceto-realista-libro-abierto_125494-10.jpg" alt="Portada del libro">
+            {if $book->imagen != null}
+              <img class="card-img-top mb-2 portada-detail" src="{$book->imagen}" alt="Portada de {$book->titulo}">
+            {else}
+              <img class="card-img-top mb-2 portada-detail" src="images/default-book.jpg" alt="Portada de {$book->titulo}">
+            {/if}
             <div class='col-4'>
               <h1 class="card-title text-uppercase">{$book->titulo}</h1>
               <h6 class="card-text">Escrito por {$book->autor}</h6>

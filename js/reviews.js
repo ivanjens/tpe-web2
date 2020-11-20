@@ -10,6 +10,12 @@ const app = new Vue({
 
 document.addEventListener('DOMContentLoaded', e =>{
     loadReviews();
+
+    document.querySelector('#review-form').addEventListener('submit', e => {
+        e.preventDefault();
+        addReview();
+    });
+
 });
 
 // carga todas las reseñas de un libro
@@ -33,4 +39,33 @@ async function loadReviews(){
     catch(e){
         console.log(e);
     }
+}
+    async function addReview() {
+        let url = window.location.href; // obtiene la url
+        let params = url.split('/'); // convierte la url en un arreglo, separando cada palabra con espacios donde hay '/'
+        let id_libro = params[params.length-1]; // toma el último item del array donde está la id del libro
+        
+    // armo la review
+        const reseña = {
+            comentario:document.querySelector('textarea[name=comentario]').value,
+            valoracion:document.querySelector('input[name=valoracion]').value,
+            fecha:new Date(),
+            id_usuario: document.querySelector('input[name=id_user]').value,
+            id_libro
+           
+        }
+        console.log(reseña);
+        try {
+            const response = await fetch(`api/reseñas/${id_libro}`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'}, 
+                body: JSON.stringify(reseña)
+            });
+    
+            const r = await response.json();
+            app.reviews.push(r);
+    
+        } catch(e) {
+            console.log(e);
+        }
 }

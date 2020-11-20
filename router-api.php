@@ -9,6 +9,8 @@ $router->addRoute('reseñas', 'GET', 'APIReviewController', 'getAll');
 $router->addRoute('reseñas/:ID', 'GET', 'APIReviewController', 'getByBook');
 //$router->addRoute('reseñas/:ID', 'GET', 'APIReviewController', 'getReview');
 
+$router->addRoute('reseñas/:ID', 'POST', 'APIReviewController', 'add');
+
 
 
 $router->setDefaultRoute('APIReviewController','show404');

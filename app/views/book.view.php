@@ -39,8 +39,9 @@ class BookView{
         $this->smarty->display('templates/about.tpl');
     }
 
-    function showBook($book) {
+    function showBook($book, $id_user) {
         $this->smarty->assign('book', $book);
+        $this->smarty->assign('id_user', $id_user);
         $this->smarty->display('templates/book-detail.tpl');
     }
 
