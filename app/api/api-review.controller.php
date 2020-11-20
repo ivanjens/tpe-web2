@@ -47,9 +47,30 @@ class APIReviewController{
         }
     }
 
+    public function add($params = null) {
+        $body = $this->getData();
+        
+        $comentario  = $body->comentario;
+        $valoracion  = $body->valoracion;
+        $fecha       = $body->fecha;
+        $id_usuario  = $body->id_usuario;
+        $id_libro    = $body->id_libro;
+     
+        $id = $this->model->insert($comentario, $valoracion, $fecha, $id_usuario, $id_libro);
+
+        if ($id > 0) {
+            $review = $this->model->get($id);
+            $this->view->response($review, 200);
+        }
+        else { 
+            $this->view->response("No se pudo insertar", 500);
+        }
+    }
+
     // muestra un 404 al no encontrar lo que se pidió
     public function show404($params = null) {
         $this->view->response("El recurso solicitado no existe", 404);
     }
+
 
 }

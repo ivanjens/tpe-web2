@@ -31,7 +31,9 @@ class BookController{
     // solicita al model un libro en particular y muestra sus detalles
     function showDetail($id) {
         $book = $this->bookModel->get($id);
-        $this->view->showBook($book);
+        $id_user = $_SESSION['ID_USER'];
+        $this->view->showBook($book, $id_user);
+
     }
 
     function showError($msg){

@@ -1,7 +1,8 @@
 {include 'templates/header.tpl'}
 
   <main class="container"> <!-- empieza contenido principal -->
-
+    
+    <input type="hidden" name="id_user" value="{$id_user}"">
     <div class="card mt-4">
       <div class="card-header">
         <div class="card-body">
