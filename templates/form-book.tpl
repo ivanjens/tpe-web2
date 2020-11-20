@@ -3,9 +3,9 @@
 
     <main class="container"> <!-- empieza contenido principal -->
         {if $book == NULL}
-            <form action="crear-libro" method="POST" class="my-4">
+            <form action="crear-libro" method="POST" class="my-4" enctype='multipart/form-data'>
             {else}
-                <form action="editar-libro/{$book->id}" method="POST" class="my-4">
+                <form action="editar-libro/{$book->id}" method="POST" class="my-4" enctype='multipart/form-data'>
             
         {/if}
             <div class="row justify-content-center col-12">
@@ -41,10 +41,9 @@
                     <div class="form-group">
                         <label>Sinopsis</label>
                         {if $book == NULL}
-                            <textarea name="sinopsis" class="form-control col-12" rows="4"></textarea>
+                            <textarea name="sinopsis" class="form-control col-12" rows="8"></textarea>
                             {else}
-                            <textarea name="sinopsis" class="form-control col-12" rows="4">{$book->sinopsis}</textarea>
-                            
+                            <textarea name="sinopsis" class="form-control col-12" rows="8">{$book->sinopsis}</textarea>
                         {/if}
                     </div>
                 </div>
@@ -78,6 +77,10 @@
                             {/if}
                         {/foreach}
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Portada</label>
+                        <input type="file" name="input_name" id="imageToUpload">
                     </div>
                 </div>
             </div>
