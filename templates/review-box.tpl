@@ -1,6 +1,6 @@
 {if isset($smarty.session.ID_USER)}
 <h6 class='text-uppercase'>Deja tu reseña</h6>
-<form id="review-form" action="insertar" method="POST" class="my-4" enctype="multipart/form-data">
+<form id="review-form" action="" method="POST" class="my-4" enctype="multipart/form-data">
     <div class="form-group">
         <p class='text-center mb-0'>Puntuación</p>
         <div class='text-center'>
@@ -29,7 +29,7 @@
         <textarea placeholder="Escribe tu reseña aquí..." class="form-control mt-3 col-8 offset-2" name="comentario" id="comentario" rows="5"></textarea>
     </div>
     <div class='row justify-content-center mt-2 col-12'>
-    <button type="submit" class="btn btn-primary">Enviar</button>
+    <button type="submit"  id='review-button' class="btn btn-primary">Enviar</button>
     </div>
 </form>
 

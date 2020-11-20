@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', e =>{
 
     document.querySelector('#review-form').addEventListener('submit', e => {
         e.preventDefault();
+        
         addReview();
     });
 
@@ -43,28 +44,27 @@ async function loadReviews(){
     async function addReview() {
         let url = window.location.href; // obtiene la url
         let params = url.split('/'); // convierte la url en un arreglo, separando cada palabra con espacios donde hay '/'
-        let id_libro = params[params.length-1]; // toma el último item del array donde está la id del libro
+        let book_id = params[params.length-1]; // toma el último item del array donde está la id del libro
         
     // armo la review
         const reseña = {
-            comentario:document.querySelector('textarea[name=comentario]').value,
-            valoracion:document.querySelector('input[name=valoracion]').value,
-            fecha:new Date(),
-            id_usuario: document.querySelector('input[name=id_user]').value,
-            id_libro
-           
+            "id": '',
+            "comentario": document.querySelector('textarea[name=comentario]').value,
+            "valoracion": document.querySelector('input[name=valoracion]:checked').value,
+            "id_libro": book_id,
         }
         console.log(reseña);
         try {
-            const response = await fetch(`api/reseñas/${id_libro}`, {
+            const response = await fetch(`api/reseñas/${book_id}`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'}, 
                 body: JSON.stringify(reseña)
             });
-    
-            const r = await response.json();
-            app.reviews.push(r);
-    
+            if(response.ok){
+                loadReviews();
+            }
+            //const r = await response.json();
+            
         } catch(e) {
             console.log(e);
         }

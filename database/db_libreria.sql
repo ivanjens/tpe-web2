@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 19, 2020 at 06:31 PM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.2.34
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 21-11-2020 a las 00:31:32
+-- Versión del servidor: 10.4.14-MariaDB
+-- Versión de PHP: 7.2.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_libreria`
+-- Base de datos: `db_libreria`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `genero`
+-- Estructura de tabla para la tabla `genero`
 --
 
 CREATE TABLE `genero` (
@@ -33,7 +33,7 @@ CREATE TABLE `genero` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `genero`
+-- Volcado de datos para la tabla `genero`
 --
 
 INSERT INTO `genero` (`id`, `nombre`) VALUES
@@ -44,7 +44,7 @@ INSERT INTO `genero` (`id`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `libro`
+-- Estructura de tabla para la tabla `libro`
 --
 
 CREATE TABLE `libro` (
@@ -60,41 +60,48 @@ CREATE TABLE `libro` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `libro`
+-- Volcado de datos para la tabla `libro`
 --
 
 INSERT INTO `libro` (`id`, `titulo`, `autor`, `editorial`, `sinopsis`, `precio`, `stock`, `imagen`, `id_genero`) VALUES
 (20, 'El Puente', 'Roberto', 'BookU', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ligula nunc, vehicula condimentum bibendum nec, sagittis sed odio. Nunc ut iaculis odio. Suspendisse quis viverra odio. Maecenas mollis odio mauris, rutrum porttitor dui feugiat non. Donec feugiat bibendum bibendum. Proin mollis leo ut tellus malesuada feugiat. Sed sagittis sagittis ligula tincidunt interdum. Vestibulum a condimentum tellus, id rutrum turpis. Duis sit amet laoreet lectus. Morbi lacinia ex eget mauris aliquam blandit at non erat. Praesent interdum, lorem non vehicula pretium, tellus elit viverra tortor, quis suscipit felis tellus non eros. In molestie felis libero, eget laoreet lorem tincidunt quis. Quisque tincidunt quis orci ut venenatis.\r\n\r\nMauris iaculis enim non arcu lacinia, a luctus lacus fringilla. Sed volutpat fringilla lectus in aliquam. Nam mattis augue vel hendrerit faucibus. Donec ultrices ipsum leo, eget cursus est faucibus at. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut eget malesuada turpis. Integer semper elit in nibh commodo, et interdum orci lacinia. Fusce sed ullamcorper nisi. Praesent aliquet, ex quis dapibus elementum, ligula ante pulvinar risus, at placerat ligula orci eu mauris. Aenean hendrerit varius purus non eleifend. Sed viverra volutpat turpis sagittis placerat. Phasellus accumsan diam sit amet eleifend porttitor. Aliquam et dignissim erat. Donec auctor nec leo ut rhoncus. Donec in lectus maximus, gravida est a, tincidunt lorem. Sed magna purus, ullamcorper eget auctor consequat, pretium et ex.', 1, 3, '', 1),
 (22, 'New Book', 'Author', 'Ed', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ligula nunc, vehicula condimentum bibendum nec, sagittis sed odio. Nunc ut iaculis odio. Suspendisse quis viverra odio. Maecenas mollis odio mauris, rutrum porttitor dui feugiat non. Donec feugiat bibendum bibendum. Proin mollis leo ut tellus malesuada feugiat. Sed sagittis sagittis ligula tincidunt interdum. Vestibulum a condimentum tellus, id rutrum turpis. Duis sit amet laoreet lectus. Morbi lacinia ex eget mauris aliquam blandit at non erat. Praesent interdum, lorem non vehicula pretium, tellus elit viverra tortor, quis suscipit felis tellus non eros. In molestie felis libero, eget laoreet lorem tincidunt quis. Quisque tincidunt quis orci ut venenatis.\r\n\r\nMauris iaculis enim non arcu lacinia, a luctus lacus fringilla. Sed volutpat fringilla lectus in aliquam. Nam mattis augue vel hendrerit faucibus. Donec ultrices ipsum leo, eget cursus est faucibus at. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut eget malesuada turpis. Integer semper elit in nibh commodo, et interdum orci lacinia. Fusce sed ullamcorper nisi. Praesent aliquet, ex quis dapibus elementum, ligula ante pulvinar risus, at placerat ligula orci eu mauris. Aenean hendrerit varius purus non eleifend. Sed viverra volutpat turpis sagittis placerat. Phasellus accumsan diam sit amet eleifend porttitor. Aliquam et dignissim erat. Donec auctor nec leo ut rhoncus. Donec in lectus maximus, gravida est a, tincidunt lorem. Sed magna purus, ullamcorper eget auctor consequat, pretium et ex.', 2, 3, '', 1),
-(25, 'Terror', 'aksdjalsk', 'asdada', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ligula nunc, vehicula condimentum bibendum nec, sagittis sed odio. Nunc ut iaculis odio. Suspendisse quis viverra odio. Maecenas mollis odio mauris, rutrum porttitor dui feugiat non. Donec feugiat bibendum bibendum. Proin mollis leo ut tellus malesuada feugiat. Sed sagittis sagittis ligula tincidunt interdum. Vestibulum a condimentum tellus, id rutrum turpis. Duis sit amet laoreet lectus. Morbi lacinia ex eget mauris aliquam blandit at non erat. Praesent interdum, lorem non vehicula pretium, tellus elit viverra tortor, quis suscipit felis tellus non eros. In molestie felis libero, eget laoreet lorem tincidunt quis. Quisque tincidunt quis orci ut venenatis.\r\n\r\nMauris iaculis enim non arcu lacinia, a luctus lacus fringilla. Sed volutpat fringilla lectus in aliquam. Nam mattis augue vel hendrerit faucibus. Donec ultrices ipsum leo, eget cursus est faucibus at. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut eget malesuada turpis. Integer semper elit in nibh commodo, et interdum orci lacinia. Fusce sed ullamcorper nisi. Praesent aliquet, ex quis dapibus elementum, ligula ante pulvinar risus, at placerat ligula orci eu mauris. Aenean hendrerit varius purus non eleifend. Sed viverra volutpat turpis sagittis placerat. Phasellus accumsan diam sit amet eleifend porttitor. Aliquam et dignissim erat. Donec auctor nec leo ut rhoncus. Donec in lectus maximus, gravida est a, tincidunt lorem. Sed magna purus, ullamcorper eget auctor consequat, pretium et ex.', 1, 2, '', 7);
+(25, 'Terror', 'aksdjalsk', 'asdada', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ligula nunc, vehicula condimentum bibendum nec, sagittis sed odio. Nunc ut iaculis odio. Suspendisse quis viverra odio. Maecenas mollis odio mauris, rutrum porttitor dui feugiat non. Donec feugiat bibendum bibendum. Proin mollis leo ut tellus malesuada feugiat. Sed sagittis sagittis ligula tincidunt interdum. Vestibulum a condimentum tellus, id rutrum turpis. Duis sit amet laoreet lectus. Morbi lacinia ex eget mauris aliquam blandit at non erat. Praesent interdum, lorem non vehicula pretium, tellus elit viverra tortor, quis suscipit felis tellus non eros. In molestie felis libero, eget laoreet lorem tincidunt quis. Quisque tincidunt quis orci ut venenatis.\r\n\r\nMauris iaculis enim non arcu lacinia, a luctus lacus fringilla. Sed volutpat fringilla lectus in aliquam. Nam mattis augue vel hendrerit faucibus. Donec ultrices ipsum leo, eget cursus est faucibus at. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut eget malesuada turpis. Integer semper elit in nibh commodo, et interdum orci lacinia. Fusce sed ullamcorper nisi. Praesent aliquet, ex quis dapibus elementum, ligula ante pulvinar risus, at placerat ligula orci eu mauris. Aenean hendrerit varius purus non eleifend. Sed viverra volutpat turpis sagittis placerat. Phasellus accumsan diam sit amet eleifend porttitor. Aliquam et dignissim erat. Donec auctor nec leo ut rhoncus. Donec in lectus maximus, gravida est a, tincidunt lorem. Sed magna purus, ullamcorper eget auctor consequat, pretium et ex.', 1, 2, 'images/5fb83193e59db9.49104704.jpg', 7);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reseña`
+-- Estructura de tabla para la tabla `reseña`
 --
 
 CREATE TABLE `reseña` (
   `id` int(11) NOT NULL,
   `comentario` text NOT NULL,
   `valoracion` int(11) NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `id_usuario` int(11) NOT NULL,
   `id_libro` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `reseña`
+-- Volcado de datos para la tabla `reseña`
 --
 
-INSERT INTO `reseña` (`id`, `comentario`, `valoracion`, `id_usuario`, `id_libro`) VALUES
-(1, 'jasdklajsdlkasjdlkjsalkdjalskjdsaljlkdasjlksajdlkadjalsdlkasjdlksadnmsadbasmndsambdasnbdvasdbvsajhdsajdvasdvjavzjhvajhzjvajzvjhazvdjvasjdvsajd', 4, 1, 20),
-(5, 'nadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsaj', 3, 1, 20),
-(6, 'nadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsaj', 2, 3, 20);
+INSERT INTO `reseña` (`id`, `comentario`, `valoracion`, `fecha`, `id_usuario`, `id_libro`) VALUES
+(1, 'jasdklajsdlkasjdlkjsalkdjalskjdsaljlkdasjlksajdlkadjalsdlkasjdlksadnmsadbasmndsambdasnbdvasdbvsajhdsajdvasdvjavzjhvajhzjvajzvjhazvdjvasjdvsajd', 4, '2020-11-20 22:53:59', 1, 20),
+(5, 'nadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsaj', 3, '2020-11-20 22:53:59', 1, 20),
+(6, 'nadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsajnadsnkhasjkdhsajkdbsjadvasjgdsaj', 2, '2020-11-20 22:53:59', 3, 20),
+(7, 'aslkdklasdjaklsdjsakldsakdl', 4, '2020-11-20 22:53:59', 1, 20),
+(8, 'aslkdklasdjaklsdjsakldsakdl', 4, '2020-11-20 22:58:37', 1, 20),
+(9, 'sdadsadlsadlsadjsad', 4, '2020-11-20 23:12:33', 3, 20),
+(10, 'testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest', 4, '2020-11-20 23:16:32', 1, 20),
+(11, 'jasdkljasjdkllasdsaldsaldlksad', 4, '2020-11-20 23:17:06', 3, 20),
+(12, 'dsadsadasdasdasdas', 5, '2020-11-20 23:28:19', 3, 20);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuario`
+-- Estructura de tabla para la tabla `usuario`
 --
 
 CREATE TABLE `usuario` (
@@ -106,7 +113,7 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `usuario`
+-- Volcado de datos para la tabla `usuario`
 --
 
 INSERT INTO `usuario` (`id`, `nombre`, `email`, `password`, `permisos`) VALUES
@@ -116,24 +123,24 @@ INSERT INTO `usuario` (`id`, `nombre`, `email`, `password`, `permisos`) VALUES
 (8, 'aa', 'aa@gmail.com', '$2y$10$jX5w5Olon.iE/uojAapm3eyzDurN2ikTcp5FHYQ/OjQo5HmcyM4ia', 0);
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `genero`
+-- Indices de la tabla `genero`
 --
 ALTER TABLE `genero`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `libro`
+-- Indices de la tabla `libro`
 --
 ALTER TABLE `libro`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_genero` (`id_genero`);
 
 --
--- Indexes for table `reseña`
+-- Indices de la tabla `reseña`
 --
 ALTER TABLE `reseña`
   ADD PRIMARY KEY (`id`),
@@ -141,51 +148,51 @@ ALTER TABLE `reseña`
   ADD KEY `id_libro` (`id_libro`);
 
 --
--- Indexes for table `usuario`
+-- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `genero`
+-- AUTO_INCREMENT de la tabla `genero`
 --
 ALTER TABLE `genero`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `libro`
+-- AUTO_INCREMENT de la tabla `libro`
 --
 ALTER TABLE `libro`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
--- AUTO_INCREMENT for table `reseña`
+-- AUTO_INCREMENT de la tabla `reseña`
 --
 ALTER TABLE `reseña`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `usuario`
+-- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `libro`
+-- Filtros para la tabla `libro`
 --
 ALTER TABLE `libro`
   ADD CONSTRAINT `libro_ibfk_1` FOREIGN KEY (`id_genero`) REFERENCES `genero` (`id`);
 
 --
--- Constraints for table `reseña`
+-- Filtros para la tabla `reseña`
 --
 ALTER TABLE `reseña`
   ADD CONSTRAINT `reseña_ibfk_1` FOREIGN KEY (`id_libro`) REFERENCES `libro` (`id`),

@@ -25,7 +25,7 @@
                             <img class="card-img-top portada-home" src="images/default-book.jpg" alt="Portada de {$book->titulo}">
                         {/if}
                         <div class="card-body">
-                            <h6 class="card-title text-center ">{$book->titulo}</h6>
+                            <h6 class="card-title text-center mb-1">{$book->titulo}</h6>
                             <p class="text-center text-success mb-0">${$book->precio}</p>
                         </div>
                         <ul class="list-group list-group-flush">

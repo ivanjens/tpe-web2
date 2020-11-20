@@ -80,11 +80,7 @@
                     </div>
                     <div class="form-group">
                         <label>Portada</label>
-<<<<<<< HEAD
-                        <input type="file" name="input_name" id="imageToUpload">
-=======
                         <input type="file" name="portada" id="input-portada">
->>>>>>> 3a026cd3fa7d6af95483dcf2a7d84de721907fbe
                     </div>
                 </div>
             </div>

@@ -40,8 +40,6 @@
       {include 'templates/review-box.tpl'}
     </div>
 
-    
-
   </main>
   <section class='ml-5 mr-5'>
     <h5 class='text-uppercase mt-5 mb-3'>Reseñas</h5>

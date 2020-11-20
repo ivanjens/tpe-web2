@@ -36,14 +36,13 @@ class ReviewModel{
         return $review;
     }
 
-    function insert($comentario, $valoracion, $fecha, $id_usuario, $id_libro) {
+    function insert($comentario, $valoracion, $id_usuario, $id_libro) {
 
-        $sql = "INSERT INTO reseña (comentario, valoracion, fecha, id_usuario, id_libro) VALUES (?,?,?,?,?)";
-        $params = [$comentario, $valoracion, $fecha, $id_usuario, $id_libro];
+        $sql = "INSERT INTO reseña (comentario, valoracion, fecha, id_usuario, id_libro) VALUES (?,?,?,?)";
 
         // 2. Enviar la consulta (2 sub-pasos: prepare y execute)
-        $query = $this->db->prepare($sql);
-        $query->execute($params);
+        $query = $this->db->prepare('INSERT INTO reseña (comentario, valoracion, id_usuario, id_libro) VALUES (?,?,?,?)');
+        $query->execute([$comentario, $valoracion, $id_usuario, $id_libro]);
 
         // 3. Obtengo y devuelo el ID de la reseña nueva
         return $this->db->lastInsertId();

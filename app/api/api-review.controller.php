@@ -2,16 +2,22 @@
 
 include_once 'app/models/review.model.php';
 include_once 'app/api/api.view.php';
+include_once 'app/helpers/auth.helper.php';
 
 class APIReviewController{
 
     private $model;
     private $view;
+    private $authHelper;
+    private $data;
 
     function __construct(){
         $this->model = new ReviewModel();
         $this->view = new APIView();
+        $this->authHelper = new AuthHelper();
         $this->data = file_get_contents("php://input");
+
+        $this->authHelper->checkLogged();
     }
 
     // lee la variable asociada a la entrada estandar y la convierte en JSON
@@ -49,14 +55,13 @@ class APIReviewController{
 
     public function add($params = null) {
         $body = $this->getData();
-        
+
         $comentario  = $body->comentario;
         $valoracion  = $body->valoracion;
-        $fecha       = $body->fecha;
-        $id_usuario  = $body->id_usuario;
+        $id_usuario  = $_SESSION['ID_USER'];
         $id_libro    = $body->id_libro;
      
-        $id = $this->model->insert($comentario, $valoracion, $fecha, $id_usuario, $id_libro);
+        $id = $this->model->insert($comentario, $valoracion, $id_usuario, $id_libro);
 
         if ($id > 0) {
             $review = $this->model->get($id);
