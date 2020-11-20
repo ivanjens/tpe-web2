@@ -4,7 +4,6 @@ include_once 'app/controllers/book.controller.php';
 include_once 'app/controllers/genre.controller.php';
 include_once 'app/controllers/auth.controller.php';
 
-
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 define('LOGIN', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/login' );
 
