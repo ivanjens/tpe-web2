@@ -2,12 +2,13 @@
 <section id="app">
     <div v-if="error == null">
         <div class='border border-light shadow p-3 mb-5 bg-white rounded py-4'>
-            <div v-for="review in reviews" class="ml-3 mr-3 card text-center mb-5 mt-5">
+            <div v-for="review in reviews" class="ml-3 mr-3 card text-center mb-5 mt-5 border border-dark">
                 <div class="card-header py-0">
-                    <p class='float-left mt-3'>Escrito por {{ review.id_usuario }}</p>
+                    <p class='float-left mt-3'>Reseña de {{ review.nombre_usuario }} <span class='ml-2'>{{ review.valoracion }} <i class="fas fa-star punctuation-star"></i></span></p>
                     <p class='float-right mt-3'>{{ review.fecha }}</p>
                 </div>
                 <div class="card-body">
+                    
                     <p class="card-text text-left text-secondary"> {{ review.comentario }}</p>
                 </div>
                     {/literal}

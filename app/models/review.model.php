@@ -22,7 +22,7 @@ class ReviewModel{
 
     // obtiene todas las reseñas de un libro
     function getByBook($id_book){
-        $query = $this->db->prepare('SELECT * FROM reseña WHERE id_libro = ? ORDER BY fecha DESC');
+        $query = $this->db->prepare('SELECT reseña.*, usuario.nombre AS nombre_usuario FROM reseña INNER JOIN usuario ON reseña.id_usuario = usuario.id WHERE id_libro = ? ORDER BY fecha DESC');
         $query->execute([$id_book]);
         $reviews = $query->fetchAll(PDO::FETCH_OBJ);
         return $reviews;
@@ -37,8 +37,6 @@ class ReviewModel{
     }
 
     function insert($comentario, $valoracion, $id_usuario, $id_libro) {
-
-        $sql = "INSERT INTO reseña (comentario, valoracion, fecha, id_usuario, id_libro) VALUES (?,?,?,?)";
 
         // 2. Enviar la consulta (2 sub-pasos: prepare y execute)
         $query = $this->db->prepare('INSERT INTO reseña (comentario, valoracion, id_usuario, id_libro) VALUES (?,?,?,?)');

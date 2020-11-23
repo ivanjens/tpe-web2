@@ -45,12 +45,13 @@ async function loadReviews(){
         let url = window.location.href; // obtiene la url
         let params = url.split('/'); // convierte la url en un arreglo, separando cada palabra con espacios donde hay '/'
         let book_id = params[params.length-1]; // toma el último item del array donde está la id del libro
-        
+
     // armo la review
         const reseña = {
             "id": '',
             "comentario": document.querySelector('textarea[name=comentario]').value,
-            "valoracion": document.querySelector('input[name=valoracion]:checked').value,
+            
+            "valoracion": ocument.querySelector('input[name=valoracion]:checked').value,
             "id_libro": book_id,
         }
         console.log(reseña);

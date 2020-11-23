@@ -11,3 +11,7 @@
 .hidden{
     display: none;
 }
+
+.punctuation-star{
+    color: #febf63;
+}
