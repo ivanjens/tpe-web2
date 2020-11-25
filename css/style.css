@@ -8,6 +8,11 @@
     width: 250px;
 }
 
+.portada-form{
+    height: 150px;
+    width: 150px;
+}
+
 .hidden{
     display: none;
 }

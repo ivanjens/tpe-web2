@@ -67,6 +67,9 @@ switch ($params[0]) {
         $controller = new BookController();
         $controller->removeBook($params[1]);
         break;
+    case 'eliminar-portada':
+        $controller = new BookController();
+        $controller->removeCover($params[1]);
     case 'editar-libro':
         $controller = new BookController();
         $controller->updateBook($params[1]);

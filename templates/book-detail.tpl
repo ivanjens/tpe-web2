@@ -17,7 +17,7 @@
               <h6 class="card-text">Editorial {$book->editorial}</h6>
               <h6 class="card-text">{$book->genero}</h6>
               {if $promedio>0}
-              <h6 class="card-text">{$promedio}</h6>
+              <h6 class="card-text">{$promedio} <i class="fas fa-star punctuation-star"></i></h6>
               {/if}
             </div>
             <div class='col-4 text-right'>

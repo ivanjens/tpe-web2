@@ -83,9 +83,12 @@ class BookController{
                 (isset($book['precio']) && ($book['precio'] != null)) && 
                 (isset($book['stock']) && ($book['stock'] != null)) && 
                 (isset($book['id_genero']) && ($book['id_genero'] != null)) ){
-                    if(($_FILES['portada']['type'] == "image/jpg" || $_FILES['portada']['type'] == "image/jpeg" || $_FILES['portada']['type'] == "image/png" || empty($_FILES['portada']['tmp_name']))){
+                    
+                    if(empty($_FILES['portada']['tmp_name'])){
+                        $image_name = 'images/default-book.jpg';
+                        $this->bookModel->insert($book, $image_name); // campos completos, envia la solicitud al model
+                    } else if(($_FILES['portada']['type'] == "image/jpg" || $_FILES['portada']['type'] == "image/jpeg" || $_FILES['portada']['type'] == "image/png")){
                         $image_name = $this->uniqueImageName($_FILES['portada']['name'], $_FILES['portada']['tmp_name']);
-                        var_dump($image_name);
                         $this->bookModel->insert($book, $image_name); // campos completos, envia la solicitud al model
                     }
                     header("Location: " . BASE_URL . 'panel/libros/'); 
@@ -96,7 +99,17 @@ class BookController{
                 header('Location:' . BASE_URL);
             }
         }
-        
+
+
+        function removeCover($id_book){
+            if($this->authHelper->checkAdmin()){
+                $default_cover = 'images/default-book.jpg';
+                $this->bookModel->removeCover($id_book);
+                header('Location:' . BASE_URL . 'formulario-libro/' . $id_book);
+            } else{
+                header('Location:' . BASE_URL);
+            }
+        }
         
         function updateBook($id){
             $book = array('titulo'=>$_POST['titulo'], 'autor'=>$_POST['autor'], 'editorial'=>$_POST['editorial'], 'sinopsis'=>$_POST['sinopsis'], 'precio'=>$_POST['precio'], 'stock'=>$_POST['stock'], 'id_genero'=>$_POST['id_genero']);

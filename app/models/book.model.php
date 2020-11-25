@@ -52,6 +52,11 @@ class BookModel{
         $query->execute([$id]);
     }
 
+    function removeCover($id){
+        $query = $this->db->prepare('UPDATE libro SET imagen = "images/default-book.jpg" WHERE id = ?');
+        $query->execute([$id]);
+    }
+
     // actualiza la información de un libro
     function update($id, $book, $image){
         $query = $this->db->prepare('UPDATE libro SET titulo = ?, autor = ?, editorial = ?, sinopsis = ?, precio = ?, stock = ?, imagen = ?, id_genero = ? WHERE id = ?');

@@ -8,7 +8,7 @@
                 <form action="editar-libro/{$book->id}" method="POST" class="my-4" enctype='multipart/form-data'>
             
         {/if}
-            <div class="row justify-content-center col-12">
+            <div class="row col-12">
                 <div class="col-3">
                     <div class="form-group">
                         <label>Título</label>
@@ -78,9 +78,19 @@
                         {/foreach}
                         </select>
                     </div>
+                </div>
+                <div class='col-3'>
                     <div class="form-group">
                         <label>Portada</label>
-                        <input type="file" name="portada" id="input-portada">
+                        {if $book != NULL && $book->imagen != 'images/default-book.jpg'}
+                        <div class='text-center'>
+                            <img class="mb-2 portada-form" src="{$book->imagen}" alt="Portada de {$book->titulo}">
+                            <a href='eliminar-portada/{$book->id}' class="btn btn-sm btn-danger rounded-0 text-uppercase">Eliminar Imagen</a>
+                        </div>
+                        {/if}
+                        <div class='mt-2'>
+                            <input type="file" name="portada" id="input-portada">
+                        </div>
                     </div>
                 </div>
             </div>
