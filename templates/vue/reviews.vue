@@ -1,6 +1,6 @@
 {literal}
 <section id="app">
-    <div v-if="error == null">
+    <div v-if="reviews[0]">
         <div class='border border-light shadow p-3 mb-5 bg-white rounded py-4'>
             <div v-for="review in reviews" class="ml-3 mr-3 card text-center mb-5 mt-5 border border-dark">
                 <div class="card-header py-0">

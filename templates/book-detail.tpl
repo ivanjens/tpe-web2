@@ -2,7 +2,6 @@
 
   <main class="container"> <!-- empieza contenido principal -->
     
-    <input type="hidden" name="id_user" value="{$id_user}"">
     <div class="card mt-4">
       <div class="card-header">
         <div class="card-body">
@@ -17,6 +16,9 @@
               <h6 class="card-text">Escrito por {$book->autor}</h6>
               <h6 class="card-text">Editorial {$book->editorial}</h6>
               <h6 class="card-text">{$book->genero}</h6>
+              {if $promedio>0}
+              <h6 class="card-text">{$promedio}</h6>
+              {/if}
             </div>
             <div class='col-4 text-right'>
               <h6 class="card-text">Stock: {$book->stock}</h6>

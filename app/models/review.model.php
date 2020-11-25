@@ -28,6 +28,16 @@ class ReviewModel{
         return $reviews;
     }
 
+    function getPunctuation($id_book){
+        $query = $this->db->prepare('SELECT valoracion FROM reseña WHERE id_libro = ?');
+        $query->execute([$id_book]);
+        $books_quantity = $query->rowCount();
+        $punctuations = $query->fetchAll(PDO::FETCH_OBJ);
+        $items_array = array('books'=>$books_quantity, 'punctuations'=>$punctuations);
+        
+        return $items_array; 
+    }
+
     // obtiene una reseña en especifico
     function get($id){
         $query = $this->db->prepare('SELECT * FROM reseña WHERE id = ?');

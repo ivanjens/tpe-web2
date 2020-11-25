@@ -50,11 +50,10 @@ async function loadReviews(){
         const reseña = {
             "id": '',
             "comentario": document.querySelector('textarea[name=comentario]').value,
-            
-            "valoracion": ocument.querySelector('input[name=valoracion]:checked').value,
+            "valoracion": document.querySelector('input[name=valoracion]:checked').value,
             "id_libro": book_id,
         }
-        console.log(reseña);
+
         try {
             const response = await fetch(`api/reseñas/${book_id}`, {
                 method: 'POST',

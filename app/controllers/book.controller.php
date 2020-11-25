@@ -3,17 +3,21 @@
 include_once 'app/views/book.view.php';
 include_once 'app/views/genre.view.php';
 include_once 'app/models/book.model.php';
+include_once 'app/models/review.model.php';
+include_once 'app/models/genre.model.php';
 include_once 'app/helpers/auth.helper.php';
 
 class BookController{
 
     private $bookModel;
+    private $reviewModel;
     private $genreModel;
     private $view;
     private $authHelper;
 
     function __construct(){
         $this->bookModel = new BookModel();
+        $this->reviewModel = new ReviewModel();
         $this->genreModel = new GenreModel();
         $this->view = new BookView();
         $this->authHelper = new AuthHelper();
@@ -31,10 +35,26 @@ class BookController{
     // solicita al model un libro en particular y muestra sus detalles
     function showDetail($id) {
         $book = $this->bookModel->get($id);
-        $id_user = $_SESSION['ID_USER'];
-        $this->view->showBook($book, $id_user);
-
+        $promedio = number_format($this->getPromedio($id), 1, ',', '.'); // transforma el promedio en un float de un solo número después de la coma
+        $this->view->showBook($book, $promedio);
     }
+
+    // obtiene el promedio de las puntuaciones de un libro
+    function getPromedio($id_book){
+        $query = $this->reviewModel->getPunctuation($id_book);
+        $books_quantity = $query['books'];
+        $punctuations = $query['punctuations']; 
+        $total = 0;
+        if($books_quantity > 0){
+            foreach($punctuations as $punctuation){
+                $total += $punctuation->valoracion;
+            }
+            return ($total/$books_quantity);
+        } else {
+            return 0;
+        }
+    }
+
 
     function showError($msg){
         $this->view->showError($msg);
