@@ -13,7 +13,15 @@ class AuthHelper{
             session_destroy();
         }
     }
-
+    function checkUser(){
+        if(!isset($_SESSION['ADMIN'])){ // chequea en primer lugar que este logeado como usuario
+            session_destroy();
+        } else if($_SESSION['ADMIN'] == 1){ // comprueba si tiene permisos
+            return false;
+        } else if($_SESSION['ADMIN'] == 0){ // comprueba que no tiene permisos por ende es usuario comun
+            return true;
+        }
+    }
     // comprueba que 
     function checkAdmin(){
         if(!isset($_SESSION['ADMIN'])){ // chequea en primer lugar que este logeado como usuario

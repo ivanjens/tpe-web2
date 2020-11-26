@@ -7,7 +7,7 @@ include_once 'app/helpers/auth.helper.php';
 class APIReviewController{
 
     private $model;
-    private $view;
+    private $viewBook;
     private $authHelper;
     private $data;
 
@@ -54,21 +54,26 @@ class APIReviewController{
     }
 
     public function add($params = null) {
-        $body = $this->getData();
+        if($this->authHelper->checkUser()){
+            $body = $this->getData();
 
-        $comentario  = $body->comentario;
-        $valoracion  = $body->valoracion;
-        $id_usuario  = $_SESSION['ID_USER'];
-        $id_libro    = $body->id_libro;
-     
-        $id = $this->model->insert($comentario, $valoracion, $id_usuario, $id_libro);
+            $comentario  = $body->comentario;
+            $valoracion  = $body->valoracion;
+            $id_usuario  = $_SESSION['ID_USER'];
+            $id_libro    = $body->id_libro;
+        
+            $id = $this->model->insert($comentario, $valoracion, $id_usuario, $id_libro);
 
-        if ($id > 0) {
-            $review = $this->model->get($id);
-            $this->view->response($review, 200);
+            if ($id > 0) {
+                $review = $this->model->get($id);
+                $this->view->response($review, 200);
+            }
+            else { 
+                $this->view->response("No se pudo insertar", 500);
+            }
         }
-        else { 
-            $this->view->response("No se pudo insertar", 500);
+        else{
+            $this->view->response("No tiene permisos", 500);
         }
     }
 

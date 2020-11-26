@@ -14,7 +14,7 @@
                     {/literal}
                     {if isset($smarty.session.ADMIN) && $smarty.session.ADMIN == true}
                     <div class='mt-1 mr-2 mb-2 text-right'>
-                        <img src='https://icongr.am/octicons/shield-x.svg?size=30&color=c92626'/>
+                        <button type="submit" ><img src='https://icongr.am/octicons/shield-x.svg?size=30&color=c92626'/></button>
                     </div>
                     {/if}
                     {literal}
