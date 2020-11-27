@@ -6,6 +6,17 @@ const app = new Vue({
         reviews: [], // esto es como un assign de smarty
         error: null,
     }, 
+    methods: {
+        deleteReview: async function(reviewId){
+            
+                const reviews = await fetch(`api/reseñas/${reviewId}`, {
+                    "method": "DELETE"
+                });
+
+                loadReviews();
+                
+        }
+      }
 });
 
 document.addEventListener('DOMContentLoaded', e =>{
@@ -16,7 +27,7 @@ document.addEventListener('DOMContentLoaded', e =>{
         
         addReview();
     });
-
+        
 });
 
 // carga todas las reseñas de un libro
@@ -68,4 +79,6 @@ async function loadReviews(){
         } catch(e) {
             console.log(e);
         }
-}
+    }
+
+

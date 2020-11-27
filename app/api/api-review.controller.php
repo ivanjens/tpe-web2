@@ -77,6 +77,22 @@ class APIReviewController{
         }
     }
 
+    public function delete($params = null) {
+        if($this->authHelper->checkAdmin()){
+            $idReview = $params[':ID'];
+            $success = $this->model->remove($idReview);
+            if ($success) {
+                $this->view->response("La reseña con el id=$idReview se borró exitosamente", 200);
+            }
+            else { 
+                $this->view->response("La reseña con el id=$idReview no existe", 404);
+            }
+        }
+        else{
+            $this->view->response("No tiene permisos", 500);
+        }
+    }
+
     // muestra un 404 al no encontrar lo que se pidió
     public function show404($params = null) {
         $this->view->response("El recurso solicitado no existe", 404);

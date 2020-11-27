@@ -13,6 +13,7 @@ class AuthHelper{
             session_destroy();
         }
     }
+
     function checkUser(){
         if(!isset($_SESSION['ADMIN'])){ // chequea en primer lugar que este logeado como usuario
             session_destroy();
@@ -22,6 +23,7 @@ class AuthHelper{
             return true;
         }
     }
+    
     // comprueba que 
     function checkAdmin(){
         if(!isset($_SESSION['ADMIN'])){ // chequea en primer lugar que este logeado como usuario

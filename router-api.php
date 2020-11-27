@@ -10,6 +10,8 @@ $router->addRoute('reseñas/:ID', 'GET', 'APIReviewController', 'getByBook');
 //$router->addRoute('reseñas/:ID', 'GET', 'APIReviewController', 'getReview');
 $router->addRoute('reseñas/:ID', 'POST', 'APIReviewController', 'add');
 
+$router->addRoute('reseñas/:ID', 'DELETE', 'APIReviewController', 'delete');
+
 
 
 

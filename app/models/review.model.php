@@ -55,4 +55,10 @@ class ReviewModel{
         // 3. Obtengo y devuelo el ID de la reseña nueva
         return $this->db->lastInsertId();
     }
+
+    function remove($id) {  
+        $query = $this->db->prepare('DELETE FROM reseña WHERE id = ?');
+        $query->execute([$id]);
+        return $query->rowCount();
+  }
 }
