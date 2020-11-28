@@ -14,11 +14,10 @@ class BookModel{
 
     // Obtiene todos los libros que están en la tabla
     function getAll(){
-        $query = $this->db->prepare('SELECT * FROM libro'); // prepara la consulta
+        $query = $this->db->prepare('SELECT * FROM libro');
         $query->execute();
-
-        // Se guardan los objetos en $books para retornarla al controller y enviarlas al view
         $books = $query->fetchAll(PDO::FETCH_OBJ);
+
         return $books;
     }
 
@@ -26,8 +25,8 @@ class BookModel{
     function get($id){
         $query = $this->db->prepare('SELECT libro.*, genero.nombre AS genero FROM libro INNER JOIN genero ON libro.id_genero = genero.id WHERE libro.id = ?');
         $query->execute([$id]);
-
         $book = $query->fetch(PDO::FETCH_OBJ);
+
         return $book;
     }
 
@@ -36,13 +35,13 @@ class BookModel{
         $query = $this->db->prepare('SELECT libro.id AS id_libro, libro.*, genero.nombre FROM `libro` INNER JOIN genero ON libro.id_genero = genero.id WHERE genero.nombre = ?');
         $query->execute([$genre]);
         $books = $query->fetchAll(PDO::FETCH_OBJ);
+
         return $books;
     }
 
     // Inserta un nuevo libro en la tabla
     function insert($book, $image = null){
         $query = $this->db->prepare('INSERT INTO libro (titulo, autor, editorial, sinopsis, precio, stock, imagen, id_genero) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
-        // se completan los campos en el execute con el array asociativo pasado por parametro
         $query->execute([$book['titulo'], $book['autor'], $book['editorial'], $book['sinopsis'], $book['precio'], $book['stock'], $image, $book['id_genero']]);
     }
 
@@ -52,6 +51,7 @@ class BookModel{
         $query->execute([$id]);
     }
 
+    // elimina la portada de un libro
     function removeCover($id){
         $query = $this->db->prepare('UPDATE libro SET imagen = "images/default-book.jpg" WHERE id = ?');
         $query->execute([$id]);

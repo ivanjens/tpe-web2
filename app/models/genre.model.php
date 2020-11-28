@@ -26,8 +26,8 @@ class GenreModel{
     function get($id){
         $query = $this->db->prepare('SELECT * FROM genero WHERE id = ?');
         $query->execute([$id]);
-        
         $genre = $query->fetch(PDO::FETCH_OBJ);
+
         return $genre;
     }
 
@@ -41,8 +41,8 @@ class GenreModel{
     function checkGenreItems($id){
         $query = $this->db->prepare('SELECT COUNT(*) as cantidad FROM `genero` INNER JOIN libro ON genero.id = libro.id_genero WHERE libro.id_genero = ?;');
         $query->execute([$id]);
-
         $result = $query->fetch(PDO::FETCH_OBJ);
+        
         return $result;
     }
 

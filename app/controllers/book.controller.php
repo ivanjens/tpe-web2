@@ -1,25 +1,40 @@
 <?php
 
-include_once 'app/views/book.view.php';
-include_once 'app/views/genre.view.php';
+// include models
 include_once 'app/models/book.model.php';
 include_once 'app/models/review.model.php';
 include_once 'app/models/genre.model.php';
+
+// include views
+include_once 'app/views/book.view.php';
+include_once 'app/views/genre.view.php';
+
+// include helpers
 include_once 'app/helpers/auth.helper.php';
 
 class BookController{
 
+    // models var
     private $bookModel;
     private $reviewModel;
     private $genreModel;
+
+    // views var
     private $view;
+
+    // helpers var
     private $authHelper;
 
     function __construct(){
+        // models instantiation 
         $this->bookModel = new BookModel();
         $this->reviewModel = new ReviewModel();
         $this->genreModel = new GenreModel();
+
+        // views instantiation 
         $this->view = new BookView();
+
+        // helpers instantiation 
         $this->authHelper = new AuthHelper();
         $this->authHelper->checkLogged();
     }
@@ -62,11 +77,11 @@ class BookController{
     
     // muestra el formulario para agregar / modificar libro dependiendo si recibe la id del libro
     function showFormBook($id = NULL){ 
-        if($this->authHelper->checkAdmin()){ // verifica que es admin
+        if($this->authHelper->checkAdmin()){
             $bookData = $this->bookModel->get($id);
             $genres = $this->genreModel->getAll();
             $this->view->showFormBook($bookData, $genres);
-        } else{ // al no ser admin, lo redirecciona al home
+        } else{
             header('Location:' . BASE_URL);
         }
     }
@@ -74,8 +89,8 @@ class BookController{
     // manda la petición al model para que añada un nuevo libro
     function addBook(){
         $book = array('titulo'=>$_POST['titulo'], 'autor'=>$_POST['autor'], 'editorial'=>$_POST['editorial'], 'sinopsis'=>$_POST['sinopsis'], 'precio'=>$_POST['precio'], 'stock'=>$_POST['stock'], 'id_genero'=>$_POST['id_genero']);
-        if($this->authHelper->checkAdmin()){ // chequea si es admin
-            // Comprueba que ningún campo este vacio
+        if($this->authHelper->checkAdmin()){
+
             if( (isset($book['titulo']) && ($book['titulo'] != null)) && 
                 (isset($book['autor']) && ($book['autor'] != null))  &&
                 (isset($book['editorial']) && ($book['editorial'] != null)) && 
@@ -86,21 +101,22 @@ class BookController{
                     
                     if(empty($_FILES['portada']['tmp_name'])){
                         $image_name = 'images/default-book.jpg';
-                        $this->bookModel->insert($book, $image_name); // campos completos, envia la solicitud al model
+                        $this->bookModel->insert($book, $image_name); 
                     } else if(($_FILES['portada']['type'] == "image/jpg" || $_FILES['portada']['type'] == "image/jpeg" || $_FILES['portada']['type'] == "image/png")){
                         $image_name = $this->uniqueImageName($_FILES['portada']['name'], $_FILES['portada']['tmp_name']);
-                        $this->bookModel->insert($book, $image_name); // campos completos, envia la solicitud al model
+                        $this->bookModel->insert($book, $image_name); 
                     }
                     header("Location: " . BASE_URL . 'panel/libros/'); 
                 } else{
-                    $this->view->showError('Campo(s) del formulario vacio(s)'); // campos incompletos, solicita al view que muestre el error
+                    $this->view->showError('Campo(s) del formulario vacio(s)'); 
                 }
-            } else{ // al no ser admin, lo redirecciona al home
+            } else{
                 header('Location:' . BASE_URL);
             }
         }
 
 
+        // elimina la portada de un libro
         function removeCover($id_book){
             if($this->authHelper->checkAdmin()){
                 $default_cover = 'images/default-book.jpg';
@@ -111,19 +127,20 @@ class BookController{
             }
         }
         
+        // actualiza la información de un libro
         function updateBook($id){
             $book = array('titulo'=>$_POST['titulo'], 'autor'=>$_POST['autor'], 'editorial'=>$_POST['editorial'], 'sinopsis'=>$_POST['sinopsis'], 'precio'=>$_POST['precio'], 'stock'=>$_POST['stock'], 'id_genero'=>$_POST['id_genero']);
             if($this->authHelper->checkAdmin()){
                 if( isset($_REQUEST['titulo']) && isset($_REQUEST['autor']) && isset($_REQUEST['editorial']) && isset($_REQUEST['sinopsis']) && isset($_REQUEST['precio']) && isset($_REQUEST['stock']) && isset($_REQUEST['id_genero'])){
                     if(($_FILES['portada']['type'] == "image/jpg" || $_FILES['portada']['type'] == "image/jpeg" || $_FILES['portada']['type'] == "image/png" || empty($_FILES['portada']['tmp_name']))){
                         $image_name = $this->uniqueImageName($_FILES['portada']['name'], $_FILES['portada']['tmp_name']);
-                        $this->bookModel->update($id, $book, $image_name); // campos completos, envia la solicitud al model
+                        $this->bookModel->update($id, $book, $image_name); 
                     }
                     header("Location: " . BASE_URL . 'panel/libros/'); 
                 } else{
-                    $this->view->showError('Campo(s) del formulario vacio(s)'); // campos incompletos, solicita al view que muestre el error
+                    $this->view->showError('Campo(s) del formulario vacio(s)'); 
                 }
-            } else{ // al no ser admin, lo redirecciona al home
+            } else{ 
                 header('Location:' . BASE_URL);
             }
         }    
@@ -138,20 +155,19 @@ class BookController{
 
     // manda la petición al model para borrar un libro
     function removeBook($id){
-        if($this->authHelper->checkAdmin()){ // comprueba que es admin
+        if($this->authHelper->checkAdmin()){
             $this->bookModel->delete($id);
             header("Location: " . BASE_URL . 'panel/libros/'); 
-        } else{ // al no ser admin, lo redirecciona al home
+        } else{
             header("Location: " . BASE_URL); 
         }
     }
 
     // muestra todos los libros pertenecientes al genero pasado por parametro
     function showByGenre($genre){
-        // hace la consultas a las tablas de libros y generos
         $books = $this->bookModel->getByGenre($genre);
         $genres = $this->genreModel->getAll();
-        if($books != NULL){ // si se encontraron libros con ese genero
+        if($books != NULL){
             $this->view->showBooks($books, $genres);
         } else { 
             $this->view->showError('No se han encontrado libros con ese género');

@@ -60,7 +60,7 @@
                 </ul>
               </div>
             </nav>
-            <img class='img-fluid w-100' src='images/banner.png' alt='Banner'/>
+            <img class='img-fluid' id='banner' src='images/banner.png' alt='Banner'/>
       </header>
 
       

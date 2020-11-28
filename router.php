@@ -33,7 +33,7 @@ switch ($params[0]) {
         break;
     case 'registrarse':
         $controller = new AuthController();
-        $controller->showRegister();
+        $controller->registerUser();
         break;
     case 'logout':
         $controller = new AuthController();
@@ -100,7 +100,7 @@ switch ($params[0]) {
         break;
     case 'permisos-usuario':
         $controller = new AuthController();
-        $controller->updateUser($params[1]);
+        $controller->setAdmin($params[1]);
         break;
     case 'eliminar-usuario':
         $controller = new AuthController();

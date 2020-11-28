@@ -17,6 +17,7 @@ class ReviewModel{
         $query = $this->db->prepare('SELECT * FROM reseña');
         $query->execute();
         $reviews = $query->fetchAll(PDO::FETCH_OBJ);
+
         return $reviews;
     }
 
@@ -25,9 +26,11 @@ class ReviewModel{
         $query = $this->db->prepare('SELECT reseña.*, usuario.nombre AS nombre_usuario FROM reseña INNER JOIN usuario ON reseña.id_usuario = usuario.id WHERE id_libro = ? ORDER BY fecha DESC');
         $query->execute([$id_book]);
         $reviews = $query->fetchAll(PDO::FETCH_OBJ);
+
         return $reviews;
     }
 
+    // obtiene las valoraciones de un libro
     function getPunctuation($id_book){
         $query = $this->db->prepare('SELECT valoracion FROM reseña WHERE id_libro = ?');
         $query->execute([$id_book]);
@@ -43,22 +46,23 @@ class ReviewModel{
         $query = $this->db->prepare('SELECT * FROM reseña WHERE id = ?');
         $query->execute([$id]);
         $review = $query->fetch(PDO::FETCH_OBJ);
+
         return $review;
     }
 
+    // inserta una nueva reseña en la base de datos
     function insert($comentario, $valoracion, $id_usuario, $id_libro) {
-
-        // 2. Enviar la consulta (2 sub-pasos: prepare y execute)
         $query = $this->db->prepare('INSERT INTO reseña (comentario, valoracion, id_usuario, id_libro) VALUES (?,?,?,?)');
         $query->execute([$comentario, $valoracion, $id_usuario, $id_libro]);
 
-        // 3. Obtengo y devuelo el ID de la reseña nueva
         return $this->db->lastInsertId();
     }
 
+    //elimina una reseña de la base de datos
     function remove($id) {  
         $query = $this->db->prepare('DELETE FROM reseña WHERE id = ?');
         $query->execute([$id]);
+        
         return $query->rowCount();
   }
 }

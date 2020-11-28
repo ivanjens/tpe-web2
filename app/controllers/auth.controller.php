@@ -1,46 +1,45 @@
 <?php
 
-// models
+// include models
 include_once ('app/models/user.model.php');
 include_once ('app/models/book.model.php');
 
-// views
+// include views
 include_once ('app/views/auth.view.php');
 include_once ('app/views/book.view.php');
 include_once ('app/views/genre.view.php');
 
-// helpers
-
+// include helpers
 include_once ('app/helpers/auth.helper.php');
 
 class AuthController{
 
-    // models
+    // models var
     private $userModel;
     private $bookModel;
     private $genreModel;
 
-    // views
+    // views var
     private $authView;
     private $bookView;
     private $genreView;
 
-    // helpers
+    // helpers var
 
     private $authHelper;
 
     function __construct(){
-        // models
+        // models instantiation 
         $this->userModel = new UserModel();
         $this->bookModel = new BookModel();
         $this->genreModel = new GenreModel();
 
-        //views
+        // views instantiation 
         $this->authView = new AuthView();
         $this->bookView = new BookView();
         $this->genreView = new GenreView();
 
-        //helpers
+        // helpers instantiation 
         $this->authHelper = new AuthHelper;
     }
 
@@ -50,23 +49,19 @@ class AuthController{
 
     // hace toda la verificación de los datos introducidos en el formulario de login
     function verifyLogin(){
-        // se asigna respectivamente lo que llega del form 
         $email = $_POST['email'];
         $password = $_POST['password'];
-        // comprueba que los campos no esten vacios
+
         if(empty($email) || empty($password)){
             $this->authView->showFormLogin('Debes completar todos los campos');
             die();
         } else{
-            // si no están vacios hace la consulta a la base de datos y comprueba si coinciden con los introducidos
             $userData =$this->userModel->getUserData($email);
 
             if($userData && password_verify($password, $userData->password)){
-                // las credenciales son correctas, crea una sesión y redirecciona al home
                 $this->authHelper->login($userData);
                 header("Location: " . BASE_URL); 
             } else{
-                // si las credenciales son incorrectas
                 $this->authView->showFormLogin('El email y/o la contraseña no son correctos');
                 die();
             }
@@ -84,9 +79,8 @@ class AuthController{
 
     // le solicita al view que muestre el panel junto a los libros
     function showSpecificPanel($panel, $filter = null){
-        // consulta a la ddbb los generos que tiene
         $genres=$this->genreModel->getAll();
-        // Comprueba si le llegó un filtro, en este caso planeado para la filtración de libros por género desde el panel libro
+    
         if($filter != null){
             $books = $this->bookModel->getByGenre($filter);
             $this->bookView->showPanelBooks($books, $genres);    
@@ -111,51 +105,76 @@ class AuthController{
             
     }
 
+
     function showFormRegister(){
         $this->authView->showFormRegister();
     }
 
-    function showRegister(){
+    // inserta un usuario en la base de datos
+    function registerUser(){
         $_POST['permisos'] = '0';
-        $usuario = array('email'=>$_POST['email'], 'nombre'=>$_POST['nombre'], 'permisos'=>$_POST['permisos'], 'password'=>$_POST['password']);
-        $usuario['password'] = password_hash($usuario['password'] , PASSWORD_DEFAULT ); //Encriptamos la contraseña
-        // Comprueba que ningún campo este vacio.
+        $usuario = array('email'=>$_POST['email'], 'nombre'=>$_POST['nombre'], 'permisos'=>$_POST['permisos'], 'password'=>$_POST['password'], 'confirm_password'=>$_POST['confirm-password']);        
+
         if( (isset($usuario['email']) && ($usuario['email'] != null)) && 
-            (isset($usuario['password']) && ($usuario['password'] != null)) && 
+            (isset($usuario['password']) && ($usuario['password'] != null)) &&
+            (isset($usuario['confirm_password']) && ($usuario['confirm_password'] != null)) && 
             (isset($usuario['permisos']) && ($usuario['permisos'] != null))&& 
             (isset($usuario['nombre']) && ($usuario['nombre'] != null)) ){
-            // Todos los valores que vengan del formulario se guardan en el array asociativo
-            $userData = $this->userModel->getUserData($usuario['email']);
-            if($userData==false){
-                $this->userModel->insertUser($usuario); // campos completos, envia la solicitud al model
+
+            $valid_password = $this->verifyRegisterPassword($usuario['password'], $usuario['confirm_password']);
+
+            if($valid_password){
+                $usuario['password'] = password_hash($usuario['password'] , PASSWORD_DEFAULT );
                 $userData = $this->userModel->getUserData($usuario['email']);
-                $this->authHelper->login($userData);
-                header("Location: " . BASE_URL . "home/");
+                if($userData==false){
+                    $this->userModel->insertUser($usuario); 
+                    $userData = $this->userModel->getUserData($usuario['email']);
+                    $this->authHelper->login($userData);
+                    header("Location: " . BASE_URL . "home/");
+                }
+                else{
+                    $this->bookView->showError('Ese email ya esta registrado');
+                }
             }
-            else{
-                $this->bookView->showError('Ese email ya esta registrado');
-            }
+            
         } else{
-            $this->bookView->showError('Campo(s) del registro vacio(s)'); // campos incompletos, solicita al view que muestre el error
+            $this->bookView->showError('Campo(s) del registro vacio(s)'); 
         }
     }
 
-    function updateUser($id){
+    // verifica la contraseña de registro 
+    function verifyRegisterPassword($password, $confirm_password){
+        if(strlen($password) >= 8){
+            if($confirm_password == $password){
+                return true;
+            } else{
+                $this->bookView->showError('Las contraseñas no coinciden');
+                die();
+            }
+        } else{
+            $this->bookView->showError('La contraseña debe tener al menos 8 caracteres');
+            die();
+        }
+    }
+
+    // le da permisos a un usuario
+    function setAdmin($id){
         $_POST['permisos'] = '1';
         $permisos = $_POST['permisos'];
-        if($this->authHelper->checkAdmin()){ // comprueba que sea admin
-                $this->userModel->update($id, $permisos);
+        if($this->authHelper->checkAdmin()){
+                $this->userModel->setAdmin($id, $permisos);
                 header("Location: " . BASE_URL . 'panel/usuarios/'); 
-        } else{ // al no ser admin lo redirecciona al home
+        } else{ 
             header("Location: " . BASE_URL); 
         }
     }
 
+    // elimina un usuario
     function removeUser($id){
-        if($this->authHelper->checkAdmin()){ // comprueba que sea admin
+        if($this->authHelper->checkAdmin()){ 
              $this->userModel->delete($id);
              header("Location: " . BASE_URL . 'panel/usuarios/'); 
-        } else{ // al no ser admin lo redirecciona al home
+        } else{ 
              header("Location: " . BASE_URL); 
          }
     }
