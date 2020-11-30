@@ -39,9 +39,10 @@ class BookView{
         $this->smarty->display('templates/about.tpl');
     }
 
-    function showBook($book, $promedio) {
+    function showBook($book, $promedio, $user_review) {
         $this->smarty->assign('book', $book);
         $this->smarty->assign('promedio', $promedio);
+        $this->smarty->assign('user_review', $user_review);
         $this->smarty->display('templates/book-detail.tpl');
     }
 

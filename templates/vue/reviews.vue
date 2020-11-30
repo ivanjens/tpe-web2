@@ -2,9 +2,16 @@
 <section id="app">
     <div v-if="reviews[0]">
         <div class='border border-light shadow p-3 mb-5 bg-white rounded py-4'>
+            {/literal}
+            {if $user_review == true}
+                <div class="alert alert-warning col-6 offset-3" role="alert">
+                    <p class='text-uppercase text-center'>Ya has escrito tu reseña en este libro</p>
+                </div>
+            {/if}
+            {literal}
             <div v-for="review in reviews" class="ml-3 mr-3 card text-center mb-5 mt-5 border border-dark">
                 <div class="card-header py-0">
-                    <p class='float-left mt-3'>Reseña de {{ review.nombre_usuario }} <span class='ml-2'>{{ review.valoracion }} <i class="fas fa-star punctuation-star"></i></span></p>
+                    <p class='float-left mt-3'>Reseña de <span class='font-weight-bold'>{{ review.nombre_usuario }}</span> <span class='ml-2'>{{ review.valoracion }} <i class="fas fa-star punctuation-star"></i></span></p>
                     <p class='float-right mt-3'>{{ review.fecha }}</p>
                 </div>
                 <div class="card-body">

@@ -38,7 +38,7 @@
       </div>
     </div>
 
-    <div class='mt-5'>
+    <div id='div-form' class='mt-5'>
       {include 'templates/review-box.tpl'}
     </div>
 

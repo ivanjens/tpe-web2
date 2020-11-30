@@ -48,10 +48,17 @@ class BookController{
     }
 
     // solicita al model un libro en particular y muestra sus detalles
-    function showDetail($id) {
-        $book = $this->bookModel->get($id);
-        $promedio = number_format($this->getPromedio($id), 1, ',', '.'); // transforma el promedio en un float de un solo número después de la coma
-        $this->view->showBook($book, $promedio);
+    function showDetail($id_book) {
+        if(isset($_SESSION['ID_USER'])){
+            $id_user = $_SESSION['ID_USER'];
+            $user_review = $this->reviewModel->searchReviewByUser($id_book, $id_user);
+        } else {
+            $user_review = null;
+        }
+
+        $book = $this->bookModel->get($id_book);
+        $promedio = number_format($this->getPromedio($id_book), 1, ',', '.'); // transforma el promedio en un float de un solo número después de la coma
+        $this->view->showBook($book, $promedio, $user_review);
     }
 
     // obtiene el promedio de las puntuaciones de un libro

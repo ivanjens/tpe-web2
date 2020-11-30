@@ -56,20 +56,20 @@ class APIReviewController{
     public function add($params = null) {
         if($this->authHelper->checkUser()){
             $body = $this->getData();
-
             $comentario  = $body->comentario;
             $valoracion  = $body->valoracion;
             $id_usuario  = $_SESSION['ID_USER'];
             $id_libro    = $body->id_libro;
-        
-            $id = $this->model->insert($comentario, $valoracion, $id_usuario, $id_libro);
-
-            if ($id > 0) {
-                $review = $this->model->get($id);
-                $this->view->response($review, 200);
-            }
-            else { 
-                $this->view->response("No se pudo insertar", 500);
+            if(!$this->model->searchReviewByUser($id_libro, $id_usuario)){
+                $id = $this->model->insert($comentario, $valoracion, $id_usuario, $id_libro);
+                if ($id > 0) {
+                    $review = $this->model->get($id);
+                    $this->view->response($review, 200);
+                }else { 
+                    $this->view->response("No se pudo insertar", 500);
+                }
+            } else{
+                $this->view->response('El usuario ya tiene publicada una reseña en este libro', 500);
             }
         }
         else{

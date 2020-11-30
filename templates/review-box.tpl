@@ -1,4 +1,4 @@
-{if (isset($smarty.session.ID_USER) && ($smarty.session.ADMIN == false))}
+{if (isset($smarty.session.ID_USER) && ($smarty.session.ADMIN == false) && $user_review == false)}
 <h6 class='text-uppercase'>Deja tu reseña</h6>
 <form id="review-form" action="" method="POST" class="my-4" enctype="multipart/form-data">
     <div class="form-group">

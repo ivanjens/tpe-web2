@@ -30,6 +30,14 @@ class ReviewModel{
         return $reviews;
     }
 
+    function searchReviewByUser($id_book, $id_user){
+        $query = $this->db->prepare('SELECT * FROM reseña WHERE id_usuario = ? AND id_libro = ?');
+        $query->execute([$id_user, $id_book]);
+        $review = $query->fetch(PDO::FETCH_OBJ);
+
+        return $review;
+    }
+
     // obtiene las valoraciones de un libro
     function getPunctuation($id_book){
         $query = $this->db->prepare('SELECT valoracion FROM reseña WHERE id_libro = ?');
