@@ -35,11 +35,11 @@ class APIReviewController{
     function getByBook($params = null){
         $id_book = $params[':ID'];
         $reviews = $this->model->getByBook($id_book);
-        if($reviews){ // comprueba si hay reseñas
+
+
             $this->view->response($reviews, 200);
-        } else{
-            $this->show404();
-        }
+
+       
     }
 
     // solicita una reseña en específico
@@ -61,13 +61,13 @@ class APIReviewController{
             $id_usuario  = $_SESSION['ID_USER'];
             $id_libro    = $body->id_libro;
             if(!$this->model->searchReviewByUser($id_libro, $id_usuario)){
-                $id = $this->model->insert($comentario, $valoracion, $id_usuario, $id_libro);
-                if ($id > 0) {
-                    $review = $this->model->get($id);
-                    $this->view->response($review, 200);
-                }else { 
-                    $this->view->response("No se pudo insertar", 500);
-                }
+                    $id = $this->model->insert($comentario, $valoracion, $id_usuario, $id_libro);
+                     if ($id > 0) {
+                         $review = $this->model->get($id);
+                         $this->view->response($review, 200);
+                    }else { 
+                          $this->view->response("No se pudo insertar", 500);
+                     }
             } else{
                 $this->view->response('El usuario ya tiene publicada una reseña en este libro', 500);
             }
