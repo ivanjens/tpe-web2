@@ -158,11 +158,9 @@ class AuthController{
     }
 
     // le da permisos a un usuario
-    function setAdmin($id){
-        $_POST['permisos'] = '1';
-        $permisos = $_POST['permisos'];
+    function setAdmin($id, $permiso){
         if($this->authHelper->checkAdmin()){
-                $this->userModel->setAdmin($id, $permisos);
+                $this->userModel->setAdmin($id, $permiso);
                 header("Location: " . BASE_URL . 'panel/usuarios/'); 
         } else{ 
             header("Location: " . BASE_URL); 

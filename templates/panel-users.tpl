@@ -18,7 +18,7 @@
                         <th scope="col">Usuario</th>
                         <th scope="col">Email</th>
                         <th scope="col">Admin</th>
-                        <th scope="col"></th>
+                        <th scope="col">Eliminar | Permisos</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,10 +30,14 @@
                             <td class='text-uppercase'>No</td>
                             <td>
                                 <a class = 'mr-2' href='eliminar-usuario/{$user->id}'><img src='https://icongr.am/material/account-remove.svg?size=25&color=d05858'/></a>
-                                <a href='permisos-usuario/{$user->id}'><img src='https://icongr.am/material/account-star.svg?size=25&color=d058b0'/></a>
+                                <a href='permisos-usuario/{$user->id}/1'><img src='https://icongr.am/material/account-star.svg?size=25&color=d058b0'/></a>
                             </td>
                             {else}
                                 <td class='text-uppercase'>Si</td>
+                                <td>
+                                <a class = 'mr-2' href='eliminar-usuario/{$user->id}'><img src='https://icongr.am/material/account-remove.svg?size=25&color=d05858'/></a>
+                                <a href='permisos-usuario/{$user->id}/0'><img src='https://icongr.am/material/account-star.svg?size=25&color=000000'/></a>
+                                </td>
                             {/if}
                         </tr>
                     {/foreach}

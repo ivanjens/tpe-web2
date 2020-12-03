@@ -100,7 +100,7 @@ switch ($params[0]) {
         break;
     case 'permisos-usuario':
         $controller = new AuthController();
-        $controller->setAdmin($params[1]);
+        $controller->setAdmin($params[1], $params[2]);
         break;
     case 'eliminar-usuario':
         $controller = new AuthController();
