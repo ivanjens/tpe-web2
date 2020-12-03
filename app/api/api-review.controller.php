@@ -31,10 +31,8 @@ class APIReviewController{
         $id_book = $params[':ID'];
         $reviews = $this->model->getByBook($id_book);
 
+        $this->view->response($reviews, 200);
 
-            $this->view->response($reviews, 200);
-
-       
     }
 
     // solicita una reseña en específico
@@ -47,15 +45,15 @@ class APIReviewController{
             $this->show404();
         }
     }
-
+    // Agrega una reseña
     public function add($params = null) {
-        if($this->authHelper->checkUser()){
+        if($this->authHelper->checkUser()){ // Verifica que sea usuario
             $body = $this->getData();
             $comentario  = $body->comentario;
             $valoracion  = $body->valoracion;
             $id_usuario  = $_SESSION['ID_USER'];
             $id_libro    = $body->id_libro;
-            if(!$this->model->searchReviewByUser($id_libro, $id_usuario)){
+            if(!$this->model->searchReviewByUser($id_libro, $id_usuario)){ // Verifica que no haya una reseña del mismo usuario
                     $id = $this->model->insert($comentario, $valoracion, $id_usuario, $id_libro);
                      if ($id > 0) {
                          $review = $this->model->get($id);
@@ -71,9 +69,9 @@ class APIReviewController{
             $this->view->response("No tiene permisos", 500);
         }
     }
-
+    // Elimina una reseña en especifico
     public function delete($params = null) {
-        if($this->authHelper->checkAdmin()){
+        if($this->authHelper->checkAdmin()){ // Verifica que sea admin
             $idReview = $params[':ID'];
             $success = $this->model->remove($idReview);
             if ($success) {

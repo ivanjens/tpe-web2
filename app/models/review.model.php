@@ -21,6 +21,7 @@ class ReviewModel{
         return $reviews;
     }
 
+    // Busca si hay una reseña publicada de un usuario en concreto
     function searchReviewByUser($id_book, $id_user){
         $query = $this->db->prepare('SELECT * FROM reseña WHERE id_usuario = ? AND id_libro = ?');
         $query->execute([$id_user, $id_book]);

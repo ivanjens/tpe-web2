@@ -7,7 +7,7 @@ const app = new Vue({
         error: 'Aún no hay reseñas para este libro',
     }, 
     methods: {
-        deleteReview: async function(reviewId){
+        deleteReview: async function(reviewId){ // Elimina una reseña en especifico
                 const reviews = await fetch(`api/reseñas/${reviewId}`, {
                     "method": "DELETE"
                 });
@@ -34,7 +34,7 @@ function initPage(){
         e.preventDefault();
         let comentario = document.querySelector('textarea[name=comentario]').value;
         let valoracion = document.querySelector('input[name=valoracion]:checked');
-        if(valoracion == null || comentario ==''){
+        if(valoracion == null || comentario ==''){ //Verifica que se hayan completado los datos
             let container = document.querySelector("#mensaje");
             container.innerHTML = '<p class="alert alert-info mt-3 py-4 text-uppercase text-center col-8 offset-2" role="alert">Faltan datos obligatorios</p>'
         }
@@ -46,11 +46,11 @@ function initPage(){
     });
 }
 
-
+    // Añade una reseña
     async function addReview(valoracion, comentario) {
         const book_id = window.location.pathname.substr(window.location.pathname.lastIndexOf('/')+1);
         
-            // armo la review
+        // armo la review
         const reseña = {
             "id": '',
             "comentario": comentario,
