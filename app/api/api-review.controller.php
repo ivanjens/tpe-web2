@@ -25,11 +25,6 @@ class APIReviewController{
         return json_decode($this->data); 
     } 
 
-    // solicita al modelo todas las reseñas que existan
-    function getAll($params = null){
-        $reviews = $this->model->getAll();
-        $this->view->response($reviews, 200);
-    }
 
     // solicita al modelo todas las reseñas de un libro específico
     function getByBook($params = null){

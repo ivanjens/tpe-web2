@@ -12,15 +12,6 @@ class ReviewModel{
         $this->db = $this->dbHelper->connect();
     }
 
-    // obtiene todas las reseñas que existan
-    function getAll(){
-        $query = $this->db->prepare('SELECT * FROM reseña');
-        $query->execute();
-        $reviews = $query->fetchAll(PDO::FETCH_OBJ);
-
-        return $reviews;
-    }
-
     // obtiene todas las reseñas de un libro
     function getByBook($id_book){
         $query = $this->db->prepare('SELECT reseña.*, usuario.nombre AS nombre_usuario FROM reseña INNER JOIN usuario ON reseña.id_usuario = usuario.id WHERE id_libro = ? ORDER BY fecha DESC');
