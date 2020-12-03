@@ -35,4 +35,8 @@
 
 {/if}
 
+<div id="mensaje"></div>
+
+
+
 

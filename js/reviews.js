@@ -28,24 +28,33 @@ function initPage(){
     
     let formulario = document.querySelector('#div-form');
     let form_button = document.querySelector('#review-button'); 
-    console.log(form_button);
+
     if(form_button != undefined){
     form_button.addEventListener('click', e => {
         e.preventDefault();
-        addReview();
+        let comentario = document.querySelector('textarea[name=comentario]').value;
+        let valoracion = document.querySelector('input[name=valoracion]:checked');
+        if(valoracion == null || comentario ==''){
+            let container = document.querySelector("#mensaje");
+            container.innerHTML = '<p class="alert alert-info mt-3 py-4 text-uppercase text-center col-8 offset-2" role="alert">Faltan datos obligatorios</p>'
+        }
+        else{
+            valoracion = valoracion.value;
+            addReview(valoracion, comentario);
         formulario.classList.add('is-hidden');
+        }
     });
 }
 
 
-    async function addReview() {
+    async function addReview(valoracion, comentario) {
         const book_id = window.location.pathname.substr(window.location.pathname.lastIndexOf('/')+1);
-
-    // armo la review
+        
+            // armo la review
         const reseña = {
             "id": '',
-            "comentario": document.querySelector('textarea[name=comentario]').value,
-            "valoracion": document.querySelector('input[name=valoracion]:checked').value,
+            "comentario": comentario,
+            "valoracion": valoracion,
             "id_libro": book_id,
         }
 

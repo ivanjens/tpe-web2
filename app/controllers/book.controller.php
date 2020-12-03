@@ -52,6 +52,7 @@ class BookController{
         if(isset($_SESSION['ID_USER'])){
             $id_user = $_SESSION['ID_USER'];
             $user_review = $this->reviewModel->searchReviewByUser($id_book, $id_user);
+            
         } else {
             $user_review = null;
         }
